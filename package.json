@@ -1,0 +1,25 @@
+{
+  "name": "node.server_npk-alten.ru",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GitiCat/node.server_npk-alten.ru.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GitiCat/node.server_npk-alten.ru/issues"
+  },
+  "homepage": "https://github.com/GitiCat/node.server_npk-alten.ru#readme",
+  "dependencies": {
+    "async": "^3.0.1",
+    "express": "^4.17.1",
+    "mongodb": "^3.2.6",
+    "mongoose": "^5.5.11",
+    "nconf": "^0.10.0",
+    "validator": "^11.0.0",
+    "winston": "^3.2.1"
+  }
+}
