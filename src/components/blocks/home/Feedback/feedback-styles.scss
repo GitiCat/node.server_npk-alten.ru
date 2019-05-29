@@ -1,0 +1,126 @@
+@import "../Map/yandexMap-styles.scss";
+
+.feedback-container {
+    margin: 0;
+    padding: 0;
+
+    .feedback-cols, .row {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .feedback-form__container {
+        position: relative;
+        width: fit-content;
+        margin: 25px auto;
+        padding: 15px;
+
+        .row:nth-child(1), .row:nth-child(2) {
+          margin: 0 15px !important;
+        }
+
+        h2 {
+            font-family: "RobotoRegular";
+            text-decoration: none;
+            text-transform: none;
+            font-size: $bigTitleFontSize - 20;
+
+            @media screen and (max-width: 1366px) {
+              font-size: $middleTitleFontSize - 20;
+            }
+
+            @media screen and (max-width: 800px) {
+              font-size: $litleTItleFontSize - 20;
+            }
+        }
+
+        h4 {
+          font-family: "OpenSansRegular";
+          text-decoration: none;
+          text-transform: none;
+          font-size: $bigTextFontSize;
+          font-size: $bigTextFontSize;
+
+          @media screen and (max-width: 1366px) {
+            font-size: $middleTextFontSize;
+          }
+          @media screen and (max-width: 800px) {
+            font-size: $litleTextFontSize;
+          }
+        }
+
+        .feedback-form__input-fuelds {
+            .horizontal-elements {
+                display: flex;
+                flex-direction: row;
+
+                .material-input__container {
+                    margin: 0 15px;
+
+                    &:first-child {
+                        margin-left: 0px !important;
+                    }
+                }
+            }
+
+            .feedback--text__label, 
+            .feedback--text__label textarea {
+                height: 200px;
+                width: 100%;
+            }
+
+            .feedback--text__label {
+
+                font-family: "RobotoRegular";
+                text-decoration: none;
+                text-transform: none;
+                padding-top: 15px;
+
+                font-size: $bigSubtitleFontSize;
+
+                @media screen and (max-width: 1366px) {
+                  font-size: $middleSubtitleFontSize;
+                }
+                @media screen and (max-width: 800px) {
+                  font-size: $litleSubtitleFontSize;
+                }
+
+                textarea {
+                    font-family: "OpenSansRegular";
+                    resize: none;
+                    padding: 10px 15px;
+                    font-size: $bigTextFontSize;
+        
+                    @media screen and (max-width: 1366px) {
+                      font-size: $middleTextFontSize;
+                    }
+                    @media screen and (max-width: 800px) {
+                      font-size: $litleTextFontSize;
+                    }
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+            .submit-button {
+              padding: 10px 25px;
+              border: 0;
+              border-radius: 10px;
+              background-color: #0884ce;
+              box-shadow: 0px 1px 5px 0px #000000;
+              color: white;
+              font-size: 14px;
+              font-family: "OpenSansRegular";
+              text-decoration: none;
+              text-transform: none;
+              transition: .5s ease;
+              
+              &:hover {
+                box-shadow: none;
+                cursor: pointer;
+              }
+            }
+        }
+    }
+}

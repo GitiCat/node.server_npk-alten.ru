@@ -1,11 +1,15 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const OutputDirectory = 'dist';
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: ['babel-polyfill', './src/index.js', './src/style.scss'],
     output: {
-        filename: "main.js",
-        path: path.resolve(__dirname, "dist")
+        filename: "[name].bundle.js",
+        path: path.resolve(__dirname, OutputDirectory)
     },
     module: {
         rules: [
@@ -13,6 +17,25 @@ module.exports = {
                 test: /\.js$/,
                 exclude: "/node_modules/",
                 loader: "babel-loader"
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=8192'
+            },
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    publicPath: '../',
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader']
+                })
+            },
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader'
+                })
             }
         ]
     },
@@ -21,11 +44,14 @@ module.exports = {
         open: true,
         proxy: {
             "/api": "http://localhost:8080"
-        }
+        },
+        historyApiFallback: true
     },
     plugins: [
+        new CleanWebpackPlugin([OutputDirectory]),
         new HtmlWebpackPlugin({
-            template: "src/template/default.html"
-        })
+            template: "./src/template/default.html"
+        }),
+        new ExtractTextPlugin('[name].bundle.css')
     ]
 };

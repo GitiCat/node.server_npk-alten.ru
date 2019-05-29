@@ -1,0 +1,120 @@
+/* Title texts sizing */
+$bigTitleFontSize: 62px;
+$middleTitleFontSize: 52px;
+$litleTItleFontSize: 42px;
+
+/* Subtitle texts sizing */
+$bigSubtitleFontSize: 26px;
+$middleSubtitleFontSize: 22px;
+$litleSubtitleFontSize: 18px;
+
+/* Normal texts sizing */
+$bigTextFontSize: 18px;
+$middleTextFontSize: 16px;
+$litleTextFontSize: 14px;
+
+
+.life-cycle__container {
+    padding: 75px 0;
+
+    .revers-row {
+        flex-direction: row-reverse;
+    }
+
+    .revers-position__img {
+        text-align: right !important;
+        align-items: flex-end;
+    }
+
+    .revers-position__text {
+        text-align: left !important;
+    }
+
+    .life-cycle__col {
+        display: inline-block;
+        display: -webkit-inline-box;
+        position: relative;
+    }
+
+    .row {
+        margin: 20% 0;
+        padding: 0;
+
+        .life-cycle__text--container {
+
+            max-width: 475px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            justify-content: center;
+
+            .life-cycle__item--title {
+                font-family: "RotoboRegular";
+                font-weight: bold;
+                font-size : $bigTitleFontSize - 20;
+                text-decoration: none;
+                text-transform: none;
+    
+                @media screen and (max-width: 1366px) {
+                    font-size: $middleTitleFontSize - 20;
+                }
+    
+                @media screen and (max-width: 800px) {
+                    font-size: $litleTItleFontSize - 20;
+                }
+            }
+    
+            .life-cycle__item--descriptor {
+                font-family: "OpenSansRegular";
+                font-size: $bigTextFontSize;
+                text-decoration: none;
+                text-transform: none;
+    
+                @media screen and (max-width: 1366px) {
+                    font-size: $middleTextFontSize;
+                }
+    
+                @media screen and (max-width: 800px) {
+                    font-size: $litleTextFontSize;
+                }
+            }
+        }
+
+        .life-cycle__image-container {
+
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .life-cycle__image {
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                height: 60vh;
+                width: 500px;
+                margin: 0 62px;
+            }
+
+            #cycle-img__idea {
+                background-image: url('../public/images/idea-img.png');
+            }
+            #cycle-img__development {
+                background-image: url('../public/images/development-img.png');
+            }
+            #cycle-img__production {
+                
+            }
+            #cycle-img__delivery-and-operation {
+
+            }
+            #cycle-img__modernization {
+
+            }
+            #cycle-img__shutdown-and-recycling {
+
+            }
+        }
+    }
+}
