@@ -18,6 +18,11 @@ server.use(bodyParser.urlencoded({extended: false}));
 server.use(bodyParser.json());
 server.use(helmet());
 server.use(express.static("dist"));
+server.use(express.static("js"));
+
+const db_conn = require("./db/db");
+const model = "SELECT link_url, link_name, link_title FROM links";
+db_conn.dbQuery([model]).then(res => res.map(res => console.log(res)));
 
 // set default template to app
 server.use('/*', (req, res, next) => {
