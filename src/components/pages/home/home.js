@@ -10,7 +10,19 @@ import LifeCycleBlock from "../../blocks/home/LifeCycle/lifeCycle"
 import Feedback from "../../blocks/home/Feedback/Feeaback"
 
 class Home extends React.Component {
+
+    getResJson() {
+        fetch('/api/getHome', {
+            headers : { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then(res => res).then(res => console.log(res));
+    }
+
     componentDidMount() {
+
+        this.getResJson();
 
         let resizeReset = function () {
             w = canvasBody.width = window.innerWidth - 20;

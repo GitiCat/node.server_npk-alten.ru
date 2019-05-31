@@ -1,38 +1,28 @@
-const mariadb = require('mariadb');
-const config = require('../config/config')["db"];
+const mysql = require('mysql');
+const config = require('../config/config')['db']
 
-let connectionPool = mariadb.createPool({
-    host: config["host"],
-    port: config["port"],
-    database: config["db_name"],
-    user: config["user"],
-    password: config["pass"],
-    connectionLimit: config["connectionLimit"]
+let connection = mysql.createConnection({
+    host: config['host'],
+    port: config['port'],
+    user: config['user'],
+    password: config['pass'],
+    database: config['db_name']
 });
 
+let queryResult = [];
+
 module.exports = {
-    async dbQuery(queries = []) {
-        let connection;
-        let result = [];
+    dbQuery(array = []) {
 
-        try {
-            connection = await connectionPool.getConnection();
+        connection.connect( (error) => {
+            if(error) throw "data base connec exception: " + error;
 
-            for(let index = 0; index < queries.length; index++) {
-                await connection.query(queries[index]).then(responc => {
-                    console.log(responc);
-                    
+            for(let i = 0; i < array.length; i++) {
+                connection.query(array[i], (error, result, fields) => {
+                    if(error) throw 'data base query exception: ' + error;
                 });
             }
-        } 
-        catch(error) {
-            console.log(error);
-            return '';
-        } 
-        finally {
-            if(connection) 
-                connection.end();
-            return result;
-        }
+            connection.end();
+        })
     }
 }
