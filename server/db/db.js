@@ -1,28 +1,34 @@
 const mysql = require('mysql');
-const config = require('../config/config')['db']
+const config = require('../config/config')['db'];
 
-let connection = mysql.createConnection({
+let db_connection = mysql.createPool({
     host: config['host'],
     port: config['port'],
     user: config['user'],
     password: config['pass'],
-    database: config['db_name']
+    database: config['db_name'],
+    connectTimeout: config['connectTimeout'],
+    connectionLimit: config['connectionLimit']
 });
 
-let queryResult = [];
-
 module.exports = {
-    dbQuery(array = []) {
-
-        connection.connect( (error) => {
-            if(error) throw "data base connec exception: " + error;
-
-            for(let i = 0; i < array.length; i++) {
-                connection.query(array[i], (error, result, fields) => {
-                    if(error) throw 'data base query exception: ' + error;
+    fetchData(query_str, callback) {
+        db_connection.getConnection( (error, connection) => {
+            if(error) {
+                console.log(error);
+            }
+            else {
+                connection.query(query_str, (error, result) => {
+                    if(error) {
+                        callback(error, null);
+                        connection.release();
+                    }
+                    else {
+                        callback(null, result);
+                        connection.release();
+                    }
                 });
             }
-            connection.end();
-        })
+        });
     }
 }

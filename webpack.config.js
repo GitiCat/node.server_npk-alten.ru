@@ -9,7 +9,8 @@ module.exports = {
     entry: ['babel-polyfill', './src/index.js', './src/style.scss'],
     output: {
         filename: "[name].bundle.js",
-        path: path.resolve(__dirname, OutputDirectory)
+        path: path.resolve(__dirname, OutputDirectory),
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -19,8 +20,16 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
-                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                test: /\.(woff|woff2|eot|ttf)$/,
                 loader: 'url-loader?limit=8192'
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/,
+                loader: 'file-loader',
+                options: {
+                    outputPath: 'images',
+                    name: '[name].[ext]'
+                }
             },
             {
                 test: /\.scss$/,
@@ -40,16 +49,19 @@ module.exports = {
         ]
     },
     devServer: {
-        port: 3000,
         historyApiFallback: true,
-        ws: true,
+        stats: { colors: true },
         proxy: {
-            '/api/**': {
-                target: 'http://localhost:8080',
+            '/api': {
+                'target': {
+                    'host': 'localhost',
+                    'protocol': 'http',
+                    'port': '8080'
+                },
+                changeOrigin: true,
                 secure: false,
-                changeOrigin: true
             },
-        }
+        },
     },
     plugins: [
         new CleanWebpackPlugin([OutputDirectory]),

@@ -14,19 +14,19 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <HeaderComponent/>
-                <acricle className='content' id='content'>
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <Switch>
-                            <Route exact path='/' component={Home}/>
-                            <Route exact path='/history' component={History}/>
-                            <Route exact path='/activity' component={Activity}/>
-                            <Route exact path='/productions' component={Productions}/>
-                            <Route exact path='/documents' component={Documents}/>
-                        </Switch>
-                    </Suspense>
-                </acricle>
-                <FooterComponent/>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <HeaderComponent/>
+                    <acricle className='content' id='content'>
+                            <Switch>
+                                <Route exact path='/' component={Home}/>
+                                <Route exact path='/history' component={History}/>
+                                <Route exact path='/activity' component={Activity}/>
+                                <Route exact path='/productions' component={Productions}/>
+                                <Route exact path='/documents' component={Documents}/>
+                            </Switch>
+                    </acricle>
+                    <FooterComponent/>
+                </Suspense>
             </Router>
         );
     }
