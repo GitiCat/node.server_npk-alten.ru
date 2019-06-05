@@ -9,10 +9,10 @@ class HeaderComponent extends React.Component {
                 <Container fluid>
                     <Row>
                         <Col lg={3} md={3} sm={2} xs={12}>
-                            <div className="title-logo" id="title-logo">АЛЬТЭН</div>
+                            <div className="title-logo">АЛЬТЭН</div>
                         </Col>
                         <Col lg={7} md={7} sm={7} xs={12} className="col-menu-items ml-auto">
-                            <div className="navbar justify-content-lg-end" id="header-navbar">
+                            <div className="navbar justify-content-lg-end header-navbar">
                                 <div className="nav navbar-nav bg-faded">
                                     <MenuBlock/>
                                 </div>

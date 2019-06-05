@@ -28,44 +28,33 @@ function SetCurrentData(startDate) {
  */
 function ChangeHeaderStyleToScroll(element) {
 
-    let logo = document.getElementById('title-logo');
-    let nav = document.querySelector('#header-navbar');
-    let navLinks = document.querySelectorAll(".navbar a");
-    let separator = document.querySelector('.vertical-separator');
+    let el_header = document.querySelector('.header');
+    let el_logo = document.querySelector('.title-logo');
+    let el_nav = document.querySelector('.header-navbar');
+    let el_nav_links = document.querySelectorAll('.header-navbar a');
+    let el_separator = document.querySelector('.vertical-separator');
 
     if(window.scrollY > 0) {
-        if(!element.classList.contains("scroll-active")) {
-            element.style.cssText = "position: fixed;" +
-                "top: 0;" +
-                "z-index: 2;" +
-                "width: 100%;" +
-                "background-color: #1b1a23;" +
-                "border-color: #635f76;";
-            nav.style.cssText = "padding: 10px 0;";
-            logo.style.cssText = "margin: 7px auto; " +
-                "color: #fff;" +
-                "opacity: 1;";
-            separator.style.cssText = "background-color: #635f76;" +
-                "opacity: 1;";
+        el_header.classList.add('header-active-scroll');
+        el_logo.classList.add('header-title-logo--active-scroll');
+        el_nav.classList.add('header-navbar--active-scroll');
 
-            for (let i = 0; i < navLinks.length; i++) {
-                navLinks[i].style.cssText = "color: #fff;";
-            }
-
-            element.classList.add("scroll-active");
+        for(let index = 0; index < el_nav_links; index++) {
+            el_nav_links[index].classList.add('header-nav-link--active-scroll');
         }
+
+        el_separator.classList.add('header-vertical-separator--active-scroll');
     }
     else {
-        element.style.cssText = "";
-        nav.style.cssText = "";
-        logo.style.cssText = "opacity: 0;";
-        separator.style.cssText = "opacity: 0;";
+        el_header.classList.remove('header-active-scroll');
+        el_logo.classList.remove('header-title-logo--active-scroll');
+        el_nav.classList.remove('header-navbar--active-scroll');
 
-        for(let i = 0; i < navLinks.length; i++) {
-            navLinks[i].style.cssText = "";
+        for(let index = 0; index < el_nav_links; index++) {
+            el_nav_links[index].classList.remove('header-nav-link--active-scroll');
         }
 
-        element.classList.remove("scroll-active");
+        el_separator.classList.remove('header-vertical-separator--active-scroll');
     }
 }
 
