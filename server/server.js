@@ -25,14 +25,6 @@ server.use(helmet());
 server.use(express.static("dist"));
 server.use(express.static("js"));
 
-server.use(function(req, res, next) {
-  return res.status(404).send({ message: 'Route'+req.url+' Not found.' });
-});
-
-server.use(function(err, req, res, next) {
-  return res.status(500).send({ error: err });
-});
-
 /* Initialization api functions */
 api.initApi(server);
 
@@ -48,10 +40,24 @@ server.get('/activity', (req, res) => {
     res.sendFile(path.join(__dirname + '/../dist', 'index.html'));
 });
 
-server.use('/productions', productionRouter);
+server.get('/productions', productionRouter);
 
 server.get('/documents', (req, res) => {
     res.sendFile(path.join(__dirname + '/../dist', 'index.html'));
+});
+
+server.use(function(req, res, next){
+    res.status(404);
+    console.log('Not found URL: %s',req.url);
+    res.send({ error: 'Not found' });
+    return;
+});
+
+server.use(function(err, req, res, next){
+    res.status(err.status || 500);
+    console.log('Internal error(%d): %s',res.statusCode,err.message);
+    res.send({ error: err.message });
+    return;
 });
 
 /* Productions Router: main page */

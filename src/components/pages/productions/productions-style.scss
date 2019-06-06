@@ -1,0 +1,38 @@
+.product-category-text {
+	color: black;
+
+	.product-category-text__title {
+		font-family: "RobotoRegular";
+		width: 100%;
+		text-align: center;
+		text-decoration: none;
+		text-transform: none;
+		color: #393939;
+		padding: 25px 0;
+
+		font-size: $bigTitleFontSize - 10;
+  
+        @media screen and (max-width: 1366px) {
+          font-size: $middleTitleFontSize - 10;
+        }
+        @media screen and (max-width: 800px) {
+          font-size: $litleTItleFontSize - 10;
+        }
+	}
+
+	.product-category-text__subtitle p {
+		font-family: "OpenSansRegular";
+		text-decoration: none;
+		text-transform: none;
+		font-size: $bigTextFontSize;
+		color: #3e3838;
+
+		@media screen and (max-width: 1366px) {
+			font-size: $middleTextFontSize;
+		}
+
+		@media screen and (max-width: 800px) {
+			font-size: $litleTextFontSize
+		}
+	}
+}

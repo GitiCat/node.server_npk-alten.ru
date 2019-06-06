@@ -43,16 +43,13 @@
     position: relative;
     height: 100vh;
   
-    .root {
+    #root {
       position: relative;
       height: 100%;
-  
-      .root-container {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        height: 100%;
-      }
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      height: 100%;
     }
   }
   
@@ -627,4 +624,6 @@
   @import "components/blocks/home/LifeCycle/lifeCycleStyle.scss";
   @import "components/blocks/home/Feedback/feedback-styles.scss";
   @import "components/elements/MaterialInput/MaterialInputStyles.scss";
+  @import "components/elements/ProductCard/ProductCardStyle.scss";
   @import "components/pages/history/history.scss";
+  @import "components/pages/productions/productions-style.scss";
