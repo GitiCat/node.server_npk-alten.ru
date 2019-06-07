@@ -27,8 +27,8 @@ module.exports = {
                 test: /\.(png|jpe?g|gif)$/,
                 loader: 'file-loader',
                 options: {
-                    outputPath: 'images',
-                    name: '[name].[ext]'
+                    outputPath: 'images/',
+                    name: '[name].[ext]?[hash]',
                 }
             },
             {

@@ -40,13 +40,13 @@ server.get('/activity', (req, res) => {
     res.sendFile(path.join(__dirname + '/../dist', 'index.html'));
 });
 
-server.get('/productions', productionRouter);
+server.use('/productions', productionRouter);
 
 server.get('/documents', (req, res) => {
     res.sendFile(path.join(__dirname + '/../dist', 'index.html'));
 });
 
-server.use(function(req, res, next){
+/*server.use(function(req, res, next){
     res.status(404);
     console.log('Not found URL: %s',req.url);
     res.send({ error: 'Not found' });
@@ -58,7 +58,7 @@ server.use(function(err, req, res, next){
     console.log('Internal error(%d): %s',res.statusCode,err.message);
     res.send({ error: err.message });
     return;
-});
+}); */
 
 /* Productions Router: main page */
 productionRouter.get('/', (req, res) => {

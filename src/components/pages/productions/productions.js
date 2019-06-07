@@ -4,6 +4,27 @@ import { Link } from 'react-router-dom';
 import ProductCard from "../../elements/ProductCard/ProductCard"
 
 class ProductionsComponent extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			data: []
+		}
+	}
+
+	componentDidMount() {
+		this.getData();
+	}
+
+	getData() {
+		fetch('/api/getProduction', {
+            headers : { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then(res => res.json()).then(data => this.setState({data}));
+	}
+
     render() {
         return (
             <Container fluid className="intro-container">
