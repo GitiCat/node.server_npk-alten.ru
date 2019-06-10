@@ -6,26 +6,33 @@ import ProductCard from "../../elements/ProductCard/ProductCard"
 class ProductionsComponent extends React.Component {
 
 	constructor(props) {
-		super(props);
-		this.state = {
-			data: []
-		}
-	}
+        super(props);
+        this.state = {
+            data: []
+        }
+    }
 
-	componentDidMount() {
-		this.getData();
-	}
+    componentDidMount() {
+        this.getData();
+    }
 
-	getData() {
-		fetch('/api/getProduction', {
-            headers : { 
+    getData() {
+        fetch('/api/getCatProduction', {
+        	headers : { 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
-        }).then(res => res.json()).then(data => this.setState({data}));
-	}
+        }).then(response => response.json()).then(response => this.setState({data: response}));
+    }
 
     render() {
+
+    	const { data } = this.state;
+
+    	console.log(data[0].category_name);
+    	console.log(data[0][category_name]);
+    	console.log(data[0]["category_name"]);
+
         return (
             <Container fluid className="intro-container">
             	<Row>
@@ -53,19 +60,12 @@ class ProductionsComponent extends React.Component {
             			<Container fluid className="product-category-text">
             				<Row>
             					<Container as="div" bsPrefix="product-category-text__title">
-            						Зарядно - разрядные устройства
+
             					</Container>
             				</Row>
             				<Row>
             					<Container as="div" bsPrefix="product-category-text__subtitle">
-            						<p>Зарядно - разрядные устройства предназначены для разяда/разряда 
-            						литий - ионных аккумуляторов и батарей на их основе.</p>
-            						<p>Представляет собой электронный переносной настольный прибор, 
-            						созданный из электронных блоков, поставляемых ОАО ВЕЛТЕК, в защитном
-            						контейнере - чемодане модели 4412.G с применением монтажного комплекта
-            						контейнера.</p>
-            						<p>В комплект поставки ЗРУ входит рабочий шнур для подключения батареи и
-            						шнур сетевой, а так же руководство по эксплуатации, совмещенным с паспортом.</p>
+
             					</Container>
             				</Row>
             			</Container>

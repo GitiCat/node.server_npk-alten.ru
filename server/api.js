@@ -31,17 +31,14 @@ module.exports = {
             });
         });
 
-        server.use('/api/getProduction', (req, res) => {
-            console.log(models.prodCatQuery('zru'));
+        server.use('/api/getCatProduction', (req, res) => {
             res.setHeader('Content-Type', 'application/json');
 
             db.fetchData(models.prodCatQuery('zru'), (error, result) => {
                 if(error) 
                     console.log(error);
                 else {
-                    result.map(props => {
-                        res.json(props);
-                    })
+                    res.json(result);
                 }
             });
         });

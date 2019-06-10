@@ -26,6 +26,7 @@ class HistoryComponent extends React.Component {
     render() {
         
         const { data } = this.state;
+        console.log(data);
 
         return (
             <Container fluid className="intro-container">

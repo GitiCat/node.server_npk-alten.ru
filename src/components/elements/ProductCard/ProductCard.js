@@ -8,9 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class ProductCard extends React.Component {
 
 	render() {
-
-		console.log(this.props);
-
 		return (
 			<Container fluid className="product-card__container">
 				<Row>
