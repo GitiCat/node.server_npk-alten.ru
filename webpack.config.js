@@ -2,13 +2,15 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const webpack = require('webpack');
 
 const OutputDirectory = 'dist';
 
 module.exports = {
     entry: ['babel-polyfill', './src/index.js', './src/style.scss'],
     output: {
-        filename: "[name].bundle.js",
+        filename: "[hash].bundle.js",
         path: path.resolve(__dirname, OutputDirectory),
         publicPath: '/',
     },
@@ -48,6 +50,9 @@ module.exports = {
             }
         ]
     },
+    optimization: {
+        runtimeChunk: true
+    },
     devServer: {
         historyApiFallback: true,
         stats: { colors: true },
@@ -68,6 +73,12 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/template/default.html"
         }),
-        new ExtractTextPlugin('[name].bundle.css')
+        new ExtractTextPlugin('[name].[hash].css'),
+        new BundleAnalyzerPlugin(),
+        new webpack.HashedModuleIdsPlugin({ 
+            hashFunction: "md4", 
+            hashDigest:"base64", 
+            hashDigestLength: 8,
+        }), 
     ]
 };
