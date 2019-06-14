@@ -34,12 +34,47 @@ module.exports = {
         server.use('/api/getCatProduction', (req, res) => {
             res.setHeader('Content-Type', 'application/json');
 
-            db.fetchData(models.prodCatQuery('zru'), (error, result) => {
+            db.fetchData(models.prodCatQuery(), (error, result) => {
                 if(error) 
                     console.log(error);
                 else {
                     res.json(result);
                 }
+            });
+        });
+
+        server.use('/api/getProduction', (req, res) => {
+            res.setHeader('Content-Type', 'application/json');
+
+            let categories = [
+                "primary_sources",
+                "rechargeable_batteries", 
+                "zru"
+            ];
+
+            let dataContainer = {cat: [], prod: {}};
+            let containerKey = 'default';
+            
+            db.fetchData(models.prodCatQuery(), (error, result) => {
+                if(error) 
+                    console.log(error);
+                else {
+                    dataContainer.cat = result;
+                }
+
+                for(let index = 0; index < categories.length; index++) {
+                    db.fetchData(models.productionQuery(categories[index]), (error, result) => {
+                        if(error)
+                            console.log(error);
+                        else {
+                            containerKey = categories[index];
+                            dataContainer.prod[containerKey] = result;
+
+                            if(index == categories.length - 1)
+                                res.json(dataContainer);
+                        }
+                    });
+                };
             });
         });
     }

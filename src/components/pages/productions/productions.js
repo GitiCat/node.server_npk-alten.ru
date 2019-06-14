@@ -17,7 +17,7 @@ class ProductionsComponent extends React.Component {
     }
 
     getData() {
-        fetch('/api/getCatProduction', {
+        fetch('/api/getProduction', {
         	headers : { 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -28,11 +28,8 @@ class ProductionsComponent extends React.Component {
     render() {
 
     	const { data } = this.state;
-
-    	if(data.length !== 0) {
-    		console.log(data[1].category_name);
-    	}
-
+        console.log(data);
+        
         return (
             <Container fluid className="intro-container">
             	<Row>
@@ -60,69 +57,91 @@ class ProductionsComponent extends React.Component {
                         <Container fluid className="product-category-text">
                             <Row>
                                 <Container as="div" bsPrefix="product-category-text__title">
-                                    {data.length !== 0 && data[0].category_title}
+                                    {data.length !== 0 && data.cat[0].category_title}
                                 </Container>
                             </Row>
                             <Row>
                                 <Container as="div" bsPrefix="product-category-text__subtitle">
                                     {data.length !== 0 && 
-                                        <div dangerouslySetInnerHTML={{__html: data[0]["category_descriptor"]}}/>
+                                        <div dangerouslySetInnerHTML={{__html: data["cat"][0]["category_descriptor"]}}/>
                                     }
                                 </Container>
                             </Row>
                         </Container>
                     </Row>
                     <Row>
+                        {data.length !== 0 &&
+                            data["prod"]["primary_sources"].map(item => {
+                                return (
+                                    <Col lg={4} md={6} sm={12} xs={12}>
+                                        <ProductCard imgUrl={item.prod_images}
+                                            p_name={item.prod_name}
+                                            p_type={item.prod_category_name}
+                                            p_link={item.prod_url}/>
+                                    </Col>
+                                )
+                            })
+                        }
+                    </Row>
+                    <Row>
                         <Container fluid className="product-category-text">
                             <Row>
                                 <Container as="div" bsPrefix="product-category-text__title">
-                                    {data.length !== 0 && data[1].category_title}
+                                    {data.length !== 0 && data.cat[1].category_title}
                                 </Container>
                             </Row>
                             <Row>
                                 <Container as="div" bsPrefix="product-category-text__subtitle">
                                     {data.length !== 0 && 
-                                        <div dangerouslySetInnerHTML={{__html: data[1]["category_descriptor"]}}/>
+                                        <div dangerouslySetInnerHTML={{__html: data["cat"][1]["category_descriptor"]}}/>
                                     }
                                 </Container>
                             </Row>
                         </Container>
                     </Row>
+                    <Row>
+                        {data.length !== 0 &&
+                            data["prod"]["rechargeable_batteries"].map(item => {
+                                return (
+                                    <Col lg={4} md={6} sm={12} xs={12}>
+                                        <ProductCard imgUrl={item.prod_images}
+                                            p_name={item.prod_name}
+                                            p_type={item.prod_category_name}
+                                            p_link={item.prod_url}/>
+                                    </Col>
+                                )
+                            })
+                        }
+                    </Row>
             		<Row>
             			<Container fluid className="product-category-text">
             				<Row>
             					<Container as="div" bsPrefix="product-category-text__title">
-            						{data.length !== 0 && data[2].category_title}
+            						{data.length !== 0 && data.cat[2].category_title}
             					</Container>
             				</Row>
             				<Row>
             					<Container as="div" bsPrefix="product-category-text__subtitle">
                                     {data.length !== 0 && 
-                                        <div dangerouslySetInnerHTML={{__html: data[2]["category_descriptor"]}}/>
+                                        <div dangerouslySetInnerHTML={{__html: data["cat"][2]["category_descriptor"]}}/>
                                     }
             					</Container>
             				</Row>
             			</Container>
             		</Row>
 	            	<Row>
-	            		<Col lg={4} md={6} sm={12} xs={12}>
-	            			<ProductCard imgUrl="../../../../public/images/productions/zru/11.png"
-	            				p_name="ЗРУ - 11"
-	            				p_type="Зарядно / разрядное оборудование"
-	            				p_link="/productions"/>
-	            		</Col>
-	            		<Col lg={4} md={6} sm={12} xs={12}>
-	            			<ProductCard imgUrl="../../../../public/images/productions/zru/22.png"
-	            				p_name="ЗРУ - 22"
-	            				p_type="Зарядно / разрядное оборудование"
-	            				p_link="/productions"/>
-	            		</Col>
-	            		<Col lg={4} md={6} sm={12} xs={12}>
-	            			<ProductCard imgUrl="../../../../public/images/productions/zru/35.png"
-	            				p_name="ЗРУ - 35"
-	            				p_type="Зарядно / разрядное оборудование"
-	            				p_link="/productions"/>
-	            		</Col>
+                        {data.length !== 0 &&
+                            data["prod"]["zru"].map(item => {
+                                return (
+                                    <Col lg={4} md={6} sm={12} xs={12}>
+                                        <ProductCard imgUrl={item.prod_images}
+                                            p_name={item.prod_name}
+                                            p_type={item.prod_category_name}
+                                            p_link={item.prod_url}/>
+                                    </Col>
+                                )
+                            })
+                        }
 	            	</Row>
 	            </Container>
             </Container>

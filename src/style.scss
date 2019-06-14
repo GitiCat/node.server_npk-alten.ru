@@ -57,6 +57,46 @@
     padding: 0;
     margin: 0;
   }
+
+  .filter {
+    position: absolute;
+  }
+
+  .burger {
+    display: flex;
+    flex-deriction: columns;
+    filter: url(#filter);
+    padding: 30px;
+
+    .rect {
+      background: black;
+      display: inline-block;
+      height: 32px;
+      margin-top: 40px;
+      transition: transform 500ms;
+      width: 200px;
+
+      &:nth-child(2) {
+        transition-delay: 100ms;
+      }
+
+      &:nth-child(3) {
+        transition-delay: 100ms;
+      }
+    }
+  }
+
+  .burger.active .rect:nth-child(1) {
+    transform: rotate(-45deg) translateX(-51px) translateY(50px);
+  }
+
+  .burger.active .rect:nth-child(2) {
+    transform: rotate(45deg);
+  }
+
+  .burger.active .rect:nth-child(3) {
+    transform: rotate(-45deg) translateX(51px) translateY(-50px);
+  }
   
   header {
     flex: 0 0 auto;
@@ -102,7 +142,7 @@
       content: '';
       background: black;
       display: block;
-      bottom: 0;
+      bottom: 0; 
       left: 0;
       width: 0;
       height: 1px;
@@ -111,6 +151,26 @@
   
     .nav .active > .nav .nav-item:after {
       width: 100%;
+    }
+
+    .dropdown-panel {
+      position: relative;
+      color: black;
+
+      &:hover .dropdown-menu-panel {
+        display: block;
+      }
+
+      .dropdown-menu-panel {
+        position: absolute;
+        display: none;
+        background-color: #272532;
+        border-top: 1px solid #635f76;
+        top: 144%;
+        width: 310px;
+        padding: 10px 5px;
+        right: -32%;
+      }
     }
   
     .vertical-separator {
@@ -531,6 +591,10 @@
     padding-bottom: 0 !important;
   
     background-color: $footerColor;
+
+    .none {
+      display: none;
+    }
   
     ul li {
       margin: 5px 0;
