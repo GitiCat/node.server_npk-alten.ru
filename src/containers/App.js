@@ -11,6 +11,7 @@ const ChargeDischargeDevices = lazy(() => import("../components/pages/production
 const Documents = lazy(() => import("../components/pages/documents/documents"));
 
 import HeaderComponent from "../components/blocks/header/header";
+import HamburgerMenu from "../components/blocks/menu/hamburger-menu"
 import FooterComponent from "../components/blocks/footer/footer";
 
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
         return (
             <Router>
                 <Suspense fallback={<div>Loading...</div>}>
+                    <HamburgerMenu/>
                     <HeaderComponent/>
                     <acricle className='content' id='content'>
                             <Switch>

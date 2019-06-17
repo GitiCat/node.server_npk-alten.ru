@@ -6,7 +6,7 @@ class RechargeableBattery extends React.Component {
 	render() {
 		return (
 			<div>
-				<HamburgerMenuBlock/>
+				asd
 			</div>
 		);
 	}

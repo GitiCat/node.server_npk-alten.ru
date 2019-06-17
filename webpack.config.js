@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const webpack = require('webpack');
 
 const OutputDirectory = 'dist';
@@ -79,6 +80,7 @@ module.exports = {
             hashFunction: "md4", 
             hashDigest:"base64", 
             hashDigestLength: 8,
-        }), 
+        }),
+        new HardSourceWebpackPlugin(),
     ]
 };
