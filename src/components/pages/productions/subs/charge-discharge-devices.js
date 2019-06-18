@@ -34,7 +34,7 @@ class ChargeDischargeDevices extends React.Component {
 						data["prod"]["zru"].map(item => {
 							return (
 								<Container as="div" bsPrefix="production-catalog-list--item"
-									style={{backgroundImage: 'url(' + item.prod_images + ')'}}>
+									style={{backgroundImage: "url(../../../../../public/images/" + item.prod_images + ")"}}>
 									<Container as="div" bsPrefix="item--background">
 										<Container as="div" bsPrefix="item--title">
 											{item.prod_name}
