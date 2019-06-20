@@ -35,10 +35,9 @@ class ChargeDischargeDevices extends React.Component {
 							return (
 								<Container as="div" bsPrefix="production-catalog-list--item"
 									style={{backgroundImage: "url(../../../../../public/images/" + item.prod_images + ")"}}>
-									<Container as="div" bsPrefix="item--background">
-										<Container as="div" bsPrefix="item--title">
-											{item.prod_name}
-										</Container>
+									<Container as="div" bsPrefix="item--background-hover"></Container>
+									<Container as="div" bsPrefix="item--title">
+										{item.prod_name}
 									</Container>
 								</Container>
 							)
