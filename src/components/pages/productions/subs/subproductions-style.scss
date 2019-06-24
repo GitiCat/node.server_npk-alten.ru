@@ -1,4 +1,11 @@
 .container-production-catalog-page {
+	position: relative;
+	width: 100%;
+	padding-right: 102px !important;
+	padding-left: 211px !important;
+	padding-top: 74px !important;
+	height: 100%;
+
 	.production-catalog-list {
 		position: fixed;
 		top: 0;
@@ -6,6 +13,8 @@
 		padding: 15px 10px;
 		height: 100%;
 		background-color: #1b1a23 !important;
+	    box-shadow: 1px 1px 6px 0px #393740;
+	    cursor: pointer;
 
 		.production-catalog-list--item {
 			position: relative;
@@ -16,7 +25,6 @@
 		    background-position: center;
 		    margin: 20px 25px;
 		    border-radius: 75px;
-		    box-shadow: 0px -0.6px 6px 0px #fffdfdc4;
 
 			.item--background-hover {
 				opacity: 0;
@@ -25,7 +33,7 @@
 			    height: 100%;
 			    border-radius: 75px;
 			    background: #63636369;
-			    transition: .5s ease;
+			    transition: .3s ease;
 			}
 
 		    .item--title {
@@ -65,15 +73,69 @@
 
 		   	&:hover .item--background-hover {
 		   		opacity: 1;
-		   	}
+		    }
+		}
+	}
 
-		   	&:hover .item--title:before {
-		   		opacity: 1;
-		   	}
+	.production-catalog-display {
+		position: relative;
+		width: 100%;
+		height: 100%;
 
-		   	&:hover .item--title:after {
-		   		opacity: 1;
-		   	}
+		.catalog-display--item {
+			position: relative;
+			width: 100%;
+			height: 100%;
+
+			.item-display--element-name {
+				font-family: "RobotoRegular";
+				font-weight: normal;
+				font-size: $middleTitleFontSize;
+				text-decoration: none;
+				text-transform: none;
+				color: $mainTextColor;
+			}
+
+			.item-display--category {
+				position: relative;
+				font-family: "RobotoRegular";
+				font-weight: normal;
+				font-size: $litleSubtitleFontSize;
+				text-decoration: none;
+				text-transform: none;
+				color: $lightTextColor;
+				padding-left: 15px;
+
+				&:before {
+					content: "";
+					display: block;
+					position: absolute;
+					left: 0;
+					top: 25%;
+					background-color: $mainTextColor;
+					width: 2px;
+					height: 50%;
+				}
+			}
+			.item-display--info-block {
+				.info-block--1 {
+					.info-block--descriptor {
+
+					}
+					.info-block--files-list {
+						.files-list--title {
+
+						}
+					}
+				}
+				.info-block--image {
+				    background-repeat: no-repeat;
+				    background-position: center;
+				    background-size: contain;
+				    width: 449px;
+				    height: 510px;
+				}
+			}
 		}
 	}
 }

@@ -7,6 +7,8 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const webpack = require('webpack');
 
 const OutputDirectory = 'dist';
+/* cache size to save, in megabite */
+const defaultCacheSize = 100;
 
 module.exports = {
     entry: ['babel-polyfill', './src/index.js', './src/style.scss'],
@@ -80,6 +82,24 @@ module.exports = {
             hashDigest:"base64", 
             hashDigestLength: 8,
         }),
-        new HardSourceWebpackPlugin(),
+        new HardSourceWebpackPlugin({
+            cacheDirectory: '.cache/hard_source/[confighash]',
+            configHash: function(webpackConfig) {
+                return require('node-object-hash')({sort: false}).hash(webpackConfig);
+            },
+            info: {
+                mode: 'none',
+                level: 'debug'
+            },
+            environmentHash: {
+                root: process.cwd(),
+                directories: [],
+                files: ['package-lock.json']
+            },
+            cachePrune: {
+                maxAge: 2 * 24 * 60 * 60 * 1000,
+                sizeThreshold: defaultCacheSize * 1024 * 1024,
+            }
+        }),
     ]
 };

@@ -15,6 +15,9 @@
   $darkBlueColor: #1b1a23;
   $footerColor: #272532;
   $darkForegroundBrush: #635f76;
+
+  $mainTextColor: #484848;
+  $lightTextColor: #adacac;
   
   /* Title texts sizing */
   $bigTitleFontSize: 62px;
@@ -56,6 +59,22 @@
   ul {
     padding: 0;
     margin: 0;
+  }
+
+  .d-none {
+    display: none !important;
+  }
+
+  .d-block {
+    display: block !important;
+  }
+
+  .d-flex-container {
+    display: flex !important;
+  }
+
+  .p-fixed {
+    position: fixed !important;
   }
 
   .hamburger-button-layout {
@@ -112,11 +131,6 @@
   @media screen and (max-width: 1050px) {
     .ham {
       display: block !important;
-    }
-
-    .drawer-list-layout {
-      position: fixed !important;
-      display: flex !important;
     }
 
     .header {
@@ -196,6 +210,9 @@
       @include transition;
       transform: translateX(0);
     }
+
+    position: fixed !important;
+    display: flex !important;
   }
   
   header {
