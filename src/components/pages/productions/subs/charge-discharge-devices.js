@@ -1,4 +1,5 @@
 import React from 'react' 
+import {Link} from 'react-router-dom'
 import {Container, Row, Col} from 'react-bootstrap';
 
 class ChargeDischargeDevices extends React.Component {
@@ -61,63 +62,105 @@ class ChargeDischargeDevices extends React.Component {
 					}
 				</Container>
 				<Container fluid className="production-catalog-display">
-					<Container as="div" bsPrefix="catalog-display--item">
-						<Row className="justify-content-center">
-							<Col lg={5} md={12} sm={12} xs={12}>
-								<Container as="div" bsPrefix="item-display--element-name d-flex align-items-center">
-									{data.length !== 0 && 
-										data["prod"]["zru"][0]["prod_name"]
-									}
-								</Container>
-							</Col>
-							<Col lg={5} md={12} sm={12} xs={12} className="d-flex justify-content-lg-end
-									justify-content-md-start justify-content-sm-start justify-content-start">
-								<Container as="div" bsPrefix="item-display--category d-flex align-items-center">
-									{data.length !== 0 && 
-										data["cat"][2]["category_title"]
-									}
-								</Container>
-							</Col>
-						</Row>
-						<Row>
-							<Container fluid className="item-display--info-block"> 
-								<Row>
-									<Col lg={6} md={12} sm={12} xs={12}>
-										<Container fluid className="info-block--1">
-											<Row>
-												<Container as="div" bsPrefix="info-block--descriptor">
-													{data.length !== 0 && 
-														<div dangerouslySetInnerHTML={{__html: data["prod"]["zru"][0]["prod_descriptor"]}}/>
-													}
+					{data.length !== 0 && 
+						data["prod"]["zru"].map((item, index) => {
+							return (
+								<Container fluid className="catalog-display--item">
+									<Container as="div" bsPrefix="p-catalog-display--item__title-block">
+										<Row>
+											<Col lg={6} md={12} sm={12} xs={12}>
+												<Container as="div" bsPrefix="p-catalog-display--item__title">
+													{item.prod_name}
 												</Container>
-											</Row>
-											<Row>
-												<Container as="div" bsPrefix="info-block--files-list">
-													<Container as="div" bsPrefix="files-list--title">
-														Файлы для загрузки
-													</Container>
-													{data.length !==0 &&
-														data["prod"]["zru"][0]["prod_files"] !== null ? 'true' : 'false'
-													}
+											</Col>
+											<Col lg={6} md={12} sm={12} xs={12} className="d-flex align-items-center
+												justify-content-lg-end justify-content-md-start
+												justify-content-sm-start justify-content-start">
+												<Container as="div" bsPrefix="p-catalog-display--item__category-name">
+													{item.prod_category_name}
 												</Container>
-											</Row>
-										</Container>
-									</Col> 
-									<Col lg={6} md={12} sm={12} xs={12}>
-										{data.length !== 0 &&
-											<Container as="div" bsPrefix="info-block--image"
-												style={{backgroundImage: "url(../../../../../public/images/" + data["prod"]["zru"][0]["prod_images"] + ")"}}>
-											</Container>
-										}
-									</Col>
-								</Row>
-							</Container>
-						</Row>
-					</Container>
+											</Col>
+										</Row>
+									</Container>
+									<Row>
+										<Container as="div" bsPrefix="gradient-line-separator"></Container>
+									</Row>
+									<Container as="div" bsPrefix="p-catalog-display--item__info-block">
+										<Row>
+											<Col lg={6} md={12} sm={12} xs={12}>
+												<Container as="div" bsPrefix="item__info-block--information">
+													<Row>
+														<Container as="div" bsPrefix="item__info-block--descriptor">
+															<div dangerouslySetInnerHTML={{__html: item["prod_descriptor"]}}></div>
+														</Container>
+													</Row>
+													<Row>
+														<Container as="div" bsPrefix="item__info-block--parameters">
+															{item["prod_properties"] !== null 
+																? <div dangerouslySetInnerHTML={{__html: item["prod_properies"]}}></div>
+																: <LackInformation descriptor="Информация о разделе 'Параметры устройства' отсутствует..."/>
+															}
+														</Container>
+													</Row>
+													<Row>
+														<Container as="div" bsPrefix="item__info-block--files container">
+															<Row>
+																<Container as="div" bsPrefix="info-block--files__title">
+																	Файлы для закачки
+																</Container>
+															</Row>
+															<Row>
+																<Container as="div" bsPrefix="info-block--files__list">
+																	<ul>
+																		{item["prod_files"] !== null 
+																			? SplitString(item["prod_files"], ", ").map((item, index) => {
+																				return(
+																					<li key={index.toString()}>
+																						<Link to="">{item}</Link>
+																					</li>
+																				)
+																			})
+																			: <LackInformation descriptor="Файлы для загрузки отсутствуют..."/>
+																		}
+																	</ul>
+																</Container>
+															</Row>
+														</Container>
+													</Row>
+												</Container>
+											</Col>
+											<Col lg={6} md={12} sm={12} xs={12} className="d-flex justify-content-center">
+												<Container as="div" bsPrefix="item__info-block--image"
+													style={{backgroundImage: "url(../../../../../public/images/" + item.prod_images + ")"}}></Container>
+											</Col>
+										</Row>
+									</Container>
+								</Container>
+							)
+						})
+					}
 				</Container>
 			</Container>
 		);
 	}
+}
+
+{/* Block informing about the lack of information */}
+function LackInformation(props) {
+	return(
+		<Container as="div" bsPrefix="lack-information-block">
+			{props.descriptor}
+		</Container>
+	)
+}
+
+function SplitString(stringToSclit, separator) {
+	if(stringToSclit === null) 
+		return null;
+		
+	let arrayOfString = stringToSclit.split(separator);
+
+	return arrayOfString;
 }
 
 export default ChargeDischargeDevices;
