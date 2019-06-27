@@ -48,14 +48,25 @@ class ChargeDischargeDevices extends React.Component {
 			<Container bsPrefix="container-production-catalog-page">
 				<Container as="div" bsPrefix="production-catalog-list">
 					{data.length !== 0 && 
-						data["prod"]["zru"].map(item => {
+						data["prod"]["zru"].map((item, index) => {
 							return (
-								<Container as="div" bsPrefix="production-catalog-list--item"
-									style={{backgroundImage: "url(../../../../../public/images/" + item.prod_images + ")"}}>
-									<Container as="div" bsPrefix="item--background-hover"></Container>
-									<Container as="div" bsPrefix="item--title">
-										{item.prod_name}
-									</Container>
+								<input type="radio" className="slide-input-buttons" id={'slide-input-' + index} name="bg-input"/>
+							)
+						})
+					}
+					{data.length !== 0 &&
+						data["prod"]["zru"].map((item, index) => {
+							return (
+								<Container as="div" bsPrefix="production-catalog-list--item__container">
+									<label for={'slide-input-' + index} className="slide-check-label">
+										<Container as="div" bsPrefix="production-catalog-list--item"
+											style={{backgroundImage: "url(../../../../../public/images/" + item.prod_images + ")"}}>
+											<Container as="div" bsPrefix="item--background-hover"></Container>
+											<Container as="div" bsPrefix="item--title">
+												{item.prod_name}
+											</Container>
+										</Container>
+									</label>
 								</Container>
 							)
 						})

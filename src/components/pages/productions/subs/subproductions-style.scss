@@ -202,8 +202,11 @@
 										font-size: 18px;
 										text-decoration: none;
 										text-transform: none;
-										transition: .5s ease;
 										font-weight: bold;
+
+										transition-property: color;
+										transition-duration: .3s;
+										transition-timing-function: linear;
 
 										@media only screen and (max-width: 1366px) {
 											font-size: $middleTextFontSize;
