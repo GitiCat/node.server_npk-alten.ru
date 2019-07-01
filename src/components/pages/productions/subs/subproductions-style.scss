@@ -14,7 +14,11 @@
 		height: 100%;
 		background-color: #1b1a23 !important;
 	    box-shadow: 1px 1px 6px 0px #393740;
-	    cursor: pointer;
+		cursor: pointer;
+		
+		input {
+			display: none;
+		}
 
 		.production-catalog-list--item {
 			position: relative;
@@ -76,6 +80,16 @@
 		    }
 		}
 	}
+
+	@mixin input-checked-slide-animations {
+		@for $item from 0 to 50 {
+			#slide-input-#{$item}:checked {
+				
+			}
+		}
+	}
+	
+	@include input-checked-slide-animations;
 
 	.production-catalog-display {
 		
