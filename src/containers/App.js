@@ -5,10 +5,9 @@ const Home = lazy(() => import("../components/pages/home/home"));
 const History = lazy(() => import("../components/pages/history/history"));
 const Activity = lazy(() => import("../components/pages/activity/activity"));
 const Productions = lazy(() => import("../components/pages/productions/productions"));
-const RechargeableBattery = lazy(() => import("../components/pages/productions/subs/rechargeable-batteries.js"));
-const PrimarySources = lazy(() => import("../components/pages/productions/subs/primary-sources.js"));
-const ChargeDischargeDevices = lazy(() => import("../components/pages/productions/subs/charge-discharge-devices.js"));
 const Documents = lazy(() => import("../components/pages/documents/documents"));
+
+const ProductionSlider = lazy(() => import("../containers/productionsSlider/index"));
 
 import HeaderComponent from "../components/blocks/header/header";
 import HamburgerMenu from "../components/blocks/menu/hamburger-menu"
@@ -27,9 +26,9 @@ class App extends React.Component {
                                 <Route path='/history' component={History}/>
                                 <Route path='/activity' component={Activity}/>
                                 <Route exact path='/productions' component={Productions}/>
-                                <Route path='/productions/rechargeable-batteries' component={RechargeableBattery}/>
-                                <Route path='/productions/primary-sources' component={PrimarySources}/>
-                                <Route path='/productions/charge-discharge-devices' component={ChargeDischargeDevices}/>
+                                <Route path='/productions/rechargeable-batteries' component={ProductionSlider}/>
+                                <Route path='/productions/primary-sources' component={ProductionSlider}/>
+                                <Route path='/productions/charge-discharge-devices' component={ProductionSlider}/>
                                 <Route path='/documents' component={Documents}/>
                             </Switch>
                     </acricle>

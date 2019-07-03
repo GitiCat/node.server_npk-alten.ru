@@ -93,7 +93,12 @@
 
 	.production-catalog-display {
 		
-		color: black;
+		overflow: hidden;
+
+		.row {
+			margin-right: 0px !important;
+			margin-left: 0px !important;
+		}
 
 		.catalog-display--item {
 			

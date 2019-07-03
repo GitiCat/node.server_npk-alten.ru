@@ -7,7 +7,8 @@ class ChargeDischargeDevices extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+            message: "",
         }
     }
 
@@ -43,6 +44,7 @@ class ChargeDischargeDevices extends React.Component {
 	render() {
 
 		const { data } = this.state;
+		console.log(this);
 
 		return(
 			<Container bsPrefix="container-production-catalog-page">
