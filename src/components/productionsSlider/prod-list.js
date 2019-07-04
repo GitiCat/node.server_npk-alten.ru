@@ -1,10 +1,13 @@
 import React from "react"
+import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import { Container, Row, Col } from "react-bootstrap"
 
 import ProductionsListItem from "./prod-list-item"
 
-const ProductionsList = ({data = {}, selectProduct}) => (
+import { selectProduct } from "../../actions/productions-select-change-actions" 
+
+const ProductionsList = ({data = {}, dispatch}) => (
 	<Container as="div" bsPrefix="production-catalog-list">
 		{
 			data.map((item, index) => {
@@ -13,11 +16,14 @@ const ProductionsList = ({data = {}, selectProduct}) => (
 						id={index} 
 						imageUrl={item.prod_images} 
 						name={item.prod_name}
-						onChange={() => selectProduct()}/>
+						onChange={e => {
+							e.preventDefault()
+							dispatch(selectProduct(index))
+						}}/>
 				)
 			})
 		}
 	</Container>
 )
 
-export default ProductionsList;
+export default connect()(ProductionsList);

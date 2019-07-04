@@ -1,18 +1,13 @@
-const productionsChange = (state = [], action) => {
+const initialState = {
+	id: 0
+}
+
+export const productionsChange = (state = initialState, action = {}) => {
 	switch (action.type) {
 		case 'SELECT_PRODUCT':
-			return [
-				{
-					title: action.title,
-					descriptor: action.descriptor,
-					parameters: action.parameters,
-					files: action.files,
-					photo: action.photo
-				}
-			]
+			console.log(state, action.id);
+			return Object.assign({}, state, { id: action.id })
 		default:
 			return state;
 	}
 }
-
-export default productionsChange;

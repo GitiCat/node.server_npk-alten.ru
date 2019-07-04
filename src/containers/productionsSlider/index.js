@@ -6,7 +6,7 @@ import { Container, Row, Col } from "react-bootstrap"
 import PropTypes from "prop-types";
 
 import ProductionsList from "../../components/productionsSlider/prod-list.js"
-import {selectProduct} from "../../actions/productions-select-change-actions"
+import * as productSelectChangeActions from "../../actions/productions-select-change-actions"
 
 class ProductionsSlider extends React.Component {
 	constructor(props) {
@@ -51,12 +51,10 @@ class ProductionsSlider extends React.Component {
 		const { data } = this.state;
 		const upload_name = this.props.location.state.uploading_data;
 
-		console.log(this.actions);
-
 		return (
 			<Container bsPrefix="container-production-catalog-page">
 				{data.length !== 0 &&
-					<ProductionsList data={data["prod"][upload_name]} selectProduct={actions.selectProduct}/>
+					<ProductionsList data={data["prod"][upload_name]}/>
 				}
 			</Container>
 		);
@@ -64,11 +62,7 @@ class ProductionsSlider extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	state: state
+	id: state.productionsChange
 })
 
-const mapDispatchToProps = (dispatch) => ({
-	actions: bindActionCreators(selectProduct, dispatch)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductionsSlider);
+export default connect(mapStateToProps)(ProductionsSlider);
