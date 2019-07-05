@@ -53,6 +53,7 @@
       flex-direction: column;
       position: relative;
       height: 100%;
+      overflow-x: hidden;
     }
   }
   
@@ -158,15 +159,15 @@
   }
 
   .drawer-list-layout {
-    display: none;
-    position: relative;
+    display: block;
+    position: absolute;
     flex-direction: column;
     right: 0;
     top: 0;
     height: 110vh;
     width: 100vw;
-    transform: translate(100vw, 0);
-    -ms-transform: translateX(100vw);
+    transform: translateX(110%);
+    -ms-transform: translateX(110%);
     box-sizing: border-box;
     padding-top: 125px;
     transition: width 475ms ease-out, transform 450ms ease, border-radius .8s .1s ease;

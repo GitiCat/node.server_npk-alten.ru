@@ -32,9 +32,9 @@ class LifeCycleItems extends React.Component {
                                 {cycle.title}
                             </Container>
                             {
-                                cycle.descriptor.map((desc) => {
+                                cycle.descriptor.map((desc, index) => {
                                     return (
-                                        <Container as="div" bsPrefix="life-cycle__item--descriptor">
+                                        <Container key={index.toString()} as="div" bsPrefix="life-cycle__item--descriptor">
                                             {desc.paragraph}
                                         </Container>
                                     );

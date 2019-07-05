@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 
 import ProductionsList from "../../components/productionsSlider/prod-list.js"
 import * as productSelectChangeActions from "../../actions/productions-select-change-actions"
+import ProductionsDisplay from "../../components/productionsSlider/prod-display"
 
 class ProductionsSlider extends React.Component {
 	constructor(props) {
@@ -42,8 +43,10 @@ class ProductionsSlider extends React.Component {
     	let header = document.querySelector('.header');
     	let m_header = document.querySelector('.ham');
 
-    	header.classList.toggle('d-none');
-    	m_header.classList.toggle('d-block');
+    	if(header !== undefined && m_header !== undefined) {
+    		header.classList.toggle('d-none');
+    		m_header.classList.toggle('d-block');
+    	}
     }
     
 	render() {
@@ -54,7 +57,10 @@ class ProductionsSlider extends React.Component {
 		return (
 			<Container bsPrefix="container-production-catalog-page">
 				{data.length !== 0 &&
-					<ProductionsList data={data["prod"][upload_name]}/>
+					<React.Fragment>
+						<ProductionsList data={data["prod"][upload_name]}/>
+						<ProductionsDisplay data={data["prod"][upload_name]} id={this.props.paramSelectedProduct["id"]}/>
+					</React.Fragment>
 				}
 			</Container>
 		);
@@ -62,7 +68,7 @@ class ProductionsSlider extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	id: state.productionsChange
+	paramSelectedProduct: state.productionsChange
 })
 
 export default connect(mapStateToProps)(ProductionsSlider);

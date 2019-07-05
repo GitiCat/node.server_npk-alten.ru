@@ -1,10 +1,17 @@
+.mp-0 {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
 .container-production-catalog-page {
 	position: relative;
 	width: 100%;
-	padding-right: 102px !important;
-	padding-left: 211px !important;
-	padding-top: 74px !important;
+	padding-right: 105px !important;
+    padding-left: 250px !important;
+    padding-top: 40px !important;
 	height: 100%;
+
+	background-color: #f3f3f3;
 
 	.production-catalog-list {
 		position: fixed;
@@ -12,9 +19,8 @@
 		left: 0;
 		padding: 15px 10px;
 		height: 100%;
-		background-color: #1b1a23 !important;
-	    box-shadow: 1px 1px 6px 0px #393740;
-		cursor: pointer;
+		background-color: #ffffff !important;
+    	box-shadow: -5px 0px 13px 0px #a7a7a7;		
 		
 		input {
 			display: none;
@@ -24,29 +30,30 @@
 			position: relative;
 		    background-repeat: no-repeat;
 		    background-size: cover;
-		    height: 15vh;
-		    width: 15vh;
+		    height: 12vh;
+		    width: 20vh;
 		    background-position: center;
-		    margin: 20px 25px;
-		    border-radius: 75px;
+		    margin: 15px 20px;
+		    border-radius: 0px 45px 0 45px;
+		    cursor: pointer;
 
 			.item--background-hover {
 				opacity: 0;
 			    position: absolute;
 			    width: 100%;
 			    height: 100%;
-			    border-radius: 75px;
-			    background: #63636369;
+			    border-radius: 0px 45px 0 45px;
+    			background: #0000007d;
 			    transition: .3s ease;
 			}
 
 		    .item--title {
-		    	color: #fff;
+				color: #e0e0e0;
 			    font-family: "RobotoRegular";
-			    font-size: 20px;
+			    font-size: 22px;
 			    position: absolute;
-			    bottom: 39%;
-			    left: 24%;
+			    bottom: 34%;
+			    left: 28%;
 
 			    &:before {
 			        content: "";
@@ -108,13 +115,23 @@
 
 				padding: 15px 0px;
     			margin: 0px -15px;
+    			width: 100%;
 
 				.p-catalog-display--item__title {
 					color: $mainTextColor;
 					font-size: $litleTItleFontSize;
+					font-weight: bold;
 					font-family: "RobotoRegular";
 					text-decoration: none;
 					text-transform: none;
+
+					@media only screen and (max-width: 1366px) {
+						font-size: $litleTItleFontSize;
+					}
+
+					@media only screen and (max-width: 800px) {
+						font-size: $litleTItleFontSize;
+					}
 				}
 	
 				.p-catalog-display--item__category-name {
@@ -125,6 +142,7 @@
 				    text-decoration: none;
 				    text-transform: none;
 				    padding: 1px 15px;
+				    margin-right: 32px;
 
 					&:before {
 						content: "";
@@ -149,7 +167,12 @@
 
 			.p-catalog-display--item__info-block {
 
-				color: black;
+				.row {
+					margin-left: 0 !important;
+					margin-right: 0 !important;
+
+
+				}
 				
 				.item__info-block--information {
 
@@ -159,7 +182,7 @@
 
 						color: $mainTextColor;
 						font-family: "OpenSansRegular";
-						font-size: $bigTextFontSize;
+						font-size: $middleTextFontSize;
 						text-decoration: none;
 						text-transform: none;
 
@@ -189,7 +212,7 @@
 
 						.info-block--files__title {
 							color: $mainTextColor;
-							font-size: $bigTextFontSize;
+							font-size: $middleTextFontSize;
 							font-family: "OpenSansRegular";
 							text-decoration: none;
 							text-transform: none;
@@ -218,7 +241,7 @@
 									a {
 										color: #5768b4;
 										font-family: "OpenSansRegular";
-										font-size: 18px;
+										font-size: $middleTextFontSize;
 										text-decoration: none;
 										text-transform: none;
 										font-weight: bold;
@@ -260,7 +283,7 @@
 .lack-information-block {
 	background-color: #4f83de4d;
 	color: $mainTextColor;
-	font-size: $bigTextFontSize;
+	font-size: $middleTextFontSize;
 	font-family: "OpenSansRegular";
 	text-decoration: none;
 	text-transform: none;

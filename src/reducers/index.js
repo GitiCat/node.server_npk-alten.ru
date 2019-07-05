@@ -2,13 +2,14 @@ import {combineReducers} from "redux";
 import LanguageReducer from "./reducers-language";
 import HomeReducer from "./home-reducers";
 import LifeCycleReducer from "./lifecycle-reducer";
-import { productionsChange } from "./productions-select-change-reducer"
+import { productionsChange, getSelectProductId } from "./productions-select-change-reducer"
 
 const allReducers = combineReducers({
     LanguageReducer,
     HomeReducer,
     LifeCycleReducer,
-    productionsChange
+    productionsChange,
+    getSelectProductId
 });
 
 export default allReducers;

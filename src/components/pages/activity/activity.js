@@ -30,7 +30,7 @@ class ActivityComponent extends React.Component {
         return (
             <Container fluid className="intro-container">
                 <Row>
-                    <Container fluid className="intro-header-container">
+                    <Container fluid className="intro-header-container d-flex align-items-center">
                         <Container as="div" bsPrefix="intro-header--text">
                             <Row>
                                 <Col lg={12} md={12} sm={12} xs={12}>
