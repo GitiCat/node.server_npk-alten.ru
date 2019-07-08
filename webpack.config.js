@@ -13,7 +13,7 @@ const defaultCacheSize = 100;
 module.exports = {
     entry: ['babel-polyfill', './src/index.js', './src/style.scss'],
     output: {
-        filename: "[hash].bundle.js",
+        filename: "[name].bundle.js",
         path: path.resolve(__dirname, OutputDirectory),
         publicPath: '/',
     },

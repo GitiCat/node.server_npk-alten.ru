@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     SetCurrentData(2016);
-});
+});   
 
 document.addEventListener('scroll', function () {
     let headerElement = document.getElementById('header');

@@ -32,16 +32,49 @@
         padding: 42px 15px;
 
         p {
-            font-family: "OpanSansRegular";
-            font-size: 18px;
+            font-family: "OpenSansRegular";
+            font-size: $bigTextFontSize;
             text-indent: 2.5%;
+
+            @media screen and (max-width: 1366px) {
+                font-size: $middleTextFontSize;
+            }
+
+            @media screen and (max-width: 800px) {
+                font-size: $litleTextFontSize;
+            }
         }
 
         ul {
-            font-family: "OpanSansRegular";
-            font-size: 18px;
+            font-family: "OpenSansRegular";
+            font-size: $bigTextFontSize;
             text-indent: 2.5%;
-            margin-left: 85px;
+            margin-left: 0px;
+            list-style: none;
+
+            @media screen and (max-width: 1366px) {
+                font-size: $middleTextFontSize;
+            }
+
+            @media screen and (max-width: 800px) {
+                font-size: $litleTextFontSize;
+            }
+
+            li {
+                position: relative;
+                margin-left: 15px;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    height: 12px;
+                    width: 2px;
+                    top: 18%;
+                    left: 0;
+                    background-color: $mainTextColor;
+                }
+            }
         }
     }
 }

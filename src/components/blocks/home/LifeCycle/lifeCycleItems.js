@@ -25,30 +25,33 @@ class LifeCycleItems extends React.Component {
     createCycleItems() {
         return this.props.cycles.map((cycle) => {
             return (
-                <Row data-row-index={cycle.id} className={this.setReversClasses(cycle.id)[0]}>
-                    <Col lg={6} md={5} sm={5} xs={5} className="life-cycle__col">
-                        <Container as="div" bsPrefix="life-cycle__text--container text-right" className={this.setReversClasses(cycle.id)[2]}>
-                            <Container as="div" bsPrefix="life-cycle__item--title">
-                                {cycle.title}
+                <Container as="div" bsPrefix="parallax-image-block">
+                    <img src={cycle.image} data-speed="-1" className="image-parallax"/>
+                    <Row data-row-index={cycle.id} className={this.setReversClasses(cycle.id)[0]}>
+                        <Col lg={6} md={5} sm={5} xs={5} className="life-cycle__col">
+                            <Container as="div" bsPrefix="life-cycle__text--container text-right" className={this.setReversClasses(cycle.id)[2]}>
+                                <Container as="div" bsPrefix="life-cycle__item--title">
+                                    {cycle.title}
+                                </Container>
+                                {
+                                    cycle.descriptor.map((desc, index) => {
+                                        return (
+                                            <Container key={index.toString()} as="div" bsPrefix="life-cycle__item--descriptor">
+                                                {desc.paragraph}
+                                            </Container>
+                                        );
+                                    })
+                                }
                             </Container>
-                            {
-                                cycle.descriptor.map((desc, index) => {
-                                    return (
-                                        <Container key={index.toString()} as="div" bsPrefix="life-cycle__item--descriptor">
-                                            {desc.paragraph}
-                                        </Container>
-                                    );
-                                })
-                            }
-                        </Container>
-                    </Col>
-                    <Col lg={6} md={5} sm={5} xs={5}>
-                        <Container as="div" bsPrefix="life-cycle__image-container text-left" className={this.setReversClasses(cycle.id)[1]}>
-                            <Container as="div" bsPrefix="life-cycle__image" id={'cycle-img__' + cycle.name}>
+                        </Col>
+                        <Col lg={6} md={5} sm={5} xs={5}>
+                            <Container as="div" bsPrefix="life-cycle__image-container text-left" className={this.setReversClasses(cycle.id)[1]}>
+                                <Container as="div" bsPrefix="life-cycle__image" id={'cycle-img__' + cycle.name}>
+                                </Container>
                             </Container>
-                        </Container>
-                    </Col>
-                </Row>
+                        </Col>
+                    </Row>
+                </Container>
             );
         });
     }
