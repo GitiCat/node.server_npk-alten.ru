@@ -10,40 +10,6 @@ import LifeCycleBlock from "../../blocks/home/LifeCycle/lifeCycle"
 import Feedback from "../../blocks/home/Feedback/Feeaback"
 
 class Home extends React.Component {
-
-    initParallaxImage() {
-        $('.image-parallax').each(function() {
-            let image = $(this);
-            let imageParent = $(this).parent();
-            
-
-            $(document).on('scroll', function() {
-                let speed = image.data('speed');
-                let imgY = imageParent.offset().top;
-                let winY = $(this).scrollTop();
-                let winH = $(this).height();
-                let parentH = imageParent.innerHeight();
-
-                let winBotton = winY + winH;
-                let imgPercent;
-
-                console.log(winBotton, imgY, winY, parentH, winBotton > imgY, winY < imgY + parentH);
-                if(winBotton > imgY && winY < imgY + parentH) {
-                    let imgBotton = ((winBotton - imgY) * speed);
-                    let imgTop = winH + parentH;
-                    imgPercent = ((imgBotton / imgTop) * 100) + (50 - (speed * 50));
-                }
-                image.css({
-                    top: imgPercent + '%',
-                    transform: 'translate(-50%, -' + imgPercent + '%)'
-                });
-            })
-        });
-    }
-
-    componentDidMount() {
-        this.initParallaxImage();
-    }
     
     render() {
         return(

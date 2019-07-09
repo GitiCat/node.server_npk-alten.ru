@@ -13,6 +13,11 @@
     		<feGaussianBlur stdDeviation="5"/>
     	</filter>
     </svg>
+    <svg style="display: none">
+        <filter id="multiply_svg_filter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feBlend mode="multiply" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" in2="SourceGraphic" result="blend1"/>
+        </filter>
+    </svg>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1b71717f-f1d4-48b3-8d45-e635b8d38ab8&lang=ru_RU&load=package.full"
         type="text/javascript"></script>
 </body>
