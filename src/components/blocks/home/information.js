@@ -7,36 +7,48 @@ class InformationBlock extends React.Component {
 
     render() {
         return(
-            <Container as="div" bsPrefix="volumetric-information-container about-information-container">
-                    <Container as="div" bsPrefix="rear-plan-information-container about-rear-plan"></Container>
-                    <Container as="div" bsPrefix="text-information-container about-text">
-                    <Row>
-                        <Col lg={12} md={12} sm={12} xs={12}>
-                            <Container as="div" bsPrefix="title-information-container about-title">
-                                {this.props.homeComponents.about.title}
-                            </Container>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col lg={12} md={12} sm={12} xs={12}>
-                            <Container as="div" bsPrefix="descriptor-information-container about-descriptor hyphenate" lang="ru">
-                                {this.props.homeComponents.about.descriptor}
-                            </Container>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col lg={12} md={12} sm={12} xs={12} className="d-flex">
-                            <Container as="div" bsPrefix="link-information-container about-link ml-auto">
-                                <Link to={this.props.homeComponents.about.url}>
-                                    <svg>
-                                        <rect></rect>
-                                    </svg>
-                                    <span>Читать далее...</span>
+            <Container fluid className="in-ab-cont m-cont-pos">
+                <Row>
+                    <Col lg={6} md={12} sm={12} xs={12} className="l-pos">
+                        <Container as="div" bsPrefix="in-b-profit">
+                            <ul>
+                                {
+                                    this.props.data.about.stages.map( (elem, index) => {
+                                        return (
+                                            <li key={index.toString()}>
+                                                <span>{elem.number}</span>
+                                                <span>{elem.text}</span>
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        </Container>
+                    </Col>
+                    <Col lg={6} md={12} sm={12} xs={12} className="r-pos">
+                        <Container as="div" bsPrefix="in-b-about">
+                            <h2>
+                                <span>КРАТКО!</span>
+                                <br></br>
+                                <span>ЧТО НУЖНО</span>
+                                <br></br>
+                                <span>ЗНАТЬ О НАС</span>
+                            </h2>
+                            <p>
+                                {
+                                    this.props.data.about.descriptor
+                                }
+                            </p>
+                            <p>
+                                <small>На этом наша история не заканчивается</small>
+                                <br></br>
+                                <Link to={this.props.data.about.url} className="arrow-link">
+                                    Узнайте ее!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
                                 </Link>
-                            </Container>
-                        </Col>
-                    </Row>
-                </Container>
+                            </p>
+                        </Container>
+                    </Col>
+                </Row>                                                               
             </Container>
         );
     }
@@ -44,7 +56,7 @@ class InformationBlock extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        homeComponents: state.HomeReducer
+        data: state.HomeReducer
     }
 }
 

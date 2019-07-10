@@ -18,6 +18,11 @@
 
   $mainTextColor: #484848;
   $lightTextColor: #adacac;
+
+  $middleBlueBgColor: #1892ed;
+  $darkBlueBgColor: #193d9e;
+  $titleFontColor: #17262f;
+  $textFontColor: rgba(23, 38, 47, 0.8);
   
   /* Title texts sizing */
   $bigTitleFontSize: 62px;
@@ -325,7 +330,7 @@
   .header-active-scroll {
     position: fixed !important;
     top: 0 !important;
-    z-index: 2 !important;
+    z-index: 9999 !important;
     width: 100% !important;
     background-color: #1b1a23 !important;
     border-color: #635f76 !important;
@@ -492,84 +497,171 @@
         }
       }
     }
-  
-    .volumetric-information-container {
-      position: relative;
-      width: 100%;
-      height: 90vh;
-  
-      .rear-plan-information-container {
-        position: relative;
+    
+
+    /* Start information block styles */
+    .m-cont-pos {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .in-ab-cont {
+
+      padding: 86px 12.5%;
+
+      .row {
         width: 100%;
       }
-  
-      .text-information-container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        padding: 35px 40px;
-        margin-top: -23.5vh;
-        max-width: 35vw;
-        max-height: 45vh;
-  
-        @media screen and (max-width: 1366px) {
-          left: 35%;
-          max-width: 55vw;
-        }
-  
-        @media screen and (max-width: 800px) {
-          left: 5%;
-          top: 50%;
-          max-width: 90vw;
-          padding: 18px 22px;
-        }
-  
-        .title-information-container {
-          font-family: "RobotoRegular";
-          font-size: $bigTitleFontSize;
-          text-decoration: none;
-          text-transform: none;
-  
-          @media screen and (max-width: 1366px) {
-            font-size: $middleTitleFontSize;
+
+      .l-pos {
+
+        .in-b-profit {
+
+          width: 83.6666%;
+          order: 1;
+          transition: opacity .25s ease,box-shadow .5s ease,-webkit-transform .25s cubic-bezier(.19,1,.22,1);
+          transition: opacity .25s ease,transform .25s cubic-bezier(.19,1,.22,1),box-shadow .5s ease;
+          transition: opacity .25s ease,transform .25s cubic-bezier(.19,1,.22,1),box-shadow .5s ease,-webkit-transform .25s cubic-bezier(.19,1,.22,1);
+          margin: auto;
+          margin-left: 0;
+
+          &:hover {
+            webkit-transform: rotateX(var(--mouseY)) rotateY(var(--mouseX)) translateZ(15px);
+            transform: rotateX(var(--mouseY)) rotateY(var(--mouseX)) translateZ(15px);
+            box-shadow: 0 20px 40px rgba(23,38,47,.3);
           }
-  
-          @media screen and (max-width: 800px) {
-            font-size: $litleTItleFontSize;
+
+          ul {
+
+            box-sizing: border-box;
+            background-color: #fff;
+            border: 1px solid #d7e5f5;
+            padding-top: 27px;
+            padding-bottom: 27px;
+            padding-right: 20px;
+            list-style: none;
+
+            li {
+
+              margin-bottom: 45px;
+              overflow: hidden;
+              display: flex;
+              align-items: center;
+
+              &:last-child {
+                margin-bottom: 0px;
+              }
+
+              span {
+              
+              font-family: "OpenSansRegular";
+              font-feature-settings: normal;
+
+                &:first-child {
+                  font-size: 110px;
+                  min-width: 150px;
+                  margin-left: -.4ch;
+                  margin-top: -.1em;
+                  margin-right: 60px;
+
+                  color: rgba(0, 144, 240, .1);
+                  font-weight: 700;
+                  letter-spacing: 2px;
+                }
+
+                &:last-child {
+                  font-size: 20px;
+                  max-width: 300px;
+                  position: relative;
+                  padding-bottom: 45px;
+
+                  display: block;
+                  color: $textFontColor;
+                  font-weight: 400;
+                  letter-spacing: .1px;
+                  line-height: 1.5;
+
+                  &:before {
+                    content: "";
+                    background-color: #dc351bc9;
+                    position: absolute;
+                    display: block;
+                    width: 60px;
+                    height: 2px;
+                    bottom: 19px;
+                    left: 0;                  
+                  }
+                }
+              }
+            }
           }
-        }
-  
-        .descriptor-information-container {
-          font-family: "OpenSansRegular";
-          font-size: $bigTextFontSize;
-          text-decoration: none;
-          text-transform: none;
-  
-          @media screen and (max-width: 1366px) {
-            font-size: $middleTextFontSize;
-          }
-  
-          @media screen and (max-width: 800px) {
-            font-size: $litleTextFontSize;
-          }
-        }
-  
-        .link-information-container {
-          display: block;
-          position: relative;
-          font-family: "RobotoRegular";
-          font-size: $bigTextFontSize;
-          text-decoration: none;
-          text-transform: none;
-          width: 200px;
-          height: 70px;
-          margin: 25px 20px;
-          line-height: 70px;
-          letter-spacing: 1px;
-          text-align: center;
         }
       }
+      .r-pos {
+          .in-b-about {
+            position: relative;
+            z-index: 5;
+            order: 2;
+            width: 100%;
+            box-sizing: border-box;
+            padding-left: 8.3333%;
+            padding-right: 8.3333%;
+
+            h2 {
+              color: $titleFontColor;
+              margin-bottom: 1em;
+              font-family: "RobotoRegular";
+              font-size: 46px;
+              font-weight: 900;
+              line-height: 1;
+              text-decoration: uppercase;
+              letter-spacing: -.03em;
+              min-height: 60px;
+
+              span {
+                white-space: nowrap;
+                margin: 0;
+                padding: 0;
+                border: 0;
+                vertical-align: baseline;
+                color: inherit;
+              }
+            }
+
+            p {
+             color: $textFontColor;
+              font-family: "OpenSansRegular";
+              font-size: 20px;
+              font-weight: 400;
+              line-height: 1.5;
+              margin-bottom: 3em; 
+
+              small {
+                color: $textFontColor;
+                font-size: .8em;
+                font-weight: 400;
+                letter-spacing: .08px;
+
+                margin: 0;
+                padding: 0;
+                border: 0;
+                vertical-align: baseline;
+              }
+
+              a {
+                font-size: 20px;
+                color: $middleBlueBgColor;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: .1px;
+                text-decoration: none;
+              }
+            }
+          }
+        }
     }
+    /* End information block styles */
    
     .about-information-container {
   
@@ -653,50 +745,38 @@
     }
   }
   
-  .services-provided__columns {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  
-  .services-provided__container {
-    background-color: $lightGrayBorderColor;
-  }
-  
-  .services-provided__item {
-    position: relative;
-    text-align: center;
-    padding: 45px 0px;
-    margin: 0 auto;
-    min-height: 100%;
-    width: 70%;
-  
-    div {
-      user-select: none;
-      transition: .5s ease-in;
-    }
-  
-    .services-provided__item--icon {
-      height: 42px;
-      width: 42px;
-      color: #484848;
-    }
-  
-    .services-provided__item--title {
-      font-family: "RobotoRegular";
-      font-size: $middleSubtitleFontSize;
-      color: #484848;
-    }
-  
-    hr {
-      margin: 10px auto;
-      padding: 0;
-      width: 100px;
-    }
+  .sc-container {
+
+    background-color: $middleBlueBgColor;
+    padding-top: 3.5%;
+    padding-bottom: 4.5%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 86px;
     
-    .services-provided__item--descriptor {
-      font-family: "OpenSansRegular";
-      font-size: $middleTextFontSize;
-      color: #484848;
+    .sc-element {
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      .sc-elem-icon {
+        color: #fff;
+      }
+
+      .sc-elem-title {
+        color: #fff;
+      }
+
+      .sc-elem.desc {
+        color: #fff;
+      }
     }
   }
   
