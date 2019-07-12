@@ -4,6 +4,7 @@ import {createStore} from "redux";
 import {Provider} from "react-redux";
 
 import "./style.scss"
+import "../public/styles/fm.revealator.jquery.css"
 
 import allReducers from "./reducers";
 import App from "./containers/App"

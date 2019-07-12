@@ -23,6 +23,7 @@
   $darkBlueBgColor: #193d9e;
   $titleFontColor: #17262f;
   $textFontColor: rgba(23, 38, 47, 0.8);
+  $lightRedColor: #e6a65f;
   
   /* Title texts sizing */
   $bigTitleFontSize: 62px;
@@ -584,7 +585,7 @@
 
                   &:before {
                     content: "";
-                    background-color: #dc351bc9;
+                    background-color: $lightRedColor;
                     position: absolute;
                     display: block;
                     width: 60px;
@@ -630,7 +631,7 @@
             }
 
             p {
-             color: $textFontColor;
+              color: $textFontColor;
               font-family: "OpenSansRegular";
               font-size: 20px;
               font-weight: 400;
@@ -747,35 +748,100 @@
   
   .sc-container {
 
-    background-color: $middleBlueBgColor;
+    background: rgb(25,157,255);
+    background: -webkit-linear-gradient(124deg, rgba(25,157,255,1) 0%, rgba(45,164,252,1) 29%, rgba(47,166,255,1) 59%, rgba(128,198,250,1) 100%);
+    background: -o-linear-gradient(124deg, rgba(25,157,255,1) 0%, rgba(45,164,252,1) 29%, rgba(47,166,255,1) 59%, rgba(128,198,250,1) 100%);
+    background: linear-gradient(214deg, rgba(25,157,255,1) 0%, rgba(45,164,252,1) 29%, rgba(47,166,255,1) 59%, rgba(128,198,250,1) 100%);
     padding-top: 3.5%;
     padding-bottom: 4.5%;
     padding-left: 0 !important;
     padding-right: 0 !important;
     margin-bottom: 86px;
+
+    .sc-info-title {
+
+      padding-left: 12.5%;
+
+      h2 {
+        color: #fff;
+        margin-bottom: -.05em;
+        font-family: "RobotoRegular";
+        font-size: 46px;
+        font-weight: 900;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: -.03em;
+        min-height: 60px;
+
+        span {
+          white-space: nowrap;
+          margin: 0;
+          padding: 0;
+          border: 0;
+          vertical-align: baseline;
+          color: inherit;
+        }
+      }
+    }
+
+    .sc-info-desc {
+      
+      padding-left: 12.5%;
+      margin-bottom: 5.5em;
+
+      p {
+        color: #fff;
+        font-family: "OpenSansRegular";
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.5;
+        margin-bottom: 1.5em;
+      }
+    }
     
     .sc-element {
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      padding: 42px 0;
+      box-shadow: 0px 8px 21px -16px #fff;
 
       p {
         margin: 0;
         padding: 0;
+        text-align: center;
       }
 
       .sc-elem-icon {
-        color: #fff;
+        color: $lightRedColor;
+        font-size: 42px;
       }
 
       .sc-elem-title {
+        position: relative;
         color: #fff;
+        font-family: "RobotoRegular";
+        font-weight: 900;
+        font-size: 20px;
+        letter-spacing: .03em;
+        line-height: 32px;
+
+        &:before {
+          content: "";
+          background-color: $lightRedColor;
+          position: absolute;
+          left: 50%;
+          bottom: -13px;
+          margin-left: -30.5px;
+          width: 60px;
+          height: 2px;
+        }
       }
 
-      .sc-elem.desc {
+      .sc-elem-desc {
         color: #fff;
+        font-family: "OpenSansRegular";
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 26px;
       }
     }
   }

@@ -5,17 +5,37 @@ import { faAngleDown, faHeadset, faLayerGroup, faVials, faUserMd, faFileSignatur
 import {connect} from "react-redux"
 
 class ServicesBlock extends React.Component {
+
+    componentDidMount() {
+        require("../../../../public/scripts/fm.revealator.jquery.js");
+    }
+
     render() {
         return(
             <Container fluid className="sc-container">
                 <Row>
-                    
+                    <Col lg={12} md={12} sm={12} xs={12}>
+                        <Container as="div" bsPrefix="sc-info-title">
+                            <h2>
+                                <span>
+                                    {this.props.data.services.title}
+                                </span>
+                            </h2>
+                        </Container>
+                    </Col>
+                    <Col lg={12} md={12} sm={12} xs={12}>
+                        <Container as="div" bsPrefix="sc-info-desc">
+                            <p>
+                                {this.props.data.services.desc}
+                            </p>
+                        </Container>
+                    </Col>
                 </Row>
                 <Row className="justify-content-center">
                     <Col lg={2} md={6} sm={12} xs={12}>
                         <Container as="div" bsPrefix="sc-element">
                             <p>
-                                <FontAwesomeIcon icon={faHeadset} className="sc-elem-icon"/>
+                                <FontAwesomeIcon icon={faHeadset} className="sc-elem-icon revealator-slideup revealator-delay1 revealator-once"/>
                             </p>
                             <br></br>
                             <p className="sc-elem-title">
@@ -30,7 +50,7 @@ class ServicesBlock extends React.Component {
                     <Col lg={2} md={6} sm={12} xs={12}>
                         <Container as="div" bsPrefix="sc-element">
                             <p>
-                                <FontAwesomeIcon icon={faLayerGroup} className="sc-elem-icon"/>
+                                <FontAwesomeIcon icon={faLayerGroup} className="sc-elem-icon revealator-slideup revealator-delay2 revealator-once"/>
                             </p>
                             <br></br>
                             <p className="sc-elem-title">
@@ -45,7 +65,7 @@ class ServicesBlock extends React.Component {
                     <Col lg={2} md={6} sm={12} xs={12}>
                         <Container as="div" bsPrefix="sc-element">
                             <p>
-                                <FontAwesomeIcon icon={faFileSignature} className="sc-elem-icon"/>
+                                <FontAwesomeIcon icon={faFileSignature} className="sc-elem-icon revealator-slideup revealator-delay3 revealator-once"/>
                             </p>
                             <br></br>
                             <p className="sc-elem-title">
@@ -61,7 +81,7 @@ class ServicesBlock extends React.Component {
                     <Col lg={2} md={6} sm={12} xs={12}>
                         <Container as="div" bsPrefix="sc-element">
                             <p>
-                                <FontAwesomeIcon icon={faVials} className="sc-elem-icon"/>
+                                <FontAwesomeIcon icon={faVials} className="sc-elem-icon revealator-slideup revealator-delay4 revealator-once"/>
                             </p>
                             <br></br>
                             <p className="sc-elem-title">
@@ -77,7 +97,7 @@ class ServicesBlock extends React.Component {
                     <Col lg={2} md={6} sm={12} xs={12}>
                         <Container as="div" bsPrefix="sc-element">
                             <p>
-                                <FontAwesomeIcon icon={faUserMd} className="sc-elem-icon"/>
+                                <FontAwesomeIcon icon={faUserMd} className="sc-elem-icon revealator-slideup revealator-delay5 revealator-once"/>
                             </p>
                             <br></br>
                             <p className="sc-elem-title">

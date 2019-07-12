@@ -3,7 +3,20 @@ import {connect} from "react-redux"
 import {Container, Row, Col} from "react-bootstrap"
 import PropTypes from 'prop-types';
 
+const Vivus = require("vivus");
+
 class LifeCycleItems extends React.Component {
+
+    componentDidMount() {
+        $(".c-i-bl-image").each( (index, element) => {
+            let imgUrl = $(element).data("img-url");
+            console.log($(element).find("svg"));
+            new Vivus(element, {
+                file: imgUrl,
+                duration: 100
+            });
+        });
+    }
 
     isEven(someNumber) {
         return(someNumber % 2 == 0) ? true : false;
@@ -15,71 +28,54 @@ class LifeCycleItems extends React.Component {
         
         let classesList = [
             'revers-row',
-            'revers-position__img',
-            'revers-position__text'
+            'revers-text',
+            'revers-container',
+            'revers-before',
+            'revers-img'
         ]
 
         return classesList;
     }
 
     createCycleItems() {
-        return this.props.cycles.map((cycle) => {
+        return this.props.cycles.map((cycle, index) => {
             return (
-                <Container as="div" bsPrefix="parallax-image-block">
-                    <Container as="div" bsPrefix="parallax-image-container"
-                        data-image-url={cycle.image}
-                        data-parallax-speed="1">
-                        <Container as="div" bsPrefix="img--caption">
-                            <Row data-row-index={cycle.id} className={this.setReversClasses(cycle.id)[0]}>
-                                <Col lg={6} md={5} sm={5} xs={5} className="life-cycle__col">
-                                    <Container as="div" bsPrefix="life-cycle__text--container text-right" className={this.setReversClasses(cycle.id)[2]}>
-                                        <Container as="div" bsPrefix="lc-t-container">
-                                            <Container as="div" bsPrefix="lc-t-container-mask"></Container>
-                                            <Container as="div" bsPrefix="lc-t-container-block">
-                                                <Container as="div" bsPrefix="life-cycle__item--title">
-                                                    {cycle.title}
-                                                 </Container>
-                                                    {
-                                                        cycle.descriptor.map((desc, index) => {
-                                                            return (
-                                                                <Container key={index.toString()} as="div" bsPrefix="life-cycle__item--descriptor">
-                                                                   {desc.paragraph}
-                                                                </Container>
-                                                            );
-                                                        })
-                                                    }
-                                            </Container>
-                                        </Container>
-                                    </Container>
-                                </Col>
-                                <Col lg={6} md={5} sm={5} xs={5}>
-                                    <Container as="div" bsPrefix="life-cycle__image-container text-left" className={this.setReversClasses(cycle.id)[1]}>
-                                        <Container as="div" bsPrefix="life-cycle__image" id={'cycle-img__' + cycle.name}>
-                                        </Container>
-                                    </Container>
-                                </Col>
-                            </Row>
+                <Row key={index.toString()} className={this.setReversClasses(index.toString())[0]}>
+                    <Container as="div" bsPrefix="c-text-block">
+                        <Container as="div" bsPrefix="c-bl-mask"></Container>
+                        <Container as="div" bsPrefix="c-bl-content" className={this.setReversClasses(index.toString())[2]}>
+                            <Container as="div" bsPrefix="c-bl-ct-title">
+                                <h2 className={this.setReversClasses(index.toString())[3]}>
+                                    <span className={this.setReversClasses(index.toString())[1]}>{cycle.title}</span>
+                                </h2>
+                            </Container>
+                            <Container as="div" bsPrefix="c-bl-ct-paragraph">
+                                {cycle.descriptor.map((item, i) => {
+                                    return (
+                                        <p key={i.toString()} className={this.setReversClasses(index.toString())[1]}>
+                                            {item.paragraph}
+                                        </p>
+                                    )
+                                })}
+                            </Container>
                         </Container>
                     </Container>
-                </Container>
+                    <Container as="div" bsPrefix="c-img-block">
+                        <Container as="div" bsPrefix="img-mask"></Container>
+                        <Container as="div" bsPrefix="c-i-bl-image" data-img-url={cycle.image}></Container>
+                    </Container>
+                </Row>
             );
         });
     }
 
     render() {
-        console.log(this.props.cycles);
         return (
-            <div>
+            <React.Fragment>
                 {this.createCycleItems()}
-            </div>
+            </React.Fragment>
         )
     }
-}
-
-LifeCycleItems.propTypes = {
-    id: PropTypes.number,
-    title: PropTypes.string,
-    descriptor: PropTypes.array
 }
 
 function mapStateToProps(state) {

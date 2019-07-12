@@ -12,7 +12,7 @@ export default function() {
                     емкости и мощности.`
                 }
             ],
-            image: '../../../../../public/images/lifeCicl/idea-img-bg-htm.png'
+            image: '../../../../../public/images/lifeCicl/idea-img-bg-htm.svg'
         },
         {
             id: 1,
@@ -24,7 +24,7 @@ export default function() {
                     разработать источники тока любой сложности с необходимыми характеристиками.`
                 }
             ],
-            image: '../../../../../public/images/lifeCicl/drawing-img-bg-htm.png'
+            image: '../../../../../public/images/lifeCicl/drawing-img-bg-htm.svg'
         },
         {
             id: 2,
