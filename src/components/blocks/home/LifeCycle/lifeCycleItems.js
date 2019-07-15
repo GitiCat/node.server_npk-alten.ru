@@ -10,10 +10,10 @@ class LifeCycleItems extends React.Component {
     componentDidMount() {
         $(".c-i-bl-image").each( (index, element) => {
             let imgUrl = $(element).data("img-url");
-            console.log($(element).find("svg"));
             new Vivus(element, {
                 file: imgUrl,
-                duration: 100
+                duration: 100,
+                delay: 30
             });
         });
     }

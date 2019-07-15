@@ -3,6 +3,9 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    padding-bottom: 86px;
+    padding-left: 12.5% !important;
+    padding-right: 12.5% !important;
     border: 0;
 
     .revers-row {
@@ -23,15 +26,17 @@
             left: 0 !important;
         }
     }
-
+    
     .row {
         align-items: center;
         justify-content: center;
+        padding: 112px 0px; 
     }
 
     .c-text-block {
         display: block;
         position: relative;
+        padding: 0px 52px;
 
         .c-bl-mask {
             /* filter mask for texts */
@@ -41,11 +46,11 @@
             display: flex;
             position: relative;
             flex-direction: column;
-            align-items: end;
+            align-items: flex-end;
 
             .c-bl-ct-title {
 
-                margin-bottom: 1em;
+                margin-bottom: .5em;
                 padding: 0px 0px;
                 max-width: 450px;
 
@@ -99,5 +104,9 @@
                 }
             }
         }
+    }
+
+    .c-img-block {
+        width: 360px;
     }
 }

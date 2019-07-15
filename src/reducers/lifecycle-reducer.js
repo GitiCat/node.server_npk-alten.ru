@@ -40,7 +40,7 @@ export default function() {
                     испытаний под контролем военной приемки (244 ВП МО РФ).`
                 }
             ],
-            image: '../../../../../public/images/lifeCicl/production-img-bg-htm.png'
+            image: '../../../../../public/images/lifeCicl/production-img-bg-htm.svg'
         },
         {
             id: 3,
@@ -57,7 +57,7 @@ export default function() {
                     изделий, поставляет дополнительные запасные части и проводит ремонт.`
                 }
             ],
-            image: '../../../../../public/images/lifeCicl/supply-img-bg-htm.png'
+            image: '../../../../../public/images/lifeCicl/supply-img-bg-htm.svg'
         },
         {
             id: 4,
@@ -71,7 +71,7 @@ export default function() {
                     эксплуатации и дополнительному продлению срока слыжбы.`
                 }
             ],
-            image: '../../../../../public/images/lifeCicl/modernization-img-bg-htm.png'
+            image: '../../../../../public/images/lifeCicl/modernization-img-bg-htm.svg'
         },
         {
             id: 5,
