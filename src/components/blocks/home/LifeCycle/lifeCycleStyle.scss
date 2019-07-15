@@ -4,9 +4,36 @@
     margin: 0;
     padding: 0;
     padding-bottom: 86px;
-    padding-left: 12.5% !important;
-    padding-right: 12.5% !important;
     border: 0;
+
+    .block-mask {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+
+        background-color: black;
+        transition: .5s ease;
+    }
+
+    .life_item-container {
+        position: relative;
+        display: flex;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 112px 0px;
+        padding-left: 12.5% !important;
+        padding-right: 12.5% !important;
+
+        height: 100%;
+        z-index: 10;
+
+        @media only screen and (max-device-width: 1024px) {
+            background-attachment: scroll;
+        }
+    }
 
     .revers-row {
         flex-direction: row-reverse !important;
@@ -30,11 +57,15 @@
     .row {
         align-items: center;
         justify-content: center;
-        padding: 112px 0px; 
+
+        background-attachment: fixed;
+        background-position: center 0;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .c-text-block {
-        display: block;
+        display: flex;
         position: relative;
         padding: 0px 52px;
 
@@ -47,6 +78,7 @@
             position: relative;
             flex-direction: column;
             align-items: flex-end;
+            justify-content: center;
 
             .c-bl-ct-title {
 
@@ -81,7 +113,7 @@
                     &:before {
                         content: "";
                         position: absolute;
-                        bottom: -30;
+                        bottom: -30px;
                         right: 0;
                         width: 90px;
                         height: 2px;
@@ -107,6 +139,6 @@
     }
 
     .c-img-block {
-        width: 360px;
+        width: 500px;
     }
 }

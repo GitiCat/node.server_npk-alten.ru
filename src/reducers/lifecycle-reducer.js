@@ -12,7 +12,8 @@ export default function() {
                     емкости и мощности.`
                 }
             ],
-            image: '../../../../../public/images/lifeCicl/idea-img-bg-htm.svg'
+            svg_image: '../../../../../public/images/lifeCicl/idea-img-bg-htm.svg',
+            bg_image: '../../../../../public/images/lifeCicl/bg_image/idea.png'
         },
         {
             id: 1,
@@ -24,7 +25,8 @@ export default function() {
                     разработать источники тока любой сложности с необходимыми характеристиками.`
                 }
             ],
-            image: '../../../../../public/images/lifeCicl/drawing-img-bg-htm.svg'
+            svg_image: '../../../../../public/images/lifeCicl/drawing-img-bg-htm.svg',
+            bg_image: '../../../../../public/images/lifeCicl/bg_image/drawing.png'
         },
         {
             id: 2,
@@ -40,7 +42,8 @@ export default function() {
                     испытаний под контролем военной приемки (244 ВП МО РФ).`
                 }
             ],
-            image: '../../../../../public/images/lifeCicl/production-img-bg-htm.svg'
+            svg_image: '../../../../../public/images/lifeCicl/production-img-bg-htm.svg',
+            bg_image: '../../../../../public/images/lifeCicl/bg_image/production.png'
         },
         {
             id: 3,
@@ -57,7 +60,8 @@ export default function() {
                     изделий, поставляет дополнительные запасные части и проводит ремонт.`
                 }
             ],
-            image: '../../../../../public/images/lifeCicl/supply-img-bg-htm.svg'
+            svg_image: '../../../../../public/images/lifeCicl/supply-img-bg-htm.svg',
+            bg_image: '../../../../../public/images/lifeCicl/bg_image/supply.png'
         },
         {
             id: 4,
@@ -71,7 +75,8 @@ export default function() {
                     эксплуатации и дополнительному продлению срока слыжбы.`
                 }
             ],
-            image: '../../../../../public/images/lifeCicl/modernization-img-bg-htm.svg'
+            svg_image: '../../../../../public/images/lifeCicl/modernization-img-bg-htm.svg',
+            bg_image: '../../../../../public/images/lifeCicl/bg_image/modernization.png'
         },
         {
             id: 5,
@@ -88,7 +93,8 @@ export default function() {
                     для их последующей подготовки к утилизации.`
                 }
             ],
-            image: '../../../../../public/images/lifeCicl/'
+            svg_image: '../../../../../public/images/lifeCicl/',
+            bg_image: '../../../../../public/images/lifeCicl/bg_image/shutdown.png'
         }
     ]
 }
