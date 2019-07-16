@@ -13,6 +13,18 @@ class LifeCycleBlock extends React.Component {
         this.scrollingParallaxImages = this.scrollingParallaxImages.bind(this);
     }
 
+    isVisible(node) {
+        let rect = node.getBoundingClientRect();
+
+        return (
+            (rect.height > 0 || rect.width > 0) &&
+             rect.bottom >= 0 &&
+             rect.right >= 0 &&
+             rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+             rect.left <= (window.innerWidth || document.documentElement.clientWidth)
+        )
+    }
+
     initialParallaxImages() {
         let scrolled = $(window).scrollTop();
 
@@ -28,11 +40,12 @@ class LifeCycleBlock extends React.Component {
             let diff = scrolled - YPosition;
             let ratio = Math.round((diff / eHeight) * 100);
 
-            $(this).css("backgroundPosition", "center " + parseInt(-(ratio * 1.5)) + "px");
+            $(this).css("backgroundPosition", "center " + parseInt(-(ratio * 0.5)) + "px");
         })
     }
 
     scrollingParallaxImages() {
+        let _this = this;
         let scrolled = $(window).scrollTop();
 
         $(".parallax-bg").each(function(index, element) {
@@ -40,10 +53,13 @@ class LifeCycleBlock extends React.Component {
             let height = $(element).height();
             let endYPosition = YPosition + $(element).height();
 
-            let diff = scrolled - YPosition;
-            let ratio = Math.round((diff / height) * 100)
+            let visible = _this.isVisible(element);
 
-            $(element).css('backgroundPosition', 'center ' + parseInt(-(ratio * 1.5)) + 'px');
+            if(visible) {
+                let diff = scrolled - YPosition;
+                let ratio = Math.round((diff / height) * 100);
+                $(element).css('backgroundPosition', 'center ' + parseInt(-(ratio * 1.5)) + 'px');
+            }
         })
     }
 

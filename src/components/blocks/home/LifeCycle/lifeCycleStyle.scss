@@ -6,18 +6,6 @@
     padding-bottom: 86px;
     border: 0;
 
-    .block-mask {
-        position: absolute;
-        display: block;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-
-        background-color: black;
-        transition: .5s ease;
-    }
-
     .life_item-container {
         position: relative;
         display: flex;

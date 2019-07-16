@@ -10,7 +10,7 @@ module.exports = {
 	},
 
 	prodCatQuery() {
-		return "select prod.category_name, prod.category_title, prod.category_descriptor from product_categories as prod";
+		return "select prod.category_name, prod.category_title, prod.category_descriptor, prod.category_img from product_categories as prod";
 	},
 
 	productionQuery(prod_name) {

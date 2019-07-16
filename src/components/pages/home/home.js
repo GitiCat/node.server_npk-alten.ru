@@ -7,6 +7,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import InformationBlock from "../../blocks/home/information"
 import ServicesBlock from "../../blocks/home/services"
 import LifeCycleBlock from "../../blocks/home/LifeCycle/lifeCycle"
+import ProductsCatList from "../../blocks/home/Products/products"
 import Feedback from "../../blocks/home/Feedback/Feeaback"
 
 class Home extends React.Component {
@@ -50,6 +51,8 @@ class Home extends React.Component {
                     <ServicesBlock/>
                     {/* Productions life cycle block */}
                     <LifeCycleBlock/>
+                    {/* Production catogories list */}
+                    <ProductsCatList/>
                     {/* Yandex maps and feedback form */}
                     <Feedback/>
 

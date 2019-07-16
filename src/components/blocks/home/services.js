@@ -15,7 +15,7 @@ class ServicesBlock extends React.Component {
             <Container fluid className="sc-container">
                 <Row>
                     <Col lg={12} md={12} sm={12} xs={12}>
-                        <Container as="div" bsPrefix="sc-info-title">
+                        <Container as="div" bsPrefix="sc-info-title ms-title-h2">
                             <h2>
                                 <span>
                                     {this.props.data.services.title}
@@ -24,7 +24,7 @@ class ServicesBlock extends React.Component {
                         </Container>
                     </Col>
                     <Col lg={12} md={12} sm={12} xs={12}>
-                        <Container as="div" bsPrefix="sc-info-desc">
+                        <Container as="div" bsPrefix="sc-info-desc ms-desc-1">
                             <p>
                                 {this.props.data.services.desc}
                             </p>

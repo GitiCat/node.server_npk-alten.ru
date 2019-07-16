@@ -8,6 +8,8 @@ const Vivus = require("vivus");
 class LifeCycleItems extends React.Component {
 
     componentDidMount() {
+        require("../../../../../public/scripts/fm.revealator.jquery.js");
+
         $(".c-i-bl-image").each( (index, element) => {
             let imgUrl = $(element).data("img-url");
             new Vivus(element, {
@@ -47,7 +49,7 @@ class LifeCycleItems extends React.Component {
                         <Container as="div" bsPrefix="c-text-block">
                             <Container as="div" bsPrefix="c-bl-mask"></Container>
                             <Container as="div" bsPrefix="c-bl-content" className={this.setReversClasses(index.toString())[2]}>
-                                <Container as="div" bsPrefix="c-bl-ct-title">
+                                <Container as="div" bsPrefix="c-bl-ct-title revealator-slideright revealator-delay2 revealator-once">
                                     <h2 className={this.setReversClasses(index.toString())[3]}>
                                         <span className={this.setReversClasses(index.toString())[1]}>{cycle.title}</span>
                                     </h2>
@@ -55,7 +57,7 @@ class LifeCycleItems extends React.Component {
                                 <Container as="div" bsPrefix="c-bl-ct-paragraph">
                                     {cycle.descriptor.map((item, i) => {
                                         return (
-                                            <p key={i.toString()} className={this.setReversClasses(index.toString())[1]}>
+                                            <p key={i.toString()} className={this.setReversClasses(index.toString())[1] + " revealator-slideright revealator-delay2 revealator-once"}>
                                                 {item.paragraph}
                                             </p>
                                         )
