@@ -8,6 +8,7 @@ import InformationBlock from "../../blocks/home/information"
 import ServicesBlock from "../../blocks/home/services"
 import LifeCycleBlock from "../../blocks/home/LifeCycle/lifeCycle"
 import ProductsCatList from "../../blocks/home/Products/products"
+import LicencesCont from "../../blocks/home/Licences/Licences"
 import Feedback from "../../blocks/home/Feedback/Feeaback"
 
 class Home extends React.Component {
@@ -53,6 +54,8 @@ class Home extends React.Component {
                     <LifeCycleBlock/>
                     {/* Production catogories list */}
                     <ProductsCatList/>
+                    {/* Licences block list */}
+                    <LicencesCont/>
                     {/* Yandex maps and feedback form */}
                     <Feedback/>
 

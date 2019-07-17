@@ -60,6 +60,19 @@ class LifeCycleBlock extends React.Component {
                 let ratio = Math.round((diff / height) * 100);
                 $(element).css('backgroundPosition', 'center ' + parseInt(-(ratio * 1.5)) + 'px');
             }
+        });
+
+        $(".block-mask").each(function(index, element) {
+            let wh = $(window).height(), opacity;
+
+            let elView = wh - ($(element).offset().top - scrolled) - ($(element).height());
+            if(elView > 0) {
+                opacity = 1 / (wh + $(element).height()) * elView;
+
+                if(opacity < 1) {
+                    $(element).css("opacity", opacity);
+                }
+            }
         })
     }
 

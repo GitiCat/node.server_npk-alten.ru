@@ -38,6 +38,11 @@
 			height: 485px;
 			width: 435px;
 
+
+			&:before {
+				background: inherit;
+			}
+
 			@media screen and (max-width: 1366px) {
 				height: 455px;
     			width: 387px;
