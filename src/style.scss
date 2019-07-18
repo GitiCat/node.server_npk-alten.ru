@@ -773,88 +773,6 @@
           }
         }
     }
-    /* End information block styles */
-   
-    .about-information-container {
-  
-      .about-rear-plan {
-        background: url("../public/images/about-image.js.png");
-        background-repeat: no-repeat;
-        background-size: 100%;
-        background-position: center;
-        height: 75vh;
-        width: 50%;
-        top: 0px;
-        left: 12%;
-        z-index: -1;
-
-        @media screen and (max-width: 1366px) {
-        	width: 91%;
-        	left: 4.4%
-        }
-
-        @media screen and (max-width: 800px) {
-        	width: 104%;
-        	left: -3%
-        }
-
-        @media screen and (max-width: 680px) {
-        	width: 815px;
-        	left: -9%;
-        }
-      }
-  
-      .about-text {
-        background-color: #0d0d0b96;
-        
-        .about-title {
-          color: #dbc781;
-        }
-    
-        .about-descriptor {
-          color: white;
-          letter-spacing: 0.5px;
-          text-indent: 2.5%;
-          word-spacing: normal;
-          word-break: break-word;
-        }
-    
-        .about-link {
-  
-          a {
-            color: #dbc781;
-            
-            svg {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-  
-              rect {
-                width: 100%;
-                height: 100%;
-                fill: transparent;
-                stroke: #dbc781;
-                stroke-width: 5px;
-                stroke-dasharray: 10px 180px 20px 50px 20px 180px 20px 50px 10px;
-                transition: .5s all;
-              }
-            }
-  
-            &:hover svg rect {
-              stroke-dasharray: 200px 0 70px 0 200px 0 70px 0;
-              stroke-width: 2px;
-            }
-  
-            &:hover {
-              text-decoration: none;
-              text-transform: none;
-            }
-          }
-        }
-      }
-    }
   }
   
   .sc-container {
@@ -1091,3 +1009,4 @@
   @import "components/pages/productions/productions-style.scss";
   @import "components/pages/productions/subs/subproductions-style.scss";
   @import "components/blocks/home/Products/products.scss";
+  @import "components/blocks/home/Licences/licences.scss";

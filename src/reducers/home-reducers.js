@@ -51,7 +51,39 @@ export default function() {
         },
         licences: {
             title: "Лицензии",
-            desc: "Документы, подтверждающие нашу деятельность"
+            desc: "Документы, подтверждающие нашу деятельность",
+            bg_img: {
+                path: "public/images/logos/gerb_logo.png"
+            },
+            logos: [
+                {
+                    path: "public/images/logos/fsb-logo.png"
+                },
+                {
+                    path: "public/images/logos/ross_logo.png"
+                },
+                {
+                    path: "public/images/logos/prom_torg_logo.png"
+                }
+            ],
+            slider: {
+                slides: [
+                    {
+                        path: "public/images/licences/lic_1.png"
+                    },
+                    {
+                        path: "public/images/licences/lic_2.png"
+                    },
+                    {
+                        path: "public/images/licences/lic_3.png"
+                    },
+                    {
+                        path: "public/images/licences/lic_4.png"
+                    }
+                ]
+            },
+            text: "Мы имеем все необходимые документы, лицензии и сертификаты от ФСБ, РОСКОСМОС, МИНПРОМТОРГ, разрешающие нашу деятельность.",
+            url: "/documents/"
         }
     }
 }

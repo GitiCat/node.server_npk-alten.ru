@@ -83,7 +83,7 @@ module.exports = {
             hashDigestLength: 8,
         }),
         new HardSourceWebpackPlugin({
-            cacheDirectory: '.cache/hard_source/[confighash]',
+            cacheDirectory: '.cache/source/[confighash]',
             configHash: function(webpackConfig) {
                 return require('node-object-hash')({sort: false}).hash(webpackConfig);
             },
