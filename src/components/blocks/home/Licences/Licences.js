@@ -5,8 +5,51 @@ import { connect } from "react-redux"
 
 class Licences extends React.Component {
 
+	//	Метод изменения состояния 'label'
+	//	при изменении состояния input 
+	changeLableState() {
+		// Текущий выбранный элемент
+		let selected;
+
+		$("input[name=lic-slider-input]").on("change", function(e) {
+
+			if(selected !== undefined) {
+				// Если имеется выбранный элемент, то удаляем класс
+				$(selected).removeClass("checked");
+			}
+
+			//	element: объект вызвавший событие
+			//	id: id выбранного объекта
+			//	label: элемент для изменения
+			let element = e.target,
+				id = $(element).attr("id"),
+				label = $("label[for=" + id + "]")
+
+			if($(element).is(":checked")) {
+				$(label).addClass("checked");
+				selected = label;
+			}
+
+
+		});
+	}
+
+	initSlide() {
+		let slides = $(".lic-slider--slide");
+		let slidesLenght = slides.length;
+	}
+
+	nextSlide(slides = []) {
+
+	}
+
 	componentDidMount() {
 		require("../../../../../public/scripts/fm.revealator.jquery.js");
+
+		$(document).ready(() => {
+			this.changeLableState();
+			this.initSlide();
+		});
 	}
 
 	render() {
@@ -66,7 +109,7 @@ class Licences extends React.Component {
 							{
 								this.props.data.licences.slider.slides.map((item, index) => {
 									return(
-										<label key={index.toString()} for={"lic-slider-input-" + index.toString()}/>
+										<label key={index.toString()} className="lic-slide--label" for={"lic-slide-input-" + index.toString()}/>
 									)
 								})
 							}
