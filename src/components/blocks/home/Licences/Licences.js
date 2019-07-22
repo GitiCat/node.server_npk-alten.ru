@@ -5,51 +5,9 @@ import { connect } from "react-redux"
 
 class Licences extends React.Component {
 
-	//	Метод изменения состояния 'label'
-	//	при изменении состояния input 
-	changeLableState() {
-		// Текущий выбранный элемент
-		let selected;
-
-		$("input[name=lic-slider-input]").on("change", function(e) {
-
-			if(selected !== undefined) {
-				// Если имеется выбранный элемент, то удаляем класс
-				$(selected).removeClass("checked");
-			}
-
-			//	element: объект вызвавший событие
-			//	id: id выбранного объекта
-			//	label: элемент для изменения
-			let element = e.target,
-				id = $(element).attr("id"),
-				label = $("label[for=" + id + "]")
-
-			if($(element).is(":checked")) {
-				$(label).addClass("checked");
-				selected = label;
-			}
-
-
-		});
-	}
-
-	initSlide() {
-		let slides = $(".lic-slider--slide");
-		let slidesLenght = slides.length;
-	}
-
-	nextSlide(slides = []) {
-
-	}
-
 	componentDidMount() {
 		require("../../../../../public/scripts/fm.revealator.jquery.js");
-
-		$(document).ready(() => {
-			this.changeLableState();
-			this.initSlide();
-		});
+		require("../../../../../public/scripts/slider.js");
 	}
 
 	render() {
@@ -95,15 +53,17 @@ class Licences extends React.Component {
 						</Container>
 					</Container>
 					<Container as="div" bsPrefix="lic-slider-cont">
-						<Container as="div" bsPrefix="lic-slider">
-							{
-								this.props.data.licences.slider.slides.map((item, index) => {
-									return(
-										<Container as="div" bsPrefix="lic-slider--slide" key={index.toString()}
-											style={{backgroundImage: "url(../../../../../" + item.path + ")"}}/>
-									)
-								})
-							}
+						<Container as="div" bsPrefix="lic-slider-viewport">
+							<Container as="div" bsPrefix="lic-slider">
+								{
+									this.props.data.licences.slider.slides.map((item, index) => {
+										return(
+											<Container as="div" bsPrefix="lic-slider--slide" key={index.toString()}
+												style={{backgroundImage: "url(../../../../../" + item.path + ")"}}/>
+										)
+									})
+								}
+							</Container>
 						</Container>
 						<Container as="div" bsPrefix="lic-slider-label--cont">
 							{
