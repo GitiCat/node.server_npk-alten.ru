@@ -1,6 +1,6 @@
 let slideCount = $(".lic-slider").children().length,
 	slideNow = 1,
-	duration = 4000,
+	duration = 3000,
 	navBtnId = 0,
 	labSelected;
 
@@ -8,7 +8,7 @@ $(document).ready( () => {
 
 	let switchInterval = setInterval(nextSlide, duration);
 
-	$(".lic-slide-cont").hover( () => {
+	$(".lic-slider-cont").hover( () => {
 		clearInterval(switchInterval);
 	}, 
 	() => {
@@ -16,8 +16,7 @@ $(document).ready( () => {
 	});
 
 	//	Событие, возникающее при изменении состояния input'a
-	$("input[name=lic-slider-input]").on("change", (e) => {
-		console.log(e.target);
+	$("input:radio[name=lic-slider-input]").change((e) => {
 		onChangeInputToLabel(e.target);
 	});
 
@@ -36,25 +35,29 @@ $(document).ready( () => {
 
 	function nextSlide() {
 		if(slideNow == slideCount || slideNow <= 0 || slideNow > slideCount) {
-			changeSlideStyle(slideNow - 1);
+			changeSlideStyle(slideNow);
 			slideNow = 1;
 		} else {
-			changeSlideStyle(slideNow - 1);
+			changeSlideStyle(slideNow);
 			slideNow++;
 		}
 	}
 
 	function changeSlideStyle(index) {
+		
+		let elements = $(".lic-slider--slide");
+		let active = "lic-slider--slide-active";
 
-		if(index - 1 >= 0 && index + 1 !== slideCount) {
-			$(".lic-slider--slide").eq(index - 1).toggleClass("lic-slider--slide-active");
+		if(index - 1 == 0) {
+			$(elements).last().removeClass(active);
 		}
 
-		if(slideNow == slideCount) {
-			$(".lic-slider--slide").eq(slideCount - 1).toggleClass("lic-slider--slide-active");
+		if(index - 1 !== 0) {
+			$(elements[index - 2]).removeClass(active);
 		}
 
-		$(".lic-slider--slide").eq(index).toggleClass("lic-slider--slide-active");
+		$(elements[index - 1]).addClass(active);
+		$('input:radio[name=lic-slider-input]').eq(index - 1).prop("checked", true).change();
 	}
 
 });

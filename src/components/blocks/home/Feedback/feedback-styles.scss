@@ -1,126 +1,100 @@
-@import "../Map/yandexMap-styles.scss";
+.fb-cont {
 
-.feedback-container {
-    margin: 0;
-    padding: 0;
+	.row {
+		flex-direction: row;
+	}
 
-    .feedback-cols, .row {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
+	.fb-content {
+		width: 46.3333%;
 
-    .feedback-form__container {
-        position: relative;
-        width: fit-content;
-        margin: 25px auto;
-        padding: 15px;
+		.ms-desc-1 {
+			max-width: 83%;
+			padding-left: 26.5%;
 
-        .row:nth-child(1), .row:nth-child(2) {
-          margin: 0 15px !important;
-        }
+			@media screen and (max-width: 1366px) {
+				max-width: 100%;
+			}
 
-        h2 {
-            font-family: "RobotoRegular";
-            text-decoration: none;
-            text-transform: none;
-            font-size: $bigTitleFontSize - 20;
+			p {
+				color: $textFontColor;
+			}
+		}
 
-            @media screen and (max-width: 1366px) {
-              font-size: $middleTitleFontSize - 20;
-            }
+		.ms-title-h2 {
 
-            @media screen and (max-width: 800px) {
-              font-size: $litleTItleFontSize - 20;
-            }
-        }
+			padding-left: 26.5%;
 
-        h4 {
-          font-family: "OpenSansRegular";
-          text-decoration: none;
-          text-transform: none;
-          font-size: $bigTextFontSize;
-          font-size: $bigTextFontSize;
+			h2 {
 
-          @media screen and (max-width: 1366px) {
-            font-size: $middleTextFontSize;
-          }
-          @media screen and (max-width: 800px) {
-            font-size: $litleTextFontSize;
-          }
-        }
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: flex-start;
+				color: $titleFontColor;
+				
+				span {
+					margin-bottom: 1em;
+				}
 
-        .feedback-form__input-fuelds {
-            .horizontal-elements {
-                display: flex;
-                flex-direction: row;
+				span:first-child {
+					color: $textFontColor;
+					font-size: 36px !important;
+				}
+			}
+		}
+	}
 
-                .material-input__container {
-                    margin: 0 15px;
+	.fb-desc {
 
-                    &:first-child {
-                        margin-left: 0px !important;
-                    }
-                }
-            }
+		.ms-desc-1 {
 
-            .feedback--text__label, 
-            .feedback--text__label textarea {
-                height: 200px;
-                width: 100%;
-            }
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
 
-            .feedback--text__label {
+			max-width: 50%;
 
-                font-family: "RobotoRegular";
-                text-decoration: none;
-                text-transform: none;
-                padding-top: 15px;
+			@media screen and (max-width: 1366px) {
+				max-width: 100%;
+			}
 
-                font-size: $bigSubtitleFontSize;
+			p {
+				text-align: right;
+			}
 
-                @media screen and (max-width: 1366px) {
-                  font-size: $middleSubtitleFontSize;
-                }
-                @media screen and (max-width: 800px) {
-                  font-size: $litleSubtitleFontSize;
-                }
+			a {
+				position: relative;
+				color: $titleFontColor;
+				font-family: "OpanSansRegular";
+				font-size: 42px;
+				font-weight: 700;
+				text-decoration: none;
+				text-transform: none;
+				
+				justify-content: flex-end;
+				transition: color 0.7s ease;
 
-                textarea {
-                    font-family: "OpenSansRegular";
-                    resize: none;
-                    padding: 10px 15px;
-                    font-size: $bigTextFontSize;
-        
-                    @media screen and (max-width: 1366px) {
-                      font-size: $middleTextFontSize;
-                    }
-                    @media screen and (max-width: 800px) {
-                      font-size: $litleTextFontSize;
-                    }
+				&:before {
+					content: "";
+					background-color: $lightRedColor;
+					position: absolute;
+					display: block;
+					left: 0;
+					bottom: 0;
+					height: 2px;
+					width: 0%;
 
-                    &:focus {
-                        outline: none;
-                    }
-                }
-            }
-            .submit-button {
-              padding: 10px 25px;
-              border: 0;
-              border-radius: 10px;
-              background-color: #0884ce;
-              box-shadow: 0px 1px 5px 0px #000000;
-              color: white;
-              font-size: 14px;
-              font-family: "OpenSansRegular";
-              text-decoration: none;
-              text-transform: none;
-              transition: .5s ease;
-              
-              &:hover {
-                box-shadow: none;
-                cursor: pointer;
-              }
-            }
-        }
-    }
+					transition: width 0.5s ease-out;
+				}
+
+				&:hover {
+					color: $textFontColor;
+
+					&:before {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
 }

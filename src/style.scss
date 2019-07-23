@@ -1000,6 +1000,19 @@
       font-size: 12px;
     }
   }
+
+  .ymap-container {
+    width: 100%;
+    height: 85vh;
+    padding: 0 !important;
+
+    .yandex-map {
+      position: relative;
+      display: block;
+      width: inherit;
+      height: inherit;
+    }
+  }
   
   @import "components/blocks/home/LifeCycle/lifeCycleStyle.scss";
   @import "components/blocks/home/Feedback/feedback-styles.scss";

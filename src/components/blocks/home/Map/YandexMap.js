@@ -6,22 +6,52 @@ class YandexMap extends React.Component {
     componentWillMount() {
         if(typeof(ymaps) !== 'undefined') {
             ymaps.ready(function() {
-                var YMap = new ymaps.Map('yandex-map__id', {
+                let YMap = new ymaps.Map('yandex-map__id', {
                     center: [55.726272, 38.206732],
                     zoom: 15.5,
-                    controls: ['typeSelector', 'fullscreenControl']
+                    controls: ['typeSelector', 'fullscreenControl', 'routePanelControl']
                 });
 
-                var multiRoute = new ymaps.multiRouter.MultiRoute({
-                    referencePoints: [
-                        [55.728858, 38.204479],
-                        [55.723559, 38.204893]
-                    ]}, 
-                    {
-                    boundsAutoApply: false,
-                    typeSelectorSize: 'small'
+                let routeControl = YMap.controls.get('routePanelControl');
+                
+                routeControl.routePanel.state.set({
+                    tyle: "masstransit",
+                    fromEnabled: true,
+                    from: "Электроугли, Центральная 114",
+                    toEnabled: false,
+                    to: "Электроугли, Центральная 59"
                 });
-                YMap.geoObjects.add(multiRoute);
+
+                routeControl.routePanel.options.set({
+                    allowSwitch: false,
+                    reverseGeocoding: true,
+                    types: { masstransit: true, pedestrian: true, taxi: true }
+                });
+
+                let switchRouteButton = new ymaps.control.Button({
+                    data: {
+                        content: "Поменять местами",
+                        title: "Поменять адреса местами"
+                    },
+                    options: { 
+                        selectOnClick: false, 
+                        maxWidth: 160 
+                    }
+                });
+
+                switchRouteButton.events.add("click", function() {
+                    routeControl.routePanel.switchPoints();
+                })
+
+                let trafficControl = new ymaps.control.TrafficControl({
+                    state: {
+                        providerKey: 'traffic#actual',
+                        trafficShown: false
+                    }
+                })
+
+                YMap.controls.add(switchRouteButton);
+                YMap.controls.add(trafficControl);
             });
         }
     }

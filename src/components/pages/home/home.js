@@ -10,6 +10,7 @@ import LifeCycleBlock from "../../blocks/home/LifeCycle/lifeCycle"
 import ProductsCatList from "../../blocks/home/Products/products"
 import LicencesCont from "../../blocks/home/Licences/Licences"
 import Feedback from "../../blocks/home/Feedback/Feeaback"
+import YandexMax from "../../blocks/home/Map/YandexMap.js"
 
 class Home extends React.Component {
     
@@ -56,8 +57,12 @@ class Home extends React.Component {
                     <ProductsCatList/>
                     {/* Licences block list */}
                     <LicencesCont/>
-                    {/* Yandex maps and feedback form */}
+
                     <Feedback/>
+                    {/* Yandex maps */}
+                    <Container fluid className="ymap-container">
+                        <YandexMax/>
+                    </Container>
 
                 </Container>
             </div>
