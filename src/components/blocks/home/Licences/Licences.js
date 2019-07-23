@@ -46,8 +46,10 @@ class Licences extends React.Component {
 							}
 						</Container>
 						<Container as="div" bsPrefix="lic-text-cont">
-							<Container as="div" bsPrefix="lic-text">
-								{this.props.data.licences.text}
+							<Container as="div" bsPrefix="lic-text in-b-about">
+								<p>
+									{this.props.data.licences.text}
+								</p>
 							</Container>
 							<Link to={this.props.data.licences.url}>Подробнее</Link>
 						</Container>
@@ -58,7 +60,7 @@ class Licences extends React.Component {
 								{
 									this.props.data.licences.slider.slides.map((item, index) => {
 										return(
-											<Container as="div" bsPrefix="lic-slider--slide" key={index.toString()}
+											<Container as="div" bsPrefix="lic-slider--slide bg-slide" key={index.toString()}
 												style={{backgroundImage: "url(../../../../../" + item.path + ")"}}/>
 										)
 									})

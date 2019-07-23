@@ -1,95 +1,60 @@
-let slideNow = 1,
-	slideCount = $(".lic-slider").children().length,
-	slideInterval = 4000,
+let slideCount = $(".lic-slider").children().length,
+	slideNow = 1,
+	duration = 4000,
 	navBtnId = 0,
-	translateWidht = 0,
-	selected;
+	labSelected;
 
-$(document).ready(function() {
-	let switchInterval = setInterval(nextSlide, slideInterval);
-	changeInputBtn(slideNow - 1);
+$(document).ready( () => {
 
-	$(".lic-slider-viewport").hover(function() {
+	let switchInterval = setInterval(nextSlide, duration);
+
+	$(".lic-slide-cont").hover( () => {
 		clearInterval(switchInterval);
-	}, function() {
-		switchInterval = setInterval(nextSlide, slideInterval);
+	}, 
+	() => {
+		switchInterval = setInterval(nextSlide, duration);
 	});
 
-	$("input[name=lic-slider-input]").on("change", function(e) {
-		navBtnId = $(this).index();
-		changeInputBtn(navBtnId);
+	//	Событие, возникающее при изменении состояния input'a
+	$("input[name=lic-slider-input]").on("change", (e) => {
+		console.log(e.target);
+		onChangeInputToLabel(e.target);
+	});
 
-		if(navBtnId + 1 != slideNow) {
-			translateWidht = -$(".lic-slider-viewport").width() * (navBtnId);
-			$(".lic-slider").css({
-				"transform": "translate(" + translateWidht + "px, 0)",
-				"-webkit-transform": "translate(" + translateWidht + "px, 0)",
-				"-ms-transform": "translate(" + translateWidht + "px, 0)"
-			});
-			slideNow = navBtnId + 1;
+	//	Функция изменения состояния активного input'a
+	function onChangeInputToLabel(element) {
+		let id = $(element).attr("id");
+
+		if(labSelected !== undefined) {
+			$(labSelected).removeClass("lic-lab--active");
 		}
-	});
-})
 
-function selectedRemoveClass() {
-	if(selected !== undefined) {
-		// Если имеется выбранный элемент, то удаляем класс
-		$(selected).removeClass("checked");
+		let labelActive = "label[for='" + id + "']";
+		$(labelActive).addClass("lic-lab--active");
+		labSelected = labelActive;
 	}
-}
 
-function changeInputBtn(index) {
-	selectedRemoveClass();
-
-	let element = $("input[name=lic-slider-input]")[index];
-	let id = $(element).attr("id");
-	let label = $("label[for=" + id + "]");
-
-	$(element).prop("checked", true);
-	if($(element).is(":checked")) {
-		$(label).addClass("checked");
-		selected = label;
+	function nextSlide() {
+		if(slideNow == slideCount || slideNow <= 0 || slideNow > slideCount) {
+			changeSlideStyle(slideNow - 1);
+			slideNow = 1;
+		} else {
+			changeSlideStyle(slideNow - 1);
+			slideNow++;
+		}
 	}
-}
 
-//	Функция смены слайда на следующий
-function nextSlide() {
-	if(slideNow == slideCount || slideNow <= 0 || slideNow > slideCount) {
-		$(".lic-slider").css("transform", "translate(0, 0)");
-		slideNow = 1;
-		changeInputBtn(slideNow - 1);
+	function changeSlideStyle(index) {
 
-	} else {
-		translateWidht = -$(".lic-slider-viewport").width() * (slideNow);
-		$(".lic-slider").css({
-			"transform": "translate(" + translateWidht + "px, 0)",
-			"-webkit-transform": "translate(" + translateWidht + "px, 0)",
-			"-ms-transform": "translate(" + translateWidht + "px, 0)"
-		});
-		slideNow++;
-		changeInputBtn(slideNow - 1);
+		if(index - 1 >= 0 && index + 1 !== slideCount) {
+			$(".lic-slider--slide").eq(index - 1).toggleClass("lic-slider--slide-active");
+		}
+
+		if(slideNow == slideCount) {
+			$(".lic-slider--slide").eq(slideCount - 1).toggleClass("lic-slider--slide-active");
+		}
+
+		$(".lic-slider--slide").eq(index).toggleClass("lic-slider--slide-active");
 	}
-}
 
-//	Функция смены слайда на предыдущий
-function prevSlide() {
-	if(slideNow == 1 || slideNow <= 0 || slideNow > slideCount) {
-		translateWidht = -$(".lic-slider-viewport").width() * (slideNow - 1);
-		$(".lic-slider").css({
-			"transform": "translate(" + translateWidht + "px, 0)",
-			"-webkit-transform": "translate(" + translateWidht + "px, 0)",
-			"-ms-transform": "translate(" + translateWidht + "px, 0)"
-		});
-		slideNow = slideCount;
-		changeInputBtn(slideNow - 1);
-	} else {
-		translateWidht = -$(".lic-slider-viewport").width() * (slideNow - 2);
-		$(".lic-slider").css({
-			"transform": "translate(" + translateWidht + "px, 0)",
-			"-webkit-transform": "translate(" + translateWidht + "px, 0)",
-			"-ms-transform": "translate(" + translateWidht + "px, 0)"
-		});
-		slideNow--;
-		changeInputBtn(slideNow - 1);
-	}
-}
+});
