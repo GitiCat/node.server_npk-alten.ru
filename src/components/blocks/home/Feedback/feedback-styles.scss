@@ -1,100 +1,110 @@
 .fb-cont {
+	padding: 86px 12.5% !important;
+	position: relative;
+
+	.awesome-bg-icon {
+		position: absolute;
+		right: 15%;
+		top: 0%;
+		font-size: 26em;
+		z-index: -1;
+		color: #ececec36;
+	}
 
 	.row {
-		flex-direction: row;
+		width: 100%;
+	}
+
+	.ms-title-h2, .ms-desc-1 {
+		padding-left: 0;
 	}
 
 	.fb-content {
-		width: 46.3333%;
-
-		.ms-desc-1 {
-			max-width: 83%;
-			padding-left: 26.5%;
-
-			@media screen and (max-width: 1366px) {
-				max-width: 100%;
-			}
-
-			p {
-				color: $textFontColor;
-			}
-		}
+		position: relative;
+		display: inline-block;
+		width: 83.6666%;
+		margin: auto;
+		margin-left: 0;
 
 		.ms-title-h2 {
 
-			padding-left: 26.5%;
-
 			h2 {
-
 				display: flex;
 				flex-direction: column;
-				justify-content: flex-start;
-				align-items: flex-start;
-				color: $titleFontColor;
-				
-				span {
-					margin-bottom: 1em;
-				}
 
 				span:first-child {
 					color: $textFontColor;
-					font-size: 36px !important;
+					font-size: 38px;
+				}
+
+				span {
+					color: $titleFontColor;
+					margin-bottom: 1em;
 				}
 			}
 		}
 	}
 
 	.fb-desc {
+		padding-left: 8.3333%;
+		padding-right: 8.3333%;
+		box-sizing: border-box;
+		width: 100%;
 
 		.ms-desc-1 {
 
-			display: flex;
-			flex-direction: column;
-			align-items: flex-end;
-
-			max-width: 50%;
-
-			@media screen and (max-width: 1366px) {
-				max-width: 100%;
-			}
-
-			p {
-				text-align: right;
-			}
-
 			a {
 				position: relative;
+				font-family: "RobotoRetular";
 				color: $titleFontColor;
-				font-family: "OpanSansRegular";
-				font-size: 42px;
+				font-size: 32px;
 				font-weight: 700;
 				text-decoration: none;
 				text-transform: none;
-				
-				justify-content: flex-end;
-				transition: color 0.7s ease;
+				border-radius: 50px;
 
-				&:before {
-					content: "";
-					background-color: $lightRedColor;
-					position: absolute;
-					display: block;
-					left: 0;
-					bottom: 0;
-					height: 2px;
-					width: 0%;
-
-					transition: width 0.5s ease-out;
-				}
+				padding: 15px 20px;
+				transition: color .2s ease, 
+							background-color .5s ease-in,
+							box-shadow .7s ease-in-out;
 
 				&:hover {
-					color: $textFontColor;
-
-					&:before {
-						width: 100%;
-					}
+					background-color: #1892ed;
+				    color: #fff;
+				    webkit-transform: rotateX(var(--mouseY)) rotateY(var(--mouseX)) translateZ(15px);
+				    transform: rotateX(var(--mouseY)) rotateY(var(--mouseX)) translateZ(15px);
+				    box-shadow: 0 12px 30px rgba(23, 38, 47, 0.3);
 				}
 			}
 		}
 	}
+
+	.maping-info {
+		width: 100%;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.upper-text {
+			text-transform: uppercase;
+			margin-bottom: 0 !important;
+
+			p {
+				font-size: 24px;
+			}
+		}
+
+		small {
+			color: rgba(23, 38, 47, 0.8);
+		    font-size: .8em;
+		    font-weight: 400;
+		    letter-spacing: .08px;
+		    margin: 0;
+		    padding: 0;
+		    border: 0;
+		    vertical-align: baseline;
+		}
+	}
+
 }

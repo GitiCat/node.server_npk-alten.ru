@@ -7,9 +7,9 @@ class FooterComponent extends React.Component {
     render() {
         return (
             <Container as="footer" bsPrefix="footer" id="footer" >
-                <Container>
+                <Container fluid className="context">
                     <Row className="d-flex">
-                        <Col className="footer__item footer__item_company col-lg-4 col-md-12 col-sm-12 col-12">
+                        <Col className="footer__item footer__item_company col-lg-5 col-md-12 col-sm-12 col-12">
                             <h6 className="text-uppercase font-weight-bold">
                                 АО НПК АЛЬТЭН
                             </h6>
@@ -44,7 +44,7 @@ class FooterComponent extends React.Component {
                                 <MenuBlock/>
                             </ul>
                         </Col>
-                        <Col className="footer__item col-lg-4 col-md-4 col-sm-4 col-12">
+                        <Col className="footer__item col-lg-3 col-md-4 col-sm-4 col-12">
                             <h6 className="text-uppercase font-weight-bold">
                                 Контакты
                             </h6>

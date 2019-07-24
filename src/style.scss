@@ -141,144 +141,6 @@
   .p-fixed {
     position: fixed !important;
   }
-
-  .hamburger-button-layout {
-    z-index: 100;
-    width: 80px;
-    position: fixed;
-    right: 45px;
-    top: 45px;
-  }
-
-  .ham {
-    position: relative;
-    display: none;
-    z-index: 100;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    transition: transform 400ms;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  .hamRotate.active {
-    transform: rotate(180deg);
-  }
-
-  .line {
-    fill:none;
-    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
-    stroke: #1b1a23;
-    stroke-width:5.5;
-    stroke-linecap:round;
-    transition: .5s ease;
-  }
-
-  .ham .top {
-    stroke-dasharray: 40 121;
-  }
-  .ham .bottom {
-    stroke-dasharray: 40 121;
-  }
-  .ham.active .top {
-    stroke-dashoffset: -68px;
-  }
-  .ham.active .bottom {
-    stroke-dashoffset: -68px;
-  }
-
-  .ham.active .line {
-    stroke: #dad5d5;
-  }
-
-  @media screen and (max-width: 1050px) {
-    .ham {
-      display: block !important;
-    }
-
-    .header {
-      display: none !important;
-    }
-  }
-
-  $main: #272532;
-  $contrast: darken($main, 10%);
-
-  @mixin transition {
-    @for $a from 1 through 50 {
-      &:nth-child(#{$a}) {
-        transition: transform 1s #{$a * .08}s cubic-bezier(.29,1.4,.44,.96);
-      }
-    }
-  }
-
-  @mixin alpha-attribute($attribute, $color, $background) {
-    $percent: alpha($color) * 100%;
-    $opaque: opacify($color, 1);
-    $solid-color: mix($opaque, $background, $percent);
-    #{$attribute}: $solid-color;
-    #{$attribute}: $color;
-  }
-
-  .drawer-list-layout {
-    display: block;
-    position: absolute;
-    flex-direction: column;
-    right: 0;
-    top: 0;
-    height: 110vh;
-    width: 100vw;
-    transform: translateX(110%);
-    -ms-transform: translateX(110%);
-    box-sizing: border-box;
-    padding-top: 125px;
-    transition: width 475ms ease-out, transform 450ms ease, border-radius .8s .1s ease;
-    border-bottom-left-radius: 50vw;
-    background-color: #1b1a23 !important;
-    z-index: 99;
-
-    a {
-      margin: 0 auto;
-      transform: translateX(100vw);
-      font-size: 18px;
-      font-weight: bold;
-      font-family: RobotoRegular !important;
-      text-decoration: none;
-      color: #fff;
-    }
-
-    .dropdown-panel, .dropdown-menu-panel {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .dropdown-menu-panel {
-      padding-top: 15px;
-      padding-bottom: 15px;
-
-      a {
-        font-size: 16px;
-        font-weight: bold;
-        font-family: RobotoRegular !important;
-        color: #635f76;
-      }
-    }
-  }
-
-  .drawer-list-layout.active {
-    transform: translateX(0);
-    border-bottom-left-radius: 0;
-
-    a {
-      @include transition;
-      transform: translateX(0);
-    }
-
-    position: fixed !important;
-    display: flex !important;
-  }
   
   header {
     flex: 0 0 auto;
@@ -905,8 +767,12 @@
     flex: 0 0 auto;
     padding: 145px 0;
     padding-bottom: 0 !important;
-  
-    background-color: $footerColor;
+    box-shadow: 0px 5px 20px 0px #ffecec;
+    background-color: #fff;
+
+    .context {
+      padding: 0px 12.5%;
+    }
 
     .none {
       display: none;
@@ -914,6 +780,10 @@
   
     ul li {
       margin: 5px 0;
+
+      @media screen and (max-width: 800px) {
+        justify-content: center
+      }
     }
   
     ul .nav-link {
@@ -922,47 +792,98 @@
     }
   
     h6 {
-      font-size: 16px;
+      font-size: 20px;
       font-family: RobotoRegular;
-      color: $whiteForegroundBrush;
+      color: $titleFontColor;
+
+      @media screen and (max-width: 1366px) {
+        font-size: 18px !important;
+      }
+
+      @media screen and (max-width: 800px) {
+        font-size: 18px !important;
+      }
     }
   
     p {
-      font-size: 14px;
+      font-size: 20px;
       font-weight: normal;
       font-family: OpenSansRegular;
-      color: $whiteForegroundBrush;
+      color: $textFontColor;
+
+      @media screen and (max-width: 1366px) {
+        font-size: 18px !important;
+      }
+
+      @media screen and (max-width: 800px) {
+        font-size: 16px !important;
+      }
     }
   
     a {
-      font-size: 14px;
+      font-size: 18px;
       font-weight: normal;
       font-family: OpenSansRegular !important;
       text-decoration: none;
-      color: $whiteForegroundBrush;
+      line-height: 1.5em;
+      color: $textFontColor;
+
+      @media screen and (max-width: 1366px) {
+        font-size: 16px !important;
+      }
+
+      @media screen and (max-width: 800px) {
+        font-size: 14px !important;
+      }
     }
   
     div {
-      font-size: 14px;
+      font-size: 18px;
       font-weight: bold;
       font-family: RobotoRegular;
-      color: $darkForegroundBrush;
+      color: $titleFontColor;
+
+      @media screen and (max-width: 1366px) {
+        font-size: 16px !important;
+      }
+
+      @media screen and (max-width: 800px) {
+        font-size: 14px !important;
+      }
     }
   
     #footer__element-separator {
       width: 150px;
       margin-left: 0;
-      color: $darkForegroundBrush;
-      border-color: $darkForegroundBrush;
+      color: $lightRedColor;
+      border-color: $lightRedColor;
+
+      @media screen and (max-width: 800px) {
+        margin-left: auto;
+      }
+    }
+
+    .footer__item {
+      @media screen and (max-width: 800px) {
+        text-align: center;
+      }
     }
   
     .footer__item_company h6 {
-      font-size: 32px !important;
-      color: #fff;
+      font-size: 42px !important;
+      color: $titleFontColor;
+
+      @media screen and (max-width: 1366px) {
+        font-size: 38px !important;
+      }
+
+      @media screen and (max-width: 800px) {
+        font-size: 32px !important;
+      }
     }
   
     .footer__item_company p {
-      color: $darkForegroundBrush;
+      color: $textFontColor;
     }
   }
   
@@ -990,14 +911,25 @@
     width: 100%;
     margin-top: 85px;
     padding: 20px 0;
-    background-color: $darkBlueColor;
+    background: #199dff;
+    background: -webkit-linear-gradient(124deg, #199dff 0%, #2da4fc 29%, #2fa6ff 59%, #80c6fa 100%);
+    background: -o-linear-gradient(124deg, #199dff 0%, #2da4fc 29%, #2fa6ff 59%, #80c6fa 100%);
+    background: linear-gradient(214deg, #199dff 0%, #2da4fc 29%, #2fa6ff 59%, #80c6fa 100%);
   
     div {
       text-align: center;
       color: #fff;
       font-family: RobotoRegular;
       font-weight: normal;
-      font-size: 12px;
+      font-size: 16px;
+
+      @media screen and (max-width: 1366px) {
+        font-size: 14px;
+      }
+
+      @media screen and (max-width: 800px) {
+        font-size: 12px;
+      }
     }
   }
 
