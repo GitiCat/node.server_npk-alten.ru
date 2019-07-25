@@ -1,41 +1,71 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap';
-import NavigationLinks from './menu.js';
+import { Container, Row, Col } from 'react-bootstrap'
+import { NavLink } from 'react-router-dom'
 
 class HamburgerMenuBlock extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.hamburgetClickEvent = this.hamburgetClickEvent.bind(this);
 	}
 
-	hamburgetClickEvent(event) {
-		let hamButton = document.querySelector('.ham');
-		let drawer = document.querySelector('.drawer-list-layout');
-		drawer.classList.toggle('active');
-		hamButton.classList.toggle('active');
+	setTransitionLink() {
+		let factor = 0.08;
+		$(".m-cont a").each((index, element) => {
+			let transformDelay = (index + 2) * factor;
+			let opacityDelay = (index + 1) * factor;
+			$(element).css({
+				"transition": "transform 1s " + transformDelay + "s cubic-bezier(.29,1.4,.44,.96), opacity " + opacityDelay + "s",
+			});
+		});
+	}
+
+	componentDidMount() {
+		$(".i-m-cont").click(function() {
+			$(this).toggleClass("opened");
+		})
+		this.setTransitionLink();
 	}
 
 	render() {
 		return(
-			<div>
-				<Container as="div" bsPrefix="hamburger-button-layout">
-					<svg className="ham hamRotate"
-						viewBox="0 0 100 100" width="80"
-						onClick={this.hamburgetClickEvent}>
-						<path className="line top"
-							d="m 70,33 h -40 c 0,0 -8.5,-0.149796 
-							-8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"/>
-						<path className="line middle"
-						    d="m 70,50 h -40" />
-						<path className="line bottom"
-						    d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20" />
-					</svg>
+			<Container as="div" bsPrefix="m-cont">
+				<Container as="div" bsPrefix="i-m-cont">
+					<Container as="div" bsPrefix="m-line i-m-on-line"></Container>
+					<Container as="div" bsPrefix="m-line i-m-to-line"></Container>
+					<Container as="div" bsPrefix="m-line i-m-th-line"></Container>
 				</Container>
-				<Container as="div" bsPrefix="drawer-list-layout">
-					<NavigationLinks/>
+				<Container as="div" bsPrefix="c-m-cont">
+					<Container as="div" bsPrefix="nav-cont">
+						<NavLink exact={true} to='/' activeClassName='active' className="nav-item nav-link">Главная</NavLink>
+		                <NavLink to='/history' activeClassName='active' className="nav-item nav-link">История</NavLink>
+		                <NavLink to='/activity' activeClassName='active' className="nav-item nav-link">Деятельность</NavLink>
+		                <NavLink to='/documents' activeClassName='active' className="nav-item nav-link">Документы</NavLink>
+		                <Container as="div" bsPrefix="separator"/>
+		                <NavLink to='/company/leadership' activeClassName='active' className="nav-item nav-link">Руководство</NavLink>
+		                <NavLink to='/company/patents' activeClassName='active' className="nav-item nav-link">Паттенты</NavLink>
+		                <NavLink to='/company/gallery' activeClassName='active' className="nav-item nav-link">Галерея</NavLink>
+					</Container>
+	                <Container as="div" bsPrefix="nav-cont">
+	                	<Container as="div" bsPrefix="nav-cont-title">
+	                		<NavLink to='/productions' activeClassName='active' className="nav-item nav-link">Продукция</NavLink>
+	                	</Container>
+		                <Container as="div" bsPrefix="nav-sub-cont">
+		                	<NavLink to={{
+			                	pathname: '/productions/rechargeable-batteries',
+			                    state: { uploading_data: 'rechargeable-batteries' }
+			                }} activeClassName='active' className="nav-item nav-link none">Аккумуляторные батареи</NavLink>
+			                <NavLink to={{
+			                	pathname: '/productions/primary-sources',
+			                    state: { uploading_data: 'primary-sources' }
+			                }} activeClassName='active' className="nav-item nav-link none">Первичные источники тока</NavLink>
+			                <NavLink to={{
+			                	pathname: '/productions/charge-discharge-devices',
+			                	state: { uploading_data: 'zru' }
+			                }} activeClassName='active' className="nav-item nav-link none">Зарядно - разрядные устройства</NavLink>
+		                </Container>
+	                </Container>
 				</Container>
-			</div>
+			</Container>
 		);
 	}
 }

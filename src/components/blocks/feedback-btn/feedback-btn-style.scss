@@ -1,0 +1,29 @@
+.fb-btn-cont {
+    
+    .fb-btn-icon--cont {
+        position: fixed;
+        top: 100px;
+        left: 20px;
+        width: 60px;
+        height: 60px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        z-index: 9999;
+        background-color: #fff;
+        border-radius: 100%;
+        border: 1px solid #ccc;
+        z-index: 9999;
+
+        box-shadow: 0 20px 40px rgba(23,38,47,.3);
+        transition: transform 330ms ease-out;
+
+        .fb-btn-icon {
+            font-size: 32px;
+            transform: rotate(325deg) translateX(4px) translateY(-3px);
+            color: #4e4e4e;
+        }
+    }
+}
