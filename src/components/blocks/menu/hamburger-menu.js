@@ -19,14 +19,31 @@ class HamburgerMenuBlock extends React.Component {
 		});
 	}
 
+	onClickLinkEvent(element) {
+		let linkUrl = $(element).attr("to");
+		let currUrl = $(location).attr("href");
+
+		if(linkUrl == currUrl)
+			return;
+
+		$(".i-m-cont").toggleClass("opened");
+	}
+
 	componentDidMount() {
+
+		let self = this;
+
 		$(".i-m-cont").click(function() {
 			$(this).toggleClass("opened");
 			$(".m-cont").focus();
-		})
-		$(".m-cont").focusout(function() {
-			
 		});
+
+		$(".c-m-cont a").each(function(index, element) {
+			$(element).click(function() {
+				self.onClickLinkEvent(this);
+			})
+		});
+		
 		this.setTransitionLink();
 	}
 
