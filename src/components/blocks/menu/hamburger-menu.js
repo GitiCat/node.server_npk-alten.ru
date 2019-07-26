@@ -22,7 +22,11 @@ class HamburgerMenuBlock extends React.Component {
 	componentDidMount() {
 		$(".i-m-cont").click(function() {
 			$(this).toggleClass("opened");
+			$(".m-cont").focus();
 		})
+		$(".m-cont").focusout(function() {
+			
+		});
 		this.setTransitionLink();
 	}
 
