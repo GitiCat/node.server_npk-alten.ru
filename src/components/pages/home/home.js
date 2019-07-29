@@ -10,7 +10,8 @@ import LifeCycleBlock from "../../blocks/home/LifeCycle/lifeCycle"
 import ProductsCatList from "../../blocks/home/Products/products"
 import LicencesCont from "../../blocks/home/Licences/Licences"
 import Feedback from "../../blocks/home/Feedback/Feeaback"
-import YandexMax from "../../blocks/home/Map/YandexMap.js"
+import YandexMax from "../../blocks/home/Map/YandexMap"
+import News from "../../blocks/home/NewsBlock/news-cont"
 
 class Home extends React.Component {
     
@@ -63,6 +64,8 @@ class Home extends React.Component {
                     <Container fluid className="ymap-container">
                         <YandexMax/>
                     </Container>
+
+                    <News/>
 
                 </Container>
             </div>

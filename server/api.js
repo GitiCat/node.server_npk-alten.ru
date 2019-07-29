@@ -77,5 +77,17 @@ module.exports = {
                 };
             });
         });
+
+        server.use('/api/getNews', (req, res) => {
+            res.setHeader('Content-Type', 'application/json');
+
+            db.fetchData(models.newsList(), (error, result) => {
+                if(error)
+                    console.log(error);
+                else {
+                    res.json(result);
+                }
+            })
+        })
     }
 }

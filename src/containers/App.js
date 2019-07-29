@@ -21,7 +21,6 @@ class App extends React.Component {
                 <Suspense fallback={<div>Loading...</div>}>
                     <HamburgerMenu/>
                     <FeedBackBtn/>
-                    <HeaderComponent/>
                     <acricle className='content' id='content'>
                             <Switch>
                                 <Route exact path='/' component={Home}/>

@@ -17,5 +17,9 @@ module.exports = {
 		return "select prod.prod_name, (select cat.category_title from product_categories as cat where cat.id = prod.prod_category) as prod_category_name, " 
 		+ "prod.prod_descriptor, prod.prod_properties, prod.prod_images, prod.prod_files, prod.prod_url from productions as prod " 
 		+ "where prod.prod_category = (select cat.id from product_categories as cat where cat.category_name = '" + prod_name + "')"
+	},
+
+	newsList() {
+		return "select n.title, n.desc, n.category, n.date_n, n.bg_url, n.logo, n.url, n.original_url from news as n";
 	}
 }
