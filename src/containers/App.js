@@ -9,7 +9,6 @@ const Documents = lazy(() => import("../components/pages/documents/documents"));
 
 const ProductionSlider = lazy(() => import("../containers/productionsSlider/index"));
 
-import HeaderComponent from "../components/blocks/header/header";
 import HamburgerMenu from "../components/blocks/menu/hamburger-menu";
 import FeedBackBtn from "../components/blocks/feedback-btn/feedback-btn.js";
 import FooterComponent from "../components/blocks/footer/footer";

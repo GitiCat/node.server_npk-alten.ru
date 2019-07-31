@@ -1,12 +1,18 @@
 import React from "react";
 import { Container, Row, Col } from 'react-bootstrap';
+import Header from "../../blocks/header/header";
+import axios from "axios";
+
+import { faBookReader } from "@fortawesome/free-solid-svg-icons"
 
 class HistoryComponent extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+            errors: null,
+            isLoading: false
         }
     }
 
@@ -15,46 +21,41 @@ class HistoryComponent extends React.Component {
     }
 
     getData() {
-        fetch('/api/getHistoryData', {
-            headers : { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        }).then(res => res.json()).then(data => this.setState({data}));
+        axios ({
+            method: "get",
+            responseType: "json",
+            url: "/api/getHistoryData"
+        })
+        .then(response => {
+            this.setState({
+                data: response.data,
+                isLoading: false
+            })
+        })
+        .catch(error => {
+            this.setState({
+                errors: error,
+                isLoading: false
+            })
+        })
     }
     
     render() {
         
-        const { data } = this.state;
-        console.log(data);
+        const { data, isLoading } = this.state;
 
         return (
             <Container fluid className="intro-container">
                 <Row>
-                    <Container fluid className="intro-header-container d-flex align-items-center">
-                        <Container as="div" bsPrefix="intro-header--text">
-                            <Row>
-                                <Col lg={12} md={12} sm={12} xs={12}>
-                                    <Container as="div" bsPrefix="intro-header-title">
-                                        {data["art_title"]}
-                                    </Container>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col lg={12} md={12} sm={12} xs={12}>
-                                    <Container as="div" bsPrefix="intro-header-subtitle">
-                                        {data["art_subtitle"]}
-                                    </Container>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </Container>
+                    <Header title={data["art_title"]} subtitle={data["art_subtitle"]} icon={faBookReader}/>
                 </Row>
                 <Container className="intro-text">
                     <Row>
                         <Col lg={12} md={12} sm={12} xs={12}>
                             <Container as="div" bsPrefix="intro-descriptor">
-                                <div dangerouslySetInnerHTML={{__html: data["art_descriptor"]}}/>
+                                { !isLoading &&
+                                    <div dangerouslySetInnerHTML={{__html: data["art_descriptor"]}}/>
+                                }
                             </Container>
                         </Col>
                     </Row>

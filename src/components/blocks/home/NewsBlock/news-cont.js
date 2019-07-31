@@ -5,39 +5,56 @@ import { connect } from "react-redux"
 import NewsBlock from "./news-block";
 import axios from "axios"
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faNewspaper } from "@fortawesome/free-solid-svg-icons"
+
 class NewsContainer extends React.Component {
 
 	constructor(props) {
 		super(props)
-		state = {
-			data: []
+		this.state = {
+			data: [],
+			errors: null,
+			isLoading: false
 		}
 	}
 
-	componentDidMount() {
-		getData();
+	componentWillMount() {
+		this.getData();
 	}
 
 	getData() {
-		axios.get(`${axios.defaults.baseURI}/api/getNews`)
-		.then(result => {
-			const data = result.data;
-			this.setState({data});
+		axios({
+			method: "get",
+			responseType: "json",
+			url: "/api/getNews"
+		})
+		.then(response => {
+			this.setState({
+				data: response.data,
+				isLoading: false
+			})
+		})
+		.catch(error => {
+			this.setState({
+				errors: error,
+				isLoading: false
+			})
 		})
 	}
 
 	render() {
 
-		console.log(this.state.data);
-		const { data } = this.state;
+		const { data, isLoading } = this.state;
 
 		return(
 			<Container fluid className="news-cont">
+				<FontAwesomeIcon icon={faNewspaper} className="ns-bg-icon"/>
 				<Row>
 					<Container as="div" bsPrefix="news-title ms-title-h2">
 						<h2>
 							<span>
-								{this.props.news.title}
+								{this.props.news.news.title}
 							</span>
 						</h2>
 					</Container>
@@ -45,22 +62,31 @@ class NewsContainer extends React.Component {
 				<Row>
 					<Container as="div" bsPrefix="news-subtitle ms-desc-1">
 						<p>
-							{this.props.news.subtitle}
+							{this.props.news.news.subtitle}
 						</p>
+					</Container>
+				</Row>
+				<Row>
+					<Container as="div" bsPrefix="btn-container">
+						<Link to="/news/">Все новости</Link>
 					</Container>
 				</Row>
 				<Row>
 					<Container as="div" bsPrefix="news-content">
 						<Container as="div" bsPrefix="block-cont">
-							{ data.length !== 0 &&
+							{ !isLoading &&
 								data.map((item, index) => {
-									<NewsBlock id={index.toString()}
+									return(
+										<NewsBlock key={index.toString()}
 										title={item.title}
 										desc={item.desc}
 										category={item.category}
-										imgUrl={item.imgUrl}
+										date={item.date_n}
+										imgUrl={item.bg_url}
 										logo={item.logo}
-										url={item.url}/>
+										url={item.url}
+										original_url={item.original_url}/>
+									)
 								})
 							}
 						</Container>
@@ -71,10 +97,10 @@ class NewsContainer extends React.Component {
 	}
 }
 
-function mapPropsToState(props) {
+function mapStateToProps(state) {
 	return {
 		news: state.HomeReducer
 	}
 }
 
-export default connect(mapPropsToState)(NewsContainer);
+export default connect(mapStateToProps)(NewsContainer);

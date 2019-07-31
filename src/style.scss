@@ -142,157 +142,6 @@
     position: fixed !important;
   }
   
-  header {
-    flex: 0 0 auto;
-    border-style: solid;
-    border-color: $lightGrayBorderColor;
-    border-width: 0px;
-    transition: .5s ease;
-    position: absolute;
-    top: 200px;
-    width: 100%;
-    z-index: 1;
-  
-    .title-logo {
-      font-family: RobotoRegular;
-      letter-spacing: 5px;
-      font-size: 32px;
-      width: 165px;
-      margin: 25px auto;
-      opacity: 0;
-      transition: .5s ease;
-    }
-  
-    .navbar {
-      padding: 30px 0;
-      margin: 0px;
-      transition: .5s ease;
-    }
-  
-    .nav {
-      flex-direction: row;
-    }
-  
-    .nav a {
-      margin-left: 15px;
-      margin-right: 15px;
-  
-      background: transparent;
-      color: $lightGrayBorderColor;
-      font-family: RobotoRegular;
-    }
-  
-    .nav .nav-item:after {
-      content: '';
-      background: black;
-      display: block;
-      bottom: 0; 
-      left: 0;
-      width: 0;
-      height: 1px;
-      transition: .5s ease;
-    }
-  
-    .nav .active > .nav .nav-item:after {
-      width: 100%;
-    }
-
-    .dropdown-panel {
-      position: relative;
-      color: black;
-
-      &:hover .dropdown-menu-panel {
-        display: block;
-      }
-
-      .dropdown-menu-panel {
-        position: absolute;
-        display: none;
-        background-color: #272532;
-        border-top: 1px solid #635f76;
-        top: 144%;
-        width: 310px;
-        padding: 10px 5px;
-        right: -32%;
-      }
-    }
-  
-    .vertical-separator {
-      width: 1px;
-      background-color: $lightGrayBorderColor;
-      opacity: 0;
-      transition: .5s ease;
-    }
-  
-    .language-button {
-      margin: 30px 0;
-  
-      .dropdown {
-        margin: 0 auto;
-  
-        button {
-          color: $darkForegroundBrush;
-          background-color: transparent;
-          border-color: $lightGrayBorderColor;
-          border-width: 1px;
-  
-          &:hover {
-            box-shadow: none;
-            background-color: $lightGrayBorderColor;
-          }
-  
-          &:focus {
-            box-shadow: none !important;
-            background-color: $lightGrayBorderColor !important;
-            border-color: $darkForegroundBrush !important;
-            color: $darkForegroundBrush !important;
-          }
-        }
-      }
-    }
-  }
-
-  .header-active-scroll {
-    position: fixed !important;
-    top: 0 !important;
-    z-index: 9999 !important;
-    width: 100% !important;
-    background-color: #1b1a23 !important;
-    border-color: #635f76 !important;
-  }
-
-  .header-navbar--active-scroll {
-    padding: 10px 0 !important;
-  }
-
-  .header-nav-link--active-scroll {
-    color: #fff !important;
-  }
-
-  .header-title-logo--active-scroll {
-    margin: 7px auto !important;
-    color: #fff !important;
-    opacity: 1 !important;
-  }
-
-  .header-vertical-separator--active-scroll {
-    background-color: #635f76 !important;
-    opacity: 1 !important;
-  }
-  
-  .header-spacing-top {
-    padding-top: 30px;
-  }
-  .header-spacing-bottom {
-    padding-bottom: 30px;
-  }
-  .header-spacing-left {
-    padding-left: initial;
-  }
-  .header-spacing-right {
-    padding-right: initial;
-  }
-  
   .content {
     flex: 1 0 auto;
     min-height: 1000px;
@@ -767,7 +616,7 @@
     flex: 0 0 auto;
     padding: 145px 0;
     padding-bottom: 0 !important;
-    box-shadow: 0px 5px 20px 0px #ffecec;
+    box-shadow: 0px 5px 20px 0px #c5c5c5;
     background-color: #fff;
 
     .context {
@@ -937,6 +786,7 @@
     width: 100%;
     height: 85vh;
     padding: 0 !important;
+    margin-bottom: 86px;
 
     .yandex-map {
       position: relative;
@@ -946,6 +796,7 @@
     }
   }
   
+  @import "components/blocks/header/header.scss";
   @import "components/blocks/home/LifeCycle/lifeCycleStyle.scss";
   @import "components/blocks/home/Feedback/feedback-styles.scss";
   @import "components/elements/MaterialInput/MaterialInputStyles.scss";
@@ -957,3 +808,4 @@
   @import "components/blocks/home/Licences/licences.scss";
   @import "components/blocks/menu/hamburger-style.scss";
   @import "components/blocks/feedback-btn/feedback-btn-style.scss";
+  @import "components/blocks/home/NewsBlock/news-block.scss";
