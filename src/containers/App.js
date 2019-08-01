@@ -6,6 +6,7 @@ const History = lazy(() => import("../components/pages/history/history"));
 const Activity = lazy(() => import("../components/pages/activity/activity"));
 const Productions = lazy(() => import("../components/pages/productions/productions"));
 const Documents = lazy(() => import("../components/pages/documents/documents"));
+const Leadership = lazy(() => import("../components/pages/leadership/leadership"));
 
 const ProductionSlider = lazy(() => import("../containers/productionsSlider/index"));
 
@@ -30,6 +31,8 @@ class App extends React.Component {
                                 <Route path='/productions/primary-sources' component={ProductionSlider}/>
                                 <Route path='/productions/charge-discharge-devices' component={ProductionSlider}/>
                                 <Route path='/documents' component={Documents}/>
+                                <Route exact path='/company/leadership' component={Leadership}/>
+                                <Route path='/company/leadership/:id' component={Leadership}/>
                             </Switch>
                     </acricle>
                     <FooterComponent/>
