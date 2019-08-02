@@ -1,0 +1,187 @@
+.ls-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+
+	padding: 86px 14.5%;
+
+	.ld-item {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-content: flex-start;
+		margin: 72px 0;
+		padding: 25px;
+		border: 1px solid #d7e5f5;
+		transition: transform 0.25s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.5s ease, -webkit-transform 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+
+		&:hover {
+			box-shadow: 0 20px 40px rgba(23, 38, 47, 0.3);
+		}
+
+		.p-l-cont {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-content: flex-start;
+
+			.ld-photo {
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center;
+				width: 300px;
+				height: 450px;
+			} 
+
+			.link-cont {
+				display: block;
+				width: 100%;
+				padding: 15px 0;
+
+				a {
+					background-color: transparent;
+                    border: 1px solid #1892ed;
+                    border-radius: 25px;
+                    padding: 10px 35px;
+                    margin-top: 15px;
+                    font-family: "RobotoRegular";
+                    font-size: 18px;
+                    font-weight: normal;
+                    text-decoration: none;
+                    text-transform: none;
+                    transition: all .3s ease;
+                    color: #6d6d6d;
+                    display: block;
+                    text-align: center;
+
+                    &:hover {
+                        background-color: $middleBlueBgColor;
+                        color: #fff;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                    }
+				}
+			}
+		}
+
+		.about-cont {
+			display: block;
+			padding: 0 25px;
+
+			.a-title {
+				font-family: "RobotoRegular";
+			    font-size: 42px;
+			    font-weight: 700;
+			    text-decoration: none;
+			    text-transform: none;
+			    letter-spacing: -.03em;
+			    line-height: 1.5em;
+			    color: $titleFontColor;
+			}
+
+			.a-subtitle {
+				position: relative;
+				font-family: "OpenSansRegular";
+			    font-size: 28px;
+			    font-weight: normal;
+			    letter-spacing: -.03em;
+			    line-height: 1.5em;
+			    color: $textFontColor;
+
+			    &:before {
+			        content: "";
+				    position: absolute;
+				    bottom: -12px;
+				    left: 0;
+				    height: 2px;
+				    width: 260px;
+				    background-color: #e6a65f;
+			    }
+			}
+
+			.a-desc {
+				padding-top: 25px;
+
+				p {
+					display: none;
+
+					font-family: "OpenSansRegular";
+				    font-size: 18px;
+				    font-weight: normal;
+				    letter-spacing: -.03em;
+				    line-height: 1.5em;
+				    color: $textFontColor;
+
+					&:nth-child(-n+3) {
+						display: block;
+					}
+				}
+			}
+		}
+	}
+}
+
+.s-ld-item {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-content: flex-start;
+
+	.s-ld-photo {
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		width: 300px;
+		height: 450px;
+	}
+
+	.s-about-cont {
+		display: block;
+		padding: 0 25px;
+
+		.s-a-title {
+			font-family: "RobotoRegular";
+		    font-size: 42px;
+		    font-weight: 700;
+		    text-decoration: none;
+		    text-transform: none;
+		    letter-spacing: -.03em;
+		    line-height: 1.5em;
+		    color: $titleFontColor;
+		}
+
+		.s-a-subtitle {
+			position: relative;
+			font-family: "OpenSansRegular";
+		    font-size: 28px;
+		    font-weight: normal;
+		    letter-spacing: -.03em;
+		    line-height: 1.5em;
+		    color: $textFontColor;
+
+		    &:before {
+		        content: "";
+			    position: absolute;
+			    bottom: -12px;
+			    left: 0;
+			    height: 2px;
+			    width: 260px;
+			    background-color: $lightRedColor;
+		    }
+		}
+
+		.s-a-desc {
+			padding-top: 25px;
+
+			p {
+				display: block;
+				font-family: "OpenSansRegular";
+			    font-size: 18px;
+			    font-weight: normal;
+			    letter-spacing: -.03em;
+			    line-height: 1.5em;
+			    color: $textFontColor;
+			}
+		}
+	}
+}

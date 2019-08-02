@@ -87,7 +87,19 @@ module.exports = {
                 else {
                     res.json(result);
                 }
+            });
+        });
+
+        server.use('/api/getInformations', (req, res) => {
+            res.setHeader('Content-Type', 'application/json');
+
+            db.fetchData(models.informationList(), (error, result) => {
+                if(error)
+                    console.log(error);
+                else {
+                    res.json(result);
+                }
             })
-        })
+        });
     }
 }

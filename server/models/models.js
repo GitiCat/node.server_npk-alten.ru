@@ -21,5 +21,9 @@ module.exports = {
 
 	newsList() {
 		return "select n.title, n.desc, n.category, n.date_n, n.bg_url, n.logo, n.url, n.original_url from news as n";
+	},
+
+	informationList() {
+		return "select i.id, i.name, i.title, i.subtitle, i.descriptor, i.m_image, i.o_images, i.url, i.isTitleVisible, i.isSubtitleVisible, i.isArticleEnable, (select link_url from links where id = i.comparisonWith) as comparisonWith from info as i"
 	}
 }
