@@ -24,6 +24,7 @@
   $titleFontColor: #17262f;
   $textFontColor: rgba(23, 38, 47, 0.8);
   $lightRedColor: #e6a65f;
+  $middleRedColor: #b11313;
   
   /* Title texts sizing */
   $bigTitleFontSize: 62px;
@@ -803,10 +804,10 @@
   @import "components/elements/ProductCard/ProductCardStyle.scss";
   @import "components/pages/history/history.scss";
   @import "components/pages/productions/productions-style.scss";
-  @import "components/pages/productions/subs/subproductions-style.scss";
   @import "components/blocks/home/Products/products.scss";
   @import "components/blocks/home/Licences/licences.scss";
   @import "components/blocks/menu/hamburger-style.scss";
   @import "components/blocks/feedback-btn/feedback-btn-style.scss";
   @import "components/blocks/home/NewsBlock/news-block.scss";
   @import "components/pages/leadership/leadership.scss";
+  @import "components/pages/documents/documents.scss";

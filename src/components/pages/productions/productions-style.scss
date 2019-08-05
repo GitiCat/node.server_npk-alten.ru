@@ -1,38 +1,77 @@
-.product-category-text {
-	color: black;
+.pd-into-content {
+	padding: 86px 14.5%;
 
-	.product-category-text__title {
-		font-family: "RobotoRegular";
-		width: 100%;
-		text-align: center;
-		text-decoration: none;
-		text-transform: none;
-		color: #393939;
-		padding: 25px 0;
+	.c-content {
+		display: flex;
+		flex-direction: column;
+		margin: 42px 0;
 
-		font-size: $bigTitleFontSize - 10;
-  
-        @media screen and (max-width: 1366px) {
-          font-size: $middleTitleFontSize - 10;
-        }
-        @media screen and (max-width: 800px) {
-          font-size: $litleTItleFontSize - 10;
-        }
-	}
+		.c-title {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			margin-bottom: 42px;
 
-	.product-category-text__subtitle p {
-		font-family: "OpenSansRegular";
-		text-decoration: none;
-		text-transform: none;
-		font-size: $bigTextFontSize;
-		color: #3e3838;
+			.ms-title-h2 {
+				color: $titleFontColor;
+				padding: 0;
+			}
 
-		@media screen and (max-width: 1366px) {
-			font-size: $middleTextFontSize;
+			.c-desc {
+
+				p {
+					color: $textFontColor;
+					font-family: "OpenSansRegular";
+					font-size: 18px;
+				    font-weight: normal;
+				    letter-spacing: -.03em;
+				    padding: 0;
+				    margin: 0px;
+				    margin-bottom: 15px;
+				}
+			}
 		}
 
-		@media screen and (max-width: 800px) {
-			font-size: $litleTextFontSize
+		.c-elems {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: flex-start;
+
+			.item-cont {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: flex-start;
+
+				.item-bg {
+					background-size: cover;
+				}
+
+				.item-context {
+					display: flex;
+					flex-direction: column;
+
+					.item-name {
+						color: $titleFontColor;
+						font-family: "RobotoRegular";
+					}
+
+					.item-category {
+						color: $textFontColor;
+						font-family: "OpenSansRegular";
+					}
+
+					.item-link {
+						
+						a {
+							color: $textFontColor;
+							font-family: "OpenSansRegular";
+						}
+					}
+				}
+			}
 		}
 	}
 }

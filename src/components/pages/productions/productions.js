@@ -1,14 +1,21 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import ProductCard from "../../elements/ProductCard/ProductCard"
+import { Container, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import axios from "axios"
+
+import Header from "../../blocks/header/header"
+import ProductItem from "./product-item"
+import { faLayerGroup } from "@fortawesome/free-solid-svg-icons"
 
 class ProductionsComponent extends React.Component {
 
 	constructor(props) {
         super(props);
+
         this.state = {
-            data: []
+            data: [],
+            errors: null,
+            isLoading: true
         }
     }
 
@@ -17,134 +24,75 @@ class ProductionsComponent extends React.Component {
     }
 
     getData() {
-        fetch('/api/getProduction', {
-        	headers : { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        }).then(response => response.json()).then(response => this.setState({data: response}));
+        axios({
+            method: "get",
+            responseType: "json",
+            url: "/api/getProduction"
+        })
+        .then(response => {
+            this.setState({
+                data: response.data,
+                isLoading: false
+            });
+        })
+        .catch(error => {
+            this.setState({
+                errors: error,
+                isLoading: false
+            });
+        })
     }
 
     render() {
 
-    	const { data } = this.state;
-        
-        return (
-            <Container fluid className="intro-container">
-            	<Row>
-            		<Container fluid className="intro-header-container d-flex align-items-center">
-	            		<Container as="div" bsPrefix="intro-header--text">
-		            		<Row>
-		            			<Col lg={12} md={12} sm={12} xs={12}>
-		            				<Container as="div" bsPrefix="intro-header-title">
-		            					Продукция
-		            				</Container>
-		            			</Col>
-		            		</Row>
-		            		<Row>
-		            			<Col lg={12} md={12} sm={12} xs={12}>
-		            				<Container as="div" bsPrefix="intro-header-subtitle">
-		            					Продукция предприятия
-		            				</Container>
-		            			</Col>
-		            		</Row>
-		            	</Container>
-	            	</Container>
-            	</Row>
-            	<Container className="intro-text">
-                    <Row>
-                        <Container fluid className="product-category-text">
-                            <Row>
-                                <Container as="div" bsPrefix="product-category-text__title">
-                                    {data.length !== 0 && data.cat[0].category_title}
+        const { data, errors, isLoading } = this.state;
+
+        return(
+            <Container fluid className="pd-into-cont">
+                <Row>
+                    <Header title="Продукция" subtitle="Продукция, выпускаемая предприятием" icon={faLayerGroup}/>
+                </Row>
+                <Row>
+                    <Container as="div" bsPrefix="pd-into-content">
+                        <React.Fragment>
+                            { isLoading ? (
+                                <Container as="div" bsPrefix="loading">
+                                    Loading...
                                 </Container>
-                            </Row>
-                            <Row>
-                                <Container as="div" bsPrefix="product-category-text__subtitle">
-                                    {data.length !== 0 && 
-                                        <div dangerouslySetInnerHTML={{__html: data["cat"][0]["category_descriptor"]}}/>
-                                    }
-                                </Container>
-                            </Row>
-                        </Container>
-                    </Row>
-                    <Row>
-                        {data.length !== 0 &&
-                            data["prod"]["primary_sources"].map(item => {
-                                return (
-                                    <Col lg={4} md={6} sm={12} xs={12}>
-                                        <ProductCard imgUrl={item.prod_images}
-                                            p_name={item.prod_name}
-                                            p_type={item.prod_category_name}
-                                            p_link={item.prod_url}/>
-                                    </Col>
-                                )
-                            })
-                        }
-                    </Row>
-                    <Row>
-                        <Container fluid className="product-category-text">
-                            <Row>
-                                <Container as="div" bsPrefix="product-category-text__title">
-                                    {data.length !== 0 && data.cat[1].category_title}
-                                </Container>
-                            </Row>
-                            <Row>
-                                <Container as="div" bsPrefix="product-category-text__subtitle">
-                                    {data.length !== 0 && 
-                                        <div dangerouslySetInnerHTML={{__html: data["cat"][1]["category_descriptor"]}}/>
-                                    }
-                                </Container>
-                            </Row>
-                        </Container>
-                    </Row>
-                    <Row>
-                        {data.length !== 0 &&
-                            data["prod"]["rechargeable_batteries"].map(item => {
-                                return (
-                                    <Col lg={4} md={6} sm={12} xs={12}>
-                                        <ProductCard imgUrl={item.prod_images}
-                                            p_name={item.prod_name}
-                                            p_type={item.prod_category_name}
-                                            p_link={item.prod_url}/>
-                                    </Col>
-                                )
-                            })
-                        }
-                    </Row>
-            		<Row>
-            			<Container fluid className="product-category-text">
-            				<Row>
-            					<Container as="div" bsPrefix="product-category-text__title">
-            						{data.length !== 0 && data.cat[2].category_title}
-            					</Container>
-            				</Row>
-            				<Row>
-            					<Container as="div" bsPrefix="product-category-text__subtitle">
-                                    {data.length !== 0 && 
-                                        <div dangerouslySetInnerHTML={{__html: data["cat"][2]["category_descriptor"]}}/>
-                                    }
-            					</Container>
-            				</Row>
-            			</Container>
-            		</Row>
-	            	<Row>
-                        {data.length !== 0 &&
-                            data["prod"]["zru"].map(item => {
-                                return (
-                                    <Col lg={4} md={6} sm={12} xs={12}>
-                                        <ProductCard imgUrl={item.prod_images}
-                                            p_name={item.prod_name}
-                                            p_type={item.prod_category_name}
-                                            p_link={item.prod_url}/>
-                                    </Col>
-                                )
-                            })
-                        }
-	            	</Row>
-	            </Container>
+                            ) : (
+                                data["cat"].map((item, index) => {
+                                    return (
+                                        <Container key={index.toString()} as="div" bsPrefix="c-content">
+                                            <Container as="div" bsPrefix="c-title">
+                                                <Container as="div" bsPrefix="ms-title-h2">
+                                                    <h2>
+                                                        <span>
+                                                            {item.category_title}
+                                                        </span>
+                                                    </h2>
+                                                </Container>
+                                                <Container as="div" bsPrefix="c-desc" dangerouslySetInnerHTML={{__html: item["category_descriptor"]}}>
+                                                </Container>
+                                            </Container>
+                                            <Container as="div" bsPrefix="c-elems">
+                                                {
+                                                    data["prod"][item.category_name].map((element, index) => {
+                                                        return (
+                                                            <ProductItem data={element}/>
+                                                        )
+                                                    })
+                                                }
+                                            </Container>
+                                        </Container>
+                                    )
+                                })
+                            )
+                            }
+                        </React.Fragment>
+                    </Container>
+                </Row>
             </Container>
-        );
+        )
     }
 }
 

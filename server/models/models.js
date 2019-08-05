@@ -25,5 +25,13 @@ module.exports = {
 
 	informationList() {
 		return "select i.id, i.name, i.title, i.subtitle, i.descriptor, i.m_image, i.o_images, i.url, i.isTitleVisible, i.isSubtitleVisible, i.isArticleEnable, (select link_url from links where id = i.comparisonWith) as comparisonWith from info as i"
+	},
+
+	documentsList() {
+		return "select d.name, d.desc, (select f_path from files where id = d.path) as path, (select name from documents_categories where id = d.category) as category, d.isDocVisible, d.isDescVisible  from documents as d";
+	},
+
+	documentsCategories() {
+		return "select name, title, `desc` from documents_categories";
 	}
 }

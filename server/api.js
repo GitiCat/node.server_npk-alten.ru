@@ -101,5 +101,28 @@ module.exports = {
                 }
             })
         });
+
+        server.use('/api/getDocuments', (req, res) => {
+            res.setHeader('Content-Type', 'application/json');
+
+            let dataContainer = {category: [], list: []}
+
+            db.fetchData(models.documentsCategories(), (error, result) => {
+                if(error)
+                    console.log(error);
+                else {
+                    dataContainer.category = result;
+
+                    db.fetchData(models.documentsList(), (error, result) => {
+                        if(error)
+                            console.log(error);
+                        else {
+                            dataContainer.list = result
+                            res.json(dataContainer);
+                        }
+                    })
+                }
+            })
+        })
     }
 }

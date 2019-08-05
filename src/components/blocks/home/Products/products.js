@@ -8,7 +8,9 @@ class Products extends React.Component {
 		super(props)
 
 		this.state = {
-			data: []
+			data: [],
+			errors: null,
+			isLoading: true
 		}
 	}
 
