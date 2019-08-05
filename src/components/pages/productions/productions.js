@@ -78,7 +78,7 @@ class ProductionsComponent extends React.Component {
                                                 {
                                                     data["prod"][item.category_name].map((element, index) => {
                                                         return (
-                                                            <ProductItem data={element}/>
+                                                            <ProductItem key={index.toString()} data={element}/>
                                                         )
                                                     })
                                                 }

@@ -47,22 +47,22 @@ class FeedbackBtn extends React.Component {
 							feedback form for input message
 						*/}
 						<form method="post" action="/feedback-out-message">
-							<label className="in-lab init-el--e" for="name">
+							<label className="in-lab init-el--e" htmlFor="name">
 								<input type="text" id="name"></input>
-								<label for="name">Имя</label>
+								<label htmlFor="name">Имя</label>
 								<FontAwesomeIcon icon={faUser} className="form-icon"/>
 							</label>
-							<label className="in-lab init-el--e" for="mail">
+							<label className="in-lab init-el--e" htmlFor="mail">
 								<input type="email" id="mail"></input>
-								<label for="mail">Почта</label>
+								<label htmlFor="mail">Почта</label>
 								<FontAwesomeIcon icon={faEnvelope} className="form-icon"/>
 							</label>
-							<label className="in-lab init-el--e" for="tel">
+							<label className="in-lab init-el--e" htmlFor="tel">
 								<input type="tel" id="tel"></input>
-								<label for="tel">Телефон</label>
+								<label htmlFor="tel">Телефон</label>
 								<FontAwesomeIcon icon={faPhone} className="form-icon"/>
 							</label>
-							<label className="area-lab init-el--e" for="message">
+							<label className="area-lab init-el--e" htmlFor="message">
 								<textarea name="message"></textarea>
 							</label>
 							<Container as="div" bsPrefix="about-form-text init-el--e">

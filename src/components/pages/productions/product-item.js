@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 const ProductItem = ({data = []}) => (
 	<Container as="div" bsPrefix="item-cont">
 		<Container as="div" bsPrefix="item-bg" style={{backgroundImage: "url(../../../../public/images/" + data.prod_images + ")"}}></Container>
+		<Container as="div" bsPrefix="item-bg-mask"></Container>
 		<Container as="div" bsPrefix="item-context">
 			<Container as="div" bsPrefix="item-name">{data.prod_name}</Container>
 			<Container as="div" bsPrefix="item-category">{data.prod_category_name}</Container>
