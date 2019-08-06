@@ -60,6 +60,7 @@
 		height: 100vh;
 		opacity: 1;
 		border-radius: 0;
+		z-index: 9998;
 	}
 
 	&.opened ~ .c-m-cont a {
@@ -88,7 +89,7 @@
     background: linear-gradient(214deg, #199dff59 0%, #2da4fcb0 29%, #2fa6ffd4 59%, #37638491 100%);
 	
 	border-radius: 0% 0% 100% 0%;
-	z-index: 9998;
+	z-index: -1;
 	transition: width .7s ease, height .5s ease, opacity .25s ease, border-radius 1.5s;
 
 	.nav-cont {

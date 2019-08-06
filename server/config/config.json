@@ -2,8 +2,8 @@
     "db": {
         "host": "localhost",
         "port": "3306",
-        "user": "root",
-        "pass": "",
+        "user": "admin",
+        "pass": "1528340aa",
         "db_name": "alten_db",
         "connectTimeout": 10000,
         "connectionLimit": 100

@@ -1,0 +1,163 @@
+.prod-disp-cont {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 32px 25px;
+	padding-left: 115px;
+
+	.disp-title {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		width: 100%;
+		padding-bottom: 42px;
+
+		.title-name {
+			&.ms-title-h2 {
+				color: $titleFontColor;
+				padding-left: 0 !important;
+
+				h2 {
+					line-height: 1.5em;
+				}
+			}
+		}
+
+		.title-category {
+			position: relative;
+			padding-left: 25px;
+
+			&:before {
+				content: "";
+				position: absolute;
+				left: 10.5px;
+				top: 0;
+				height: 100%;
+				width: 2px;
+				background-color: $lightRedColor;
+			}
+
+			p {
+				color: $textFontColor;
+				margin: 0;
+				padding: 0;
+				font-family: "OpenSansRegular";
+				font-size: 18px;
+				font-weight: normal;
+				letter-spacing: -.03em;
+				line-height: 1.5em;
+			}
+		}
+	}
+
+	.disp-content-cont {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: flex-start;
+
+		.d-content {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+
+			.c-info {
+				display: block;
+				max-width: 40vw;
+				font-family: "OpenSansRegular";
+				font-size: 18px;
+				font-weight: normal;
+				letter-spacing: -.03em;
+				line-height: 1.5em;
+				color: $textFontColor;
+			}
+
+			.c-prop {
+				p {
+					font-family: "OpenSansRegular";
+					font-size: 22px;
+					font-weight: normal;
+					letter-spacing: -.03em;
+					line-height: 1.5em;
+					color: $titleFontColor;
+
+					padding: 0;
+					padding-bottom: 15px;
+					margin: 0;
+				}
+			}
+
+			.c-files {
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+
+				p {
+					font-family: "OpenSansRegular";
+					font-size: 22px;
+					font-weight: normal;
+					letter-spacing: -.03em;
+					line-height: 1.5em;
+					color: $titleFontColor;
+
+					padding: 0;
+					padding-bottom: 15px;
+					margin: 0;
+				}
+
+				.download-file {
+					display: block;
+				    position: relative;
+				    max-width: 540px;
+					padding: 15px 20px;
+					margin-bottom: 15px;
+					background-color: transparent;
+					border: 1px solid #199dff;
+
+					.d-content {
+
+						span {
+							font-family: "OpenSansRegular";
+							font-size: 18px;
+							font-weight: normal;
+							letter-spacing: -.03em;
+							line-height: 1.5em;
+							color: $textFontColor;
+						}
+					}
+				}
+			}
+		}
+
+		.image {
+
+		}
+	}
+}
+
+.info-panel {
+	position: relative;
+	display: block;
+	margin-bottom: 15px;
+	padding: 15px 25px;
+	background-color: #cae2ff;
+
+	font-family: "OpenSansRegular";
+	font-size: 18px;
+	font-weight: normal;
+	letter-spacing: -.03em;
+	line-height: 1.5em;
+	color: $textFontColor;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color: #a2ccff;
+		height: 100%;
+		width: 5px;
+	}
+}

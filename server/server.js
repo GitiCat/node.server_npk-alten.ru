@@ -10,6 +10,7 @@ const db            = require('./db/db.js'),
       api           = require('./api.js');
 
 const server = express();
+const host = "127.0.0.1";
 const port = normalizePort(process.env.PORT || '8080');
 const productionRouter = express.Router();
 
@@ -80,4 +81,4 @@ productionRouter.get('/charge-discharge-devices', (req, res) => {
     res.sendFile(path.join(__dirname + '/../dist', 'index.html'));
 });
 
-server.listen(port, () => console.log(`Listening on port ${port}!`));
+server.listen(port, host, () => console.log(`Listening on port ${port}!`));

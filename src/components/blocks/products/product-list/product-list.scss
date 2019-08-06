@@ -1,0 +1,34 @@
+.prod-list {
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 32px 25px;
+	padding-left: 115px;
+
+	.pdl-i-cont {
+		cursor: pointer;
+		position: relative;
+		width: 150px;
+		height: 150px;
+		border-radius: 100%;
+		margin-bottom: 32px;
+		overflow: hidden;
+
+		.pdl-i-img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+		}
+	}
+
+	input {
+		display: none;
+	}
+}

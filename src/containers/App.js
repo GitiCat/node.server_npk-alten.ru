@@ -8,6 +8,7 @@ const Activity = lazy(() => import("../components/pages/activity/activity"));
 const Productions = lazy(() => import("../components/pages/productions/productions"));
 const Documents = lazy(() => import("../components/pages/documents/documents"));
 const Leadership = lazy(() => import("../components/pages/leadership/leadership"));
+const ProductsByCategory = lazy(() => import("../containers/productions/productions"));
 
 import HamburgerMenu from "../components/blocks/menu/hamburger-menu";
 import FeedBackBtn from "../components/blocks/feedback-btn/feedback-btn.js";
@@ -26,9 +27,9 @@ class App extends React.Component {
                                 <Route path='/history' component={History}/>
                                 <Route path='/activity' component={Activity}/>
                                 <Route exact path='/productions' component={Productions}/>
-                                <Route path='/productions/rechargeable-batteries' component=""/>
-                                <Route path='/productions/primary-sources' component=""/>
-                                <Route path='/productions/charge-discharge-devices' component=""/>
+                                <Route path='/productions/rechargeable-batteries' component={ProductsByCategory}/>
+                                <Route path='/productions/primary-sources' component={ProductsByCategory}/>
+                                <Route path='/productions/charge-discharge-devices' component={ProductsByCategory}/>
                                 <Route path='/documents' component={Documents}/>
                                 <Route exact path='/company/leadership' component={Leadership}/>
                                 <Route path='/company/leadership/:id' component={Leadership}/>
