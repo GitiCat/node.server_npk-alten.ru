@@ -1,8 +1,8 @@
 import React from "react"
 import { Container, Row, Col } from "react-bootstrap"
 
-const ProductDisplay = ({data = [], id}) => (
-	<Container as="div" bsPrefix="prod-disp-cont">
+const ProductDisplay = ({data = [], id, style}) => (
+	<Container as="div" bsPrefix="prod-disp-cont" style={style}>
 		<Container as="div" bsPrefix="disp-title">
 			<Container as="div" bsPrefix="title-name ms-title-h2">
 				<h2>
@@ -34,7 +34,7 @@ const ProductDisplay = ({data = [], id}) => (
 					{ data[id].prod_files != null &&
 						stringSplit(data[id].prod_files, ",").map((element, index) => {
 							return (
-								<button className="download-file">
+								<button key={index.toString()} className="download-file">
 									<Container as="div" bsPrefix="d-content">
 										<span>
 											{element}
@@ -47,7 +47,7 @@ const ProductDisplay = ({data = [], id}) => (
 				</Container>
 			</Container>
 			<Container as="div" bsPrefix="image">
-				<Container as="div" style={{backgroundImage: "url(../../../public/images/" + data[id]["prod_images"] + ")"}}/>
+				<Container as="div" bsPrefix="" style={{backgroundImage: "url(../../../public/images/" + data[id]["prod_images"] + ")"}}/>
 			</Container>
 		</Container>
 	</Container>
