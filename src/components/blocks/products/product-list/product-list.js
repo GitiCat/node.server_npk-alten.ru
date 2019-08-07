@@ -8,11 +8,12 @@ const ProductList = ({data = []}) => (
 		{
 			data.map((element, index) => {
 				return (
-					<React.Fragment>
+					<React.Fragment key={index.toString()}>
 						<input name="product-list-input"
 							type="radio"
-							id={`product-list-input-${index.toString()}`}/>
-						<ProductListItem key={index.toString()} name={element["prod_name"]} 
+							id={`product-list-input-${index.toString()}`}
+							data-item-id={index.toString()}/>
+						<ProductListItem name={element["prod_name"]} 
 							img={element["prod_images"]}
 							id={index.toString()}/>
 					</React.Fragment>

@@ -14,41 +14,57 @@ class ProductsByCategory extends React.Component {
 		super(props);
 
 		this.state = {
-			uploadingData: this.props.location.state.uploading_data,
 			data: [],
 			errors: null,
 			isLoading: true,
-			selectedIndex: 0
+			uploadingData: null,
+			selectedIndex: null
 		}
 	}
 
 	componentDidMount() {
-		this.getData();
+		this.initData();
 	}
 
-	getData() {
+	initData() {
+		let data = null,
+			errors = null,
+			URLSearch = null,
+			url_name = null,
+			url_id = null,
+			loading = true;
+
 		axios({
 			method: "get",
 			responseType: "json",
 			url: "/api/getProduction"
 		})
 		.then(response => {
-			this.setState({
-				data: response.data["prod"][this.state.uploadingData],
-				isLoading: false
-			})
+			data = response.data;
+			loading = false;
 		})
 		.catch(error => {
-			this.setState({
-				errors: error,
-				isLoading: false
-			})
-		})
+			errors = error,
+			loading = false
+		});
+
+		URLSearch = new URLSearchParams(this.props.location.search);
+		url_name = URLSearch.get("name");
+		url_id = URLSearch.get("id");
+
+		this.setState({
+			data: data["prod"][url_name],
+			errors: errors,
+			uploadingData: url_name,
+			selectedIndex: url_id,
+			isLoading: loading
+		});
 	}
 
 	render() {
 
 		const { data, errors, isLoading } = this.state;
+		console.log("render");
 
 		return (
 			<Container fluid className="pbc-cont">
@@ -67,7 +83,7 @@ class ProductsByCategory extends React.Component {
 						) : (
 							<Container as="div" bsPrefix="pbc-display">
 								<ProductList data={data}/>
-								<ProductDisplay data={data} id={this.state.selectedIndex}/>
+								<ProductDisplay data={data} id={this.state.selectedIndex} style={this.state.style}/>
 							</Container>
 						)
 						}

@@ -1,3 +1,7 @@
+@function pow($base, $exponent) {
+	@return ($base * $exponent);
+}
+
 .prod-disp-cont {
 	display: flex;
 	flex-direction: column;
@@ -5,6 +9,24 @@
 	align-items: flex-start;
 	padding: 32px 25px;
 	padding-left: 115px;
+
+	.title-name, .c-info, .c-prop, .c-files {
+		opacity: 1;
+	}
+
+	&.updating {
+		.title-name, .c-info, .c-prop, .c-files {
+			opacity: 0;
+		}
+
+		.image {
+			div {
+				transform: scale(0.5) !important;
+				filter: blur(10px) !important;
+				opacity: 0 !important;
+			}
+		}
+	}
 
 	.disp-title {
 		display: flex;
@@ -14,6 +36,9 @@
 		padding-bottom: 42px;
 
 		.title-name {
+
+			transition: opacity 0.2s ease;
+
 			&.ms-title-h2 {
 				color: $titleFontColor;
 				padding-left: 0 !important;
@@ -72,9 +97,13 @@
 				letter-spacing: -.03em;
 				line-height: 1.5em;
 				color: $textFontColor;
+
+				transition: opacity 0.4s ease;
 			}
 
 			.c-prop {
+				transition: opacity 0.6s ease;
+
 				p {
 					font-family: "OpenSansRegular";
 					font-size: 22px;
@@ -93,6 +122,8 @@
 				display: flex;
 				flex-direction: column;
 				width: 100%;
+
+				transition: opacity 0.8s ease;
 
 				p {
 					font-family: "OpenSansRegular";
@@ -132,7 +163,29 @@
 		}
 
 		.image {
+			position: relative;
+		    display: block;
+		    width: 4.7in;
+		    height: 5.2in;
+		    margin-left: 72px;
 
+			div {
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center;
+
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+
+				transform: scale(1);
+				opacity: 1;
+				filter: blur(0);
+
+				transition: opacity .7s ease, filter 0.7s ease, transform 0.6s ease;
+			}
 		}
 	}
 }
@@ -161,3 +214,4 @@
 		width: 5px;
 	}
 }
+

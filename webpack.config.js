@@ -7,7 +7,6 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const webpack = require('webpack');
 
 const OutputDirectory = 'dist';
-/* cache size to save, in megabite */
 const defaultCacheSize = 100;
 
 module.exports = {
@@ -29,7 +28,7 @@ module.exports = {
                 loader: 'url-loader?limit=8192'
             },
             {
-                test: /\.(png|jpe?g|gif)$/,
+                test: /\.(jpe?g|png|gif|svg|ico)$/,
                 loader: 'file-loader',
                 options: {
                     name: 'images/[path]/[name].[ext]?[hash]',
