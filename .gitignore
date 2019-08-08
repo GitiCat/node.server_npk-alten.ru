@@ -3,3 +3,4 @@ dist/
 v8-compile-cache-0/
 
 npm-debug.log
+server/config/config.json
