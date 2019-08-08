@@ -15,63 +15,63 @@ class ProductsByCategory extends React.Component {
 
 		this.state = {
 			data: [],
+			isErrors:false,
 			errors: null,
 			isLoading: true,
-			uploadingData: null,
+			uploadingData: '',
 			selectedIndex: null
 		}
 	}
 
 	componentDidMount() {
-		this.initData();
+		this.dataLoad();
 	}
 
-	initData() {
-		let data = null,
-			errors = null,
-			URLSearch = null,
-			url_name = null,
-			url_id = null,
-			loading = true;
-
-		axios({
-			method: "get",
-			responseType: "json",
-			url: "/api/getProduction"
-		})
-		.then(response => {
-			data = response.data;
-			loading = false;
-		})
-		.catch(error => {
-			errors = error,
-			loading = false
-		});
-
-		URLSearch = new URLSearchParams(this.props.location.search);
-		url_name = URLSearch.get("name");
-		url_id = URLSearch.get("id");
+	urlSearchUpdate() {
+		let urlSearch = new URLSearchParams(this.props.location.search);
 
 		this.setState({
-			data: data["prod"][url_name],
-			errors: errors,
-			uploadingData: url_name,
-			selectedIndex: url_id,
-			isLoading: loading
+			uploadingData: urlSearch.get("name"),
+			selectedIndex: urlSearch.get("id")
 		});
+	}
+	
+	dataLoad() {
+		axios({
+			method: 'get',
+			responseType: 'json',
+			url: '/api/getProduction'
+		})
+		.then(response => {
+			this.setState({
+				data: response.data,
+				isLoading: false,
+			})
+		})
+		.catch(error => {
+			this.setState({
+				errors: error,
+				isErrors: true,
+				isLoading: false
+			})
+		})
 	}
 
 	render() {
 
-		const { data, errors, isLoading } = this.state;
-		console.log("render");
+		const {data, isLoading, isErrors, errors, uploadingData } = this.state;
+		let s_data = null;
+
+		if(data.length !== 0) {
+			s_data = data["prod"][uploadingData];
+		}
 
 		return (
 			<Container fluid className="pbc-cont">
 				<Container as="div" bsPrefix="mask"/>
 				<Row>
-					{ data.length != 0 &&
-						<Header title="Продукция" subtitle={data[0].prod_category_name} icon={faLayerGroup}/>
+					{ s_data !== null &&
+						<Header title="Продукция" subtitle={s_data[0].prod_category_name} icon={faLayerGroup}/>
 					}
 				</Row>
 				<Row>
@@ -82,8 +82,8 @@ class ProductsByCategory extends React.Component {
 							</Container>
 						) : (
 							<Container as="div" bsPrefix="pbc-display">
-								<ProductList data={data}/>
-								<ProductDisplay data={data} id={this.state.selectedIndex} style={this.state.style}/>
+								<ProductList data={s_data}/>
+								<ProductDisplay data={s_data} id={this.state.selectedIndex} style={this.state.style}/>
 							</Container>
 						)
 						}

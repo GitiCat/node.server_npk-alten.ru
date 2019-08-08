@@ -27,12 +27,16 @@ class App extends React.Component {
                                 <Route path='/history' component={History}/>
                                 <Route path='/activity' component={Activity}/>
                                 <Route exact path='/productions' component={Productions}/>
+
                                 <Route exact path='/productions/rechargeable-batteries' component={ProductsByCategory}/>
                                 <Route path='/productions/rechargeable-batteries?' component={ProductsByCategory}/>
+                                
                                 <Route exact path='/productions/primary-sources' component={ProductsByCategory}/>
                                 <Route path='/productions/primary-sources?' component={ProductsByCategory}/>
+                                
                                 <Route exact path='/productions/charge-discharge-devices' component={ProductsByCategory}/>
                                 <Route path='/productions/charge-discharge-devices?' component={ProductsByCategory}/>
+                                
                                 <Route path='/documents' component={Documents}/>
                                 <Route exact path='/company/leadership' component={Leadership}/>
                                 <Route path='/company/leadership/:id' component={Leadership}/>
