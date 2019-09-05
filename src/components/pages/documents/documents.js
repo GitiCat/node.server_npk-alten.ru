@@ -1,6 +1,5 @@
 import React from "react"
 import { Container, Row, Col } from "react-bootstrap"
-import axios from "axios"
 
 import Header from "../../blocks/header/header"
 import DocumentItem from "./documents-item"
@@ -12,40 +11,29 @@ class DocumentsComponent extends React.Component {
 		super(props);
 	
 		this.state = {
-			data: [],
+			documents_data: [],
+			category_data: [],
 			errors: null,
 			isLoading: true
 		}
 	}
 
 	componentDidMount() {
-		this.getData();
+		this.loadDocuments();
 	}
 
-	getData() {
-		axios({
-			method: "get",
-			responseType: "json",
-			url: "/api/getDocuments"
+	async loadDocuments() {
+		this.setState({
+			documents_data: await fetch("/api/v0/documents/").then(response => response.json()),
+			category_data: await fetch("/api/v0/documents-category/").then(response => response.json())
 		})
-		.then(response => {
-			this.setState({
-				data: response.data,
-				isLoading: false
-			});
-		})
-		.catch(error => {
-			this.setState({
-				errors: error,
-				isLoading: false
-			});
-		});
 	}
 
     render() {
 
-    	const { data, errors, isLoading } = this.state;
-    	console.log(isLoading ? "Загружается" : "Загрузилось");
+    	const { documents_data, category_data, isLoading } = this.state;
+    	console.log(documents_data, category_data);
+
         return (
             <Container fluid>
             	<Row>

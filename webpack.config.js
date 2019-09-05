@@ -58,11 +58,11 @@ module.exports = {
         historyApiFallback: true,
         stats: { colors: true },
         proxy: {
-            '/api': {
+            '/api/v0/': {
                 'target': {
                     'host': 'localhost',
                     'protocol': 'http',
-                    'port': '8080'
+                    'port': '8000'
                 },
                 changeOrigin: true,
                 secure: false,
