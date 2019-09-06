@@ -1,6 +1,7 @@
 import React from "react";	
 import {Container, Row, Col} from 'react-bootstrap';
 import Header from "../../blocks/header/header";
+import Loading from "../../blocks/loading-data/loading"
 
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons"
 import axios from "axios";
@@ -10,62 +11,75 @@ class ActivityComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+            searchObjectName: "activity",
 			data: [],
-            errors: null,
-            isLoading: false
+            isLoading: true,
+            errors: false,
+            errorMessage: null
 		}
 	}
 
 	componentDidMount() {
-		this.getData();
+		this.loadArticle()
 	}
 
-	getData() {
-        axios({
-            method: "get",
-            responseType: "json",
-            url: "/api/getActivityData"
+	async loadArticle() {
+        let result = await fetch("/api/v0/articles/")
+            .then(response => {
+                if(response.status !== 200) {
+                    this.setState({
+                        isLoading: false,
+                        errors: true,
+                        errorMessage: "В процессе загрузки данных возникла ошибка. Код статуса: " + response.status
+                    });
+                    return;
+                }
+
+                return response.json()
+            });
+
+        let article = null;
+        let searchResult = result.map((item) => {
+            if(item.name == this.state.searchObjectName) {
+                article = item
+            }
         })
-        .then(response => {
+
+        if(this.state.errors == false) {
             this.setState({
-                data: response.data,
+                data: article,
                 isLoading: false
-            })
-        })
-        .catch(error => {
-            this.setState({
-                errors: error,
-                isLoading: false
-            })
-        })
+            });
+        }
 	}
 
     render() {
 
-    	const { data, isLoading, errors } = this.state;
+    	const { data, isLoading } = this.state;
+        console.log(data)
 
         return (
-            <React.Fragment>
-                {!isLoading ? (
-                    <Container fluid className="intro-container">
-                        <Row>
-                            <Header title={data["art_title"]} subtitle={data["art_subtitle"]} icon={faBoxOpen}/>
-                        </Row>
-                        <Container className="intro-text">
-                            <Row>
-                                <Col lg={12} md={12} sm={12} xs={12}>
-                                    <Container as="div" bsPrefix="intro-descriptor">
-                                        <div dangerouslySetInnerHTML={{__html: data["art_descriptor"]}}/>
-                                    </Container>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </Container>
+            <Container fluid className="intro-container">
+                { isLoading ? (
+                        <Loading/>
                     ) : (
-                    <div>{errors.message}</div>
+                        <React.Fragment>
+                            <Row>
+                                <Header title={data.title} subtitle={data["subtitle"]} icon={faBoxOpen}/>
+                            </Row>
+                            <Container className="intro-text">
+                                <Row>
+                                    <Col lg={12} md={12} sm={12} xs={12}>
+                                        <Container as="div" bsPrefix="intro-descriptor">
+                                            <div dangerouslySetInnerHTML={{__html: data["text"]}}/>
+                                        </Container>
+                                    </Col>
+                                </Row>
+                            </Container>
+                        </React.Fragment>
                     )
                 }
-            </React.Fragment>
+            </Container>
         );
     }
 }

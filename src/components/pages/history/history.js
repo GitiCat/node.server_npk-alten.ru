@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from 'react-bootstrap';
+import Loading from "../../blocks/loading-data/loading"
 import Header from "../../blocks/header/header";
 import axios from "axios";
 
@@ -10,34 +11,46 @@ class HistoryComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            searchObjectName: "history",
             data: [],
-            errors: null,
-            isLoading: false
+            isLoading: true,
+            errors: false,
+            errorMessage: null
         }
     }
 
     componentDidMount() {
-        this.getData();
+        this.loadArticle()
     }
 
-    getData() {
-        axios ({
-            method: "get",
-            responseType: "json",
-            url: "/api/getHistoryData"
+    async loadArticle() {
+        let result = await fetch("/api/v0/articles/")
+            .then(response => {
+                if(response.status !== 200) {
+                    this.setState({
+                        isLoading: false,
+                        errors: true,
+                        errorMessage: "В процессе загрузки данных возникла ошибка. Код статуса: " + response.status
+                    });
+                    return;
+                }
+
+                return response.json()
+            });
+
+        let article = null;
+        let searchResult = result.map((item) => {
+            if(item.name == this.state.searchObjectName) {
+                article = item
+            }
         })
-        .then(response => {
+
+        if(this.state.errors == false) {
             this.setState({
-                data: response.data,
-                isLoading: false
-            })
-        })
-        .catch(error => {
-            this.setState({
-                errors: error,
-                isLoading: false
-            })
-        })
+                data: article,
+                isLoading: false 
+            });
+        }
     }
     
     render() {
@@ -46,20 +59,25 @@ class HistoryComponent extends React.Component {
 
         return (
             <Container fluid className="intro-container">
-                <Row>
-                    <Header title={data["art_title"]} subtitle={data["art_subtitle"]} icon={faBookReader}/>
-                </Row>
-                <Container className="intro-text">
-                    <Row>
-                        <Col lg={12} md={12} sm={12} xs={12}>
-                            <Container as="div" bsPrefix="intro-descriptor">
-                                { !isLoading &&
-                                    <div dangerouslySetInnerHTML={{__html: data["art_descriptor"]}}/>
-                                }
+                { isLoading ? (
+                        <Loading/>
+                    ) : (
+                        <React.Fragment>
+                            <Row>
+                                <Header title={data.title} subtitle={data["subtitle"]} icon={faBookReader}/>
+                            </Row>
+                            <Container className="intro-text">
+                                <Row>
+                                    <Col lg={12} md={12} sm={12} xs={12}>
+                                        <Container as="div" bsPrefix="intro-descriptor">
+                                            <div dangerouslySetInnerHTML={{__html: data["text"]}}/>
+                                        </Container>
+                                    </Col>
+                                </Row>
                             </Container>
-                        </Col>
-                    </Row>
-                </Container>
+                        </React.Fragment>
+                    )
+                }
             </Container>
         );
     }

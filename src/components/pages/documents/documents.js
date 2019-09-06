@@ -3,6 +3,8 @@ import { Container, Row, Col } from "react-bootstrap"
 
 import Header from "../../blocks/header/header"
 import DocumentItem from "./documents-item"
+import ListEntry from "../../blocks/list-entry/listEntry"
+import Loading from "../../blocks/loading-data/loading"
 import { faFileAlt, faFilePdf } from "@fortawesome/free-solid-svg-icons"
 
 class DocumentsComponent extends React.Component {
@@ -11,9 +13,8 @@ class DocumentsComponent extends React.Component {
 		super(props);
 	
 		this.state = {
-			documents_data: [],
-			category_data: [],
-			errors: null,
+			documentsData: [],
+			categoryData: [],
 			isLoading: true
 		}
 	}
@@ -24,15 +25,15 @@ class DocumentsComponent extends React.Component {
 
 	async loadDocuments() {
 		this.setState({
-			documents_data: await fetch("/api/v0/documents/").then(response => response.json()),
-			category_data: await fetch("/api/v0/documents-category/").then(response => response.json())
+			documentsData: await fetch("/api/v0/documents/").then(response => response.json()),
+			categoryData: await fetch("/api/v0/documents-category/").then(response => response.json()),
+			isLoading: false
 		})
 	}
 
     render() {
 
-    	const { documents_data, category_data, isLoading } = this.state;
-    	console.log(documents_data, category_data);
+    	const { documentsData, categoryData, isLoading } = this.state;
 
         return (
             <Container fluid>
@@ -43,35 +44,36 @@ class DocumentsComponent extends React.Component {
             		<Container as="div" bsPrefix="doc-cont">
             			<React.Fragment>
             				{isLoading ? (
-	            					<Container as="div" bsPrefix="loading">
-	            						Loading...
-	            					</Container>
+	            					<Loading/>
 	            				) : (
-	            					data["category"].map((item, index) => {
+	            					categoryData.map((item, index) => {
 		            					return (
 		            						<Container key={index.toString()} as="div" bsPrefix="doc-cat-cont">
 			            						<Container as="div" bsPrefix="doc-cat-title">
 			            							<Container as="div" bsPrefix="ms-title-h2">
 			            								<h2>
 				            								<span>
-				            									{item.title}
+				            									{item.name}
 				            								</span>
 				            							</h2>
 			            							</Container>
 			            							<Container as="div" bsPrefix="ms-desc-1">
 			            								<p>
-			            									{item.desc}
+			            									{item.descriptor}
 			            								</p>
 			            							</Container>
 			            						</Container>
-			            						{
-			            							data["list"].map((element, index) => {
-			            								if(element.category == item.name) {
-				            								return (
-				            									<DocumentItem key={index.toString()} data={element} icon={faFilePdf}/>
-				            								)
-				            							}
-			            							})
+			            						{documentsData.lenght != 0 ? (
+			            								documentsData.map((element, index) => {
+				            								if(element.category_id == item.id) {
+					            								return (
+					            									<DocumentItem key={index.toString()} data={element} category={item.name} icon={faFilePdf}/>
+					            								)
+					            							}
+				            							})
+			            							) : (
+			            								<ListEntry/>
+			            							)
 			            						}
 			            					</Container>
 		            					)
