@@ -1,0 +1,37 @@
+.l-entry {
+
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+
+	span {
+		position: relative;
+		background-color: $middleBlueBgColor;
+		color: $textFontColor;
+		font-family: "OpenSansRegular";
+		font-weight: normal;
+		font-size: $bigSubtitleFontSize;
+		letter-spacing: -.03em;
+
+		padding: 15px 20px;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			width: 2px;
+			background-color: $darkBlueBgColor;
+		}
+
+		@media screen and (max-width: 1366px) {
+			font-size: $middleSubtitleFontSize;
+		}
+
+		@media screen and (max-width: 800px) {
+			font-size: $litleSubtitleFontSize;
+		}
+	}
+}

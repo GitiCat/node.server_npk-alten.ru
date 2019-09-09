@@ -1,4 +1,4 @@
-@font-face {
+  @font-face {
     font-family: "RobotoRegular";
     src: url("../public/fonts/Roboto/Roboto-Regular.ttf");
   }
@@ -812,3 +812,6 @@
   @import "components/pages/leadership/leadership.scss";
   @import "components/pages/documents/documents.scss";
   @import "containers/productions/productions.scss";
+  @import "components/blocks/list-entry/listEntry.scss";
+  @import "components/blocks/loading-data/loading.scss";
+  @import "components/blocks/loading-error/loading-error.scss"

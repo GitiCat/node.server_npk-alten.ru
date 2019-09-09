@@ -38,16 +38,9 @@ class ActivityComponent extends React.Component {
                 return response.json()
             });
 
-        let article = null;
-        let searchResult = result.map((item) => {
-            if(item.name == this.state.searchObjectName) {
-                article = item
-            }
-        })
-
         if(this.state.errors == false) {
             this.setState({
-                data: article,
+                data: result[this.state.searchObjectName],
                 isLoading: false
             });
         }
@@ -56,7 +49,6 @@ class ActivityComponent extends React.Component {
     render() {
 
     	const { data, isLoading } = this.state;
-        console.log(data)
 
         return (
             <Container fluid className="intro-container">

@@ -3,10 +3,9 @@ import { Container } from "react-bootstrap"
 
 {/* empty alert component class */}
 class ListEntry extends React.Component {
-
 	render() {
 		return (
-			<Container fluid className="l-entry">
+			<Container as="div" bsPrefix="l-entry">
 				<span>
 					Список объектов пуст
 				</span>
