@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from 'react-bootstrap';
 import Loading from "../../blocks/loading-data/loading"
 import Header from "../../blocks/header/header";
-import axios from "axios";
+import { connect } from "react-redux"
 
 import { faBookReader } from "@fortawesome/free-solid-svg-icons"
 
@@ -57,13 +57,13 @@ class HistoryComponent extends React.Component {
                     ) : (
                         <React.Fragment>
                             <Row>
-                                <Header title={data.title} subtitle={data["subtitle"]} icon={faBookReader}/>
+                                <Header title={this.props.pages_opt.history.title} subtitle={this.props.pages_opt.history.subtitle} icon={faBookReader}/>
                             </Row>
                             <Container className="intro-text">
                                 <Row>
                                     <Col lg={12} md={12} sm={12} xs={12}>
                                         <Container as="div" bsPrefix="intro-descriptor">
-                                            <div dangerouslySetInnerHTML={{__html: data["text"]}}/>
+                                            <div dangerouslySetInnerHTML={{__html: data[0]["text"]}}/>
                                         </Container>
                                     </Col>
                                 </Row>
@@ -76,4 +76,10 @@ class HistoryComponent extends React.Component {
     }
 }
 
-export default HistoryComponent;
+function mapStateToProps(state) {
+    return {
+        pages_opt: state.PagesReducer
+    }
+}
+
+export default connect(mapStateToProps)(HistoryComponent);

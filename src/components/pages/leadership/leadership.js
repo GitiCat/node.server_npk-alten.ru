@@ -2,12 +2,15 @@ import React from "react"
 import { connect } from "react-redux"
 import { Container, Row, Col } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import axios from "axios"
 
 import { faUsers } from "@fortawesome/free-solid-svg-icons"
 import Header from "../../blocks/header/header"
 import LeadershipItem from "./leadership-item"
 import LeadershipSelectItem from "./leadership-select-item"
+
+import Loading from "../../blocks/loading-data/loading"
+import LoadingError from "../../blocks/loading-error/loading-error"
+import ListEntry from "../../blocks/list-entry/listEntry"
 
 class Leadership extends React.Component {
 
@@ -15,70 +18,104 @@ class Leadership extends React.Component {
 		super(props);
 		this.state = {
 			data: [],
-			errors: null,
-			isLoading: false,
+			searchObjectName: "leadership",
+			search_id: null,
+			isLoading: true,
+			errors: false,
+			errorMessage: null,
 		}
+
+		this.onClickRedirect = this.onClickRedirect.bind(this);
 	}
 
 	componentDidMount() {
-		this.getData();
+		this.loadArticles();
 	}
 
-	getData() {
-		axios({
-			method: "get",
-			responseType: "json",
-			url: "/api/getInformations"
-		})
-		.then(response => {
-			this.setState({
-				data: response.data,
-				isLoading: false
+	async loadArticles() {
+
+		let search = this.props.location.search;
+		let params = new URLSearchParams(search)
+		let id = params.get('id')
+
+		let api_url = id !== null ? `/api/v0/articles/${id}/` : `/api/v0/articles/`
+
+		let result = await fetch(api_url)
+			.then(response => {
+				if(response.status !== 200) {
+					this.setState({
+						errors: true,
+						errorMessage: "В процессе загрузки данных возникла ошибка. Код статуса: " + response.status,
+						isLoading: false
+					})
+					return;
+				}
+
+				return response.json()
 			});
-		})
-		.catch(error => {
-			this.setState({
-				errors: error,
-				isLoading: false
-			});
-		});
+
+		if(this.state.errors == false) {
+			if(id !== null) {
+				this.setState({
+					data: result,
+					search_id: id,
+					isLoading: false
+				})
+			} else {
+				this.setState({
+					data: result[this.state.searchObjectName],
+					search_id: id,
+					isLoading: false
+				})
+			}
+		}
+	}
+
+	onClickRedirect(event) {
+		console.log(event)
+		event.preventDefault();
 	}
 
 	render() {
 
-		const { data, errors, isLoading } = this.state;
-		const isParams = this.props.match.params.id != null ? true : false,
-			  selectUrl = isParams ? this.props.match.params.id : null;
+		const { data, isLoading, errors, errorMessage, search_id } = this.state;
+		const isSearch = search_id !== null ? true : false;
 
 		return(
 			<Container fluid className="ls-cont">
 				<Row>
-					<Header title="Руководство" subtitle="Руководители нашего предприятия" icon={faUsers}/>
+					<Header title={this.props.pages_opt.leadership.title} subtitle={this.props.pages_opt.leadership.subtitle} icon={faUsers}/>
 				</Row>
 				<Row>
 					<React.Fragment>
-						{ !isLoading && 
-							<Container as="div" bsPrefix="ls-content">
-								{ !isParams ? (
-										data.map((element, index) => {
-											return (
-												<LeadershipItem key={index.toString()} 
-													data={element} 
-													index={index}
-													location={this.props.location.pathname}/>
-											)
-										})
-									) : (
-										data.map((element, index) => {
-											if(element["url"].replace("/", "") == selectUrl) {
-												return (
-													<LeadershipSelectItem key={index.toString()} data={element}/>
-												)
-											}
-										})
-									)
-								}
-							</Container>
+						{isLoading ? (
+								<Loading/>
+							) : (
+								<Container as="div" bsPrefix="ls-content">
+									{errors ? (
+											<LoadingError error_message={errorMessage}/>
+										) : (
+											<React.Fragment>
+												{!isSearch ? (
+														data.map((element, index) => {
+															if(element.is_article_enable == true) {
+																return (
+																	<LeadershipItem key={index.toString()} 
+																		data={element}
+																		index={index}
+																		location={this.props.location.pathname}/>
+																)
+															}
+														})
+													) : (
+														<LeadershipSelectItem data={data}/>
+													)
+												}
+											</React.Fragment>
+										)
+									} 
+								</Container>
+							)
 						}
 					</React.Fragment>
 				</Row>
@@ -89,7 +126,7 @@ class Leadership extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		data: state.HomeReducer
+		pages_opt: state.PagesReducer
 	}
 }
 

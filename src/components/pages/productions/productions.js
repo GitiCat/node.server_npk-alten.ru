@@ -19,7 +19,7 @@ class ProductionsComponent extends React.Component {
             category: [],
             isLoading: true,
             errors: false,
-            errormessage: null
+            errorMessage: null
         }
     }
 

@@ -7,23 +7,23 @@ const ProductDisplay = ({data = [], id, style}) => (
 			<Container as="div" bsPrefix="title-name ms-title-h2">
 				<h2>
 					<span>
-						{data[id].prod_name}
+						{data[id].title}
 					</span>
 				</h2>
 			</Container>
 			<Container as="div" bsPrefix="title-category">
 				<p>
-					{data[id].prod_category_name}
+					{data[id].category_name}
 				</p>
 			</Container>
 		</Container>
 		<Container as="div" bsPrefix="disp-content-cont">
 			<Container as="div" bsPrefix="d-content">
-				<Container as="div" bsPrefix="c-info" dangerouslySetInnerHTML={{__html: data[id]["prod_descriptor"]}}/>
+				<Container as="div" bsPrefix="c-info" dangerouslySetInnerHTML={{__html: data[id]["descriptor"]}}/>
 				<Container as="div" bsPrefix="c-prop">
 					<p>Технические характеристики</p>
-					{data[id].prod_properties != null ? (
-						data[id].prod_properties
+					{data[id].specifications != null ? (
+						<Container as="div" bsPrefix="c-table-param" dangerouslySetInnerHTML={{__html: data[id]["specifications"]}}/>
 					) : (
 						<InformationPanel text="Информация о технических характеристиках отсутствует..."/>
 					)
@@ -31,8 +31,8 @@ const ProductDisplay = ({data = [], id, style}) => (
 				</Container>
 				<Container as="div" bsPrefix="c-files">
 					<p>Прилагаемые документы</p>
-					{ data[id].prod_files != null &&
-						stringSplit(data[id].prod_files, ",").map((element, index) => {
+					{ data[id].files != null ?
+						stringSplit(data[id].files, ",").map((element, index) => {
 							return (
 								<button key={index.toString()} className="download-file">
 									<Container as="div" bsPrefix="d-content">
@@ -43,11 +43,14 @@ const ProductDisplay = ({data = [], id, style}) => (
 								</button>
 							)
 						})
+						: (
+							<InformationPanel text="Документы отсутствуют..."/>
+						)
 					}
 				</Container>
 			</Container>
 			<Container as="div" bsPrefix="image">
-				<Container as="div" bsPrefix="" style={{backgroundImage: "url(../../../public/images/" + data[id]["prod_images"] + ")"}}/>
+				<Container as="div" bsPrefix="" style={{backgroundImage: "url(../../../public/images/" + data[id]["bg_image"] + ")"}}/>
 			</Container>
 		</Container>
 	</Container>

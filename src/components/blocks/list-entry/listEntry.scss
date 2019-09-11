@@ -7,14 +7,15 @@
 
 	span {
 		position: relative;
-		background-color: $middleBlueBgColor;
+		background-color: #d5d5d530;
 		color: $textFontColor;
 		font-family: "OpenSansRegular";
 		font-weight: normal;
-		font-size: $bigSubtitleFontSize;
+		font-size: $bigTextFontSize;
 		letter-spacing: -.03em;
 
 		padding: 15px 20px;
+		padding-left: 30px;
 
 		&:before {
 			content: "";
@@ -22,16 +23,16 @@
 			top: 0;
 			left: 0;
 			bottom: 0;
-			width: 2px;
-			background-color: $darkBlueBgColor;
+			width: 3px;
+			background-color: $middleBlueBgColor;
 		}
 
 		@media screen and (max-width: 1366px) {
-			font-size: $middleSubtitleFontSize;
+			font-size: $middleTextFontSize;
 		}
 
 		@media screen and (max-width: 800px) {
-			font-size: $litleSubtitleFontSize;
+			font-size: $litleTextFontSize;
 		}
 	}
 }

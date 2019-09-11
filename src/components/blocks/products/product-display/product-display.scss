@@ -8,7 +8,7 @@
 	justify-content: flex-start;
 	align-items: flex-start;
 	padding: 32px 25px;
-	padding-left: 115px;
+	padding-left: 95px;
 
 	.title-name, .c-info, .c-prop, .c-files {
 		opacity: 1;
@@ -33,7 +33,7 @@
 		flex-direction: row;
 		align-items: center;
 		width: 100%;
-		padding-bottom: 42px;
+		padding-bottom: 35px;
 
 		.title-name {
 
@@ -91,6 +91,7 @@
 			.c-info {
 				display: block;
 				max-width: 40vw;
+				margin-bottom: 45px;
 				font-family: "OpenSansRegular";
 				font-size: 18px;
 				font-weight: normal;
@@ -103,6 +104,7 @@
 
 			.c-prop {
 				transition: opacity 0.6s ease;
+				margin-bottom: 45px;
 
 				p {
 					font-family: "OpenSansRegular";
@@ -110,7 +112,7 @@
 					font-weight: normal;
 					letter-spacing: -.03em;
 					line-height: 1.5em;
-					color: $titleFontColor;
+					color: $textFontColor;
 
 					padding: 0;
 					padding-bottom: 15px;
@@ -118,10 +120,103 @@
 				}
 			}
 
+			.c-table-param {
+				display: block;
+				position: relative;
+				margin-bottom: 45px;
+
+				.prod-table-property {
+					position: relative;
+
+					tr {
+
+						td {
+							font-family: "OpenSansRegular";
+							font-size: $bigTextFontSize;
+							letter-spacing: -.03em;
+							line-height: 1.5em;
+							color: $textFontColor;
+						}
+
+						td:first-child {
+							background-color: #cae2ff;
+							padding: 8px 15px;
+							word-wrap: normal;
+							max-width: 400px;
+						}
+
+						td:last-child {
+							background-color: #b8e2ff5e;
+						}
+					}
+
+					thead {
+						height: 50px;
+						background-color: #a2ccff;
+
+						tr {
+							position: relative;
+
+							td {
+								font-family: "OpenSansRegular";
+								font-size: $bigTextFontSize + 2;
+								line-height: 1.5em;
+								letter-spacing: -.03em;
+								color: $titleFontColor;
+							}
+
+							td:first-child {
+								background-color: transparent !important;
+								padding-left: 40px;
+							}
+
+							td:last-child {
+								background-color: inherit;
+								padding-left: 40px;
+								padding-right: 40px;
+							}
+						}						
+					}
+
+					tbody {
+						position: relative;
+
+						tr {
+							position: relative;
+
+							td {
+
+								&:first-child {
+									ul {
+										margin-left: 25px;
+									}
+								}
+
+								&:last-child {
+									text-align: center;
+								}
+
+								ul {
+									margin: 0;
+									padding: 0;
+
+									li {
+										margin: 0;
+										padding: 0;
+										list-style-type: none;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
 			.c-files {
 				display: flex;
 				flex-direction: column;
 				width: 100%;
+				margin-bottom: 45px;
 
 				transition: opacity 0.8s ease;
 

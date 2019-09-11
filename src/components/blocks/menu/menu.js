@@ -14,15 +14,12 @@ class MenuBlock extends React.Component {
                     <div className="dropdown-menu-panel">
                         <NavLink to={{
                             pathname: '/productions/rechargeable-batteries',
-                            state: { uploading_data: 'rechargeable-batteries' }
                         }} activeClassName='active' className="nav-item nav-link none">Аккумуляторные батареи</NavLink>
                         <NavLink to={{
                             pathname: '/productions/primary-sources',
-                            state: { uploading_data: 'primary-sources' }
                         }} activeClassName='active' className="nav-item nav-link none">Первичные источники тока</NavLink>
                         <NavLink to={{
-                            pathname: '/productions/charge-discharge-devices',
-                            state: { uploading_data: 'zru' }
+                            pathname: '/productions/zru',
                         }} activeClassName='active' className="nav-item nav-link none">Зарядно - разрядные устройства</NavLink>
                     </div>
                 </div>

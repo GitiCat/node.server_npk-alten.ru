@@ -13,8 +13,8 @@ const ProductList = ({data = []}) => (
 							type="radio"
 							id={`product-list-input-${index.toString()}`}
 							data-item-id={index.toString()}/>
-						<ProductListItem name={element["prod_name"]} 
-							img={element["prod_images"]}
+						<ProductListItem name={element["title"]} 
+							img={element["bg_image"]}
 							id={index.toString()}/>
 					</React.Fragment>
 				)

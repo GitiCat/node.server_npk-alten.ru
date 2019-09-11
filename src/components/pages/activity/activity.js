@@ -4,7 +4,7 @@ import Header from "../../blocks/header/header";
 import Loading from "../../blocks/loading-data/loading"
 
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons"
-import axios from "axios";
+import { connect } from "react-redux"
 
 class ActivityComponent extends React.Component {
 
@@ -57,13 +57,13 @@ class ActivityComponent extends React.Component {
                     ) : (
                         <React.Fragment>
                             <Row>
-                                <Header title={data.title} subtitle={data["subtitle"]} icon={faBoxOpen}/>
+                                <Header title={this.props.pages_opt.activity.title} subtitle={this.props.pages_opt.activity.subtitle} icon={faBoxOpen}/>
                             </Row>
                             <Container className="intro-text">
                                 <Row>
                                     <Col lg={12} md={12} sm={12} xs={12}>
                                         <Container as="div" bsPrefix="intro-descriptor">
-                                            <div dangerouslySetInnerHTML={{__html: data["text"]}}/>
+                                            <div dangerouslySetInnerHTML={{__html: data[0]["text"]}}/>
                                         </Container>
                                     </Col>
                                 </Row>
@@ -76,4 +76,10 @@ class ActivityComponent extends React.Component {
     }
 }
 
-export default ActivityComponent;
+function mapStateToProps(state) {
+    return {
+        pages_opt: state.PagesReducer
+    }
+}
+
+export default connect(mapStateToProps)(ActivityComponent);
