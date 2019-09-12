@@ -1,8 +1,10 @@
 import React from "react"
+import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import { Container, Row, Col } from "react-bootstrap"
 import { faLayerGroup } from "@fortawesome/free-solid-svg-icons"
-import axios from "axios"
+
+import * as productsActions from "../../actions/products"
 
 import Header from "../../components/blocks/header/header"
 import ProductList from "../../components/blocks/products/product-list/product-list"
@@ -22,19 +24,15 @@ class ProductsByCategory extends React.Component {
 			isLoading: true,
 			errors: false,
 			errorMessage: null,
-			selectedIndex: null
 		}
 	}
 
 	async componentDidMount() {
-		//	Категория объектов на текущей странице для загрузки
-		let { search_object } = this.props.match.params
 		//	Строка, содержащая url для запроса к api
 		let api_url = "/api/v0/products/";
 		//	Массив для хранения полученных данных от api
 		let response = await this.loadProducts(api_url);
 		//	Выделение данных в массиве по параметру
-		response = response[search_object]
 
 		let search = this.props.location.search;
 		let params = new URLSearchParams(search);
@@ -44,7 +42,7 @@ class ProductsByCategory extends React.Component {
 			this.setState({
 				products: response,
 				isLoading: false,
-				selectedIndex: this.state.selectedIndex == null && id 
+				selectedIndex: this.state.selectedIndex == null && id
 			});
 		}
 	}
@@ -76,6 +74,19 @@ class ProductsByCategory extends React.Component {
 	render() {
 
 		const { products, isLoading, errors, errorMessage } = this.state;
+		const { setProductIndex } = this.props.productsActions;
+		const { product } = this.props
+		const { search_object } = this.props.match.params
+		
+		let isArrayEntry = null;
+		
+		if(products.length != 0) {
+			if(products[search_object].length == undefined || products[search_object].length == 0) {
+				isArrayEntry = true;
+			} else {
+				isArrayEntry = false
+			}
+		}
 
 		return (
 			<Container fluid className="pbc-cont">
@@ -93,12 +104,12 @@ class ProductsByCategory extends React.Component {
 											<LoadingError error_message={errorMessage}/>
 										) : (
 											<Container as="div" bsPrefix="pbc-display">
-												{products.length == undefined ? (
+												{isArrayEntry ? (
 														<ListEntry/>
 													) : (
 														<React.Fragment>
-															<ProductList data={products}/>
-															<ProductDisplay data={products} id={this.state.selectedIndex}/>
+															<ProductList data={products[search_object]} setIndex={setProductIndex}/>
+															<ProductDisplay data={products[search_object]} id={product.index}/>
 														</React.Fragment>
 													)
 												}
@@ -118,8 +129,15 @@ class ProductsByCategory extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		pages_opt: state.PagesReducer
+		pages_opt: state.PagesReducer,
+		product: state.ProductsReducer
 	}
 }
 
-export default connect(mapStateToProps)(ProductsByCategory);
+function mapDispatchToProps(dispatch) {
+	return {
+		productsActions: bindActionCreators(productsActions, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsByCategory);

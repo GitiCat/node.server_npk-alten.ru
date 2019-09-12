@@ -65,6 +65,7 @@ class HamburgerMenuBlock extends React.Component {
 		                <NavLink to='/company/leadership' activeClassName='active' className="nav-item nav-link">Руководство</NavLink>
 		                <NavLink to='/company/patents' activeClassName='active' className="nav-item nav-link">Паттенты</NavLink>
 		                <NavLink to='/company/gallery' activeClassName='active' className="nav-item nav-link">Галерея</NavLink>
+		                <NavLink to='/news' activeClassName='active' className='nav-item nav-link'>Новости</NavLink>
 					</Container>
 	                <Container as="div" bsPrefix="nav-cont">
 	                	<Container as="div" bsPrefix="nav-cont-title">

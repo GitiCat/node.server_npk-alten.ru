@@ -1,0 +1,1 @@
+export const SELECT_NEWS_INDEX = "SELECT_NEWS_INDEX"

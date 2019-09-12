@@ -40,6 +40,19 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+
+			font-family: "OpenSansRegular";
+			font-size: $bigTextFontSize;
+			letter-spacing: -.03em;
+			line-height: 1.5em;
+
+			@media screen and (max-width: 1366px) {
+				font-size: $middleTextFontSize;
+			}
+
+			@media screen and (max-width: 800px) {
+				font-size: $litleTextFontSize;
+			}
 		}
 	}
 
