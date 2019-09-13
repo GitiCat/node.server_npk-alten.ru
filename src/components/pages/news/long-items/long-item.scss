@@ -1,0 +1,72 @@
+.n-long-list {
+	margin: 86px 2.5%;
+	padding: 0 2.5%;
+	box-shadow: -16px 0px 10px -23px $darkGrayColor;
+
+	.long-n-cont {
+		width: 344px;
+		padding: 16px;
+		background-color: #fff;
+		margin-bottom: 7px;
+		border-radius: 4px;
+		display: flex;
+		flex-direction: column;
+
+		a {
+			position: relative;
+			text-decoration: none;
+
+			.long-n_title {
+				position: relative;
+				padding-bottom: 7px;
+				margin-bottom: 7px;
+
+				span {
+					display: block;
+					color: $darkGrayColor;
+					font-family: "RobotoRegular";
+					font-size: 1em;
+					line-height: 1.5em;
+					font-weight: bold;
+					letter-spacing: -.03em;
+				}
+
+				&:after {
+					content: "";
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					background-color: $lightRedColor;
+					height: 1px;
+					width: 100px;
+				}
+			}
+
+			.long-n_category {
+				span {
+					display: block;
+					font-family: "OpenSansRegular";
+					letter-spacing: -.0125em;
+					line-height: 1.5em;
+					color: $darkGrayColor;
+					font-size: 15px;
+					opacity: .6;
+				}
+			}
+		}
+	}
+}
+
+.border--outline {
+	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2),0px 0px 0px 0px rgba(0, 0, 0, 0.14),0px 0px 0px 0px rgba(0,0,0,.12);
+	border-width: 1px;
+	border-style: solid;
+	border-color: #e0e0e0;
+}
+
+.border--dotted {
+	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
+	border-width: 0 0 2px 0;
+	border-style: dotted;
+	border-color: #e0e0e0;
+}

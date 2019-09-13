@@ -11,6 +11,7 @@ import Loading from '../../components/blocks/loading-data/loading'
 import LoadingError from '../../components/blocks/loading-error/loading-error'
 import ListEntry from '../../components/blocks/list-entry/listEntry'
 import NewsItem from '../../components/pages/news/items/items'
+import LongNewsItem from '../../components/pages/news/long-items/long-item'
 
 
 class NewsList extends React.Component {
@@ -92,19 +93,38 @@ class NewsList extends React.Component {
 												{isArrayEntry ? (
 														<ListEntry/>
 													) : (
-														data.map((item, index) => {
-															return (
-																<NewsItem key={index.toString()}
-																	id={(index + 1).toString()}
-																	title={item.title}
-																	category={item.category}
-																	text={item.descriptor}
-																	image={item.bg_image}
-																	url={item.url}
-																	date={item.date}
-																	setNewsIndex={setNewsIndex}/>
-															)
-														})
+														<React.Fragment>
+															<Container as="div" bsPrefix="n-detail-list">
+																{
+																	data.map((item, index) => {
+																		return (
+																			<NewsItem key={index.toString()}
+																				id={(index + 1).toString()}
+																				title={item.title}
+																				category={item.category}
+																				text={item.descriptor}
+																				image={item.bg_image}
+																				url={item.url}
+																				date={item.date}
+																				setNewsIndex={setNewsIndex}/>
+																		)
+																	})
+																}
+															</Container>
+															<Container as="div" bsPrefix="n-long-list">
+																{
+																	data.map((item, index) => {
+																		return (
+																			<LongNewsItem key={index.toString()}
+																				id={(index + 1).toString()}
+																				title={item.title}
+																				category={item.category}
+																				data={item.date}/>
+																		)
+																	})
+																}
+															</Container>
+															</React.Fragment>
 													)
 												}
 											</Container>

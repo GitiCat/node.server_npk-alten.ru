@@ -22,14 +22,14 @@ class NewsItem extends React.Component {
 		const { id, title, category, text, image, date } = this.props
 
 		return (
-			<Container as="div" bsPrefix="n-i-cont">
+			<Container as="div" bsPrefix="n-i-cont border--dotted">
 				<Container as="div" bsPrefix="n-i-img-cont">
 					<Container as="div" bsPrefix="n-i-img" style={{backgroundImage: 'url(' + image + (')')}}></Container>
 				</Container>
 				<Container as="div" bsPrefix="n-i-content">
 					<Container as="div" bsPrefix="n-i-ct-top">
+						<span>Роскосмос</span>
 						<span>{date}</span>
-						<span>{category}</span>
 					</Container>
 					<Container as="div" bsPrefix="n-i-ct-block">
 						<Container as="div" bsPrefix="title">

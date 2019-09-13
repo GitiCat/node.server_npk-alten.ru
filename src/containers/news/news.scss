@@ -1,9 +1,19 @@
 .n-cont {
 	.n-disp {
 		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-content: flex-start;
-		padding: 86px 14.5%;
+		flex-direction: row;
+		padding: 0 14.5%;
+		padding-right: 0;
+		padding-top: 0;
+
+		.n-detail-list {
+			padding-top: 86px;
+			padding-bottom: 86px;
+			padding-right: 75px;
+		}
 	}
 }
+
+@import '../../components/pages/news/items/news-items.scss';
+@import '../../components/pages/news/selected/selected-item.scss';
+@import '../../components/pages/news/long-items/long-item.scss';
