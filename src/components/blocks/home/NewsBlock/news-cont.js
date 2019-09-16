@@ -3,7 +3,9 @@ import { Container, Row, Col } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import NewsBlock from "./news-block";
-import axios from "axios"
+import Loading from "../../loading-data/loading"
+import LoadingError from "../../loading-error/loading-error"
+import ListEntry from "../../list-entry/listEntry"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper } from "@fortawesome/free-solid-svg-icons"
@@ -12,40 +14,54 @@ class NewsContainer extends React.Component {
 
 	constructor(props) {
 		super(props)
+
 		this.state = {
 			data: [],
-			errors: null,
-			isLoading: false
+			isLoading: true,
+			errors: false,
+			errorMessage: null
 		}
 	}
 
-	componentWillMount() {
-		this.getData();
+	async componentWillMount() {
+		let api_url = "/api/v0/news/"
+		let response = await this.loadNews(api_url);
+
+		if(this.state.errors == false) {
+			this.setState({
+				data: response,
+				isLoading: false
+			})
+		}
 	}
 
-	getData() {
-		axios({
-			method: "get",
-			responseType: "json",
-			url: "/api/getNews"
-		})
-		.then(response => {
-			this.setState({
-				data: response.data,
-				isLoading: false
+	async loadNews(url) {
+		let result = await fetch(url)
+			.then(response => {
+				if(response.status !== 200) {
+					this.setErrorsStatue(response.status, response.statusText);
+					return;
+				}
+
+				return response.json()
 			})
-		})
-		.catch(error => {
-			this.setState({
-				errors: error,
-				isLoading: false
-			})
+
+		return result.slice(0, 2);
+	}
+
+	setErrorsStatus(status_code, error_message) {
+		let error_string = `В процессе загрузки возникла ошибка: ${error_message}. STATUS CODE: ${status_code}`;
+
+		this.setStatue({
+			isLoading: false,
+			errors: true,
+			errorMessage: error_string
 		})
 	}
 
 	render() {
 
-		const { data, isLoading } = this.state;
+		const { data, isLoading, errors, errorMessage } = this.state;
 
 		return(
 			<Container fluid className="news-cont">
@@ -72,25 +88,49 @@ class NewsContainer extends React.Component {
 					</Container>
 				</Row>
 				<Row>
-					<Container as="div" bsPrefix="news-content">
-						<Container as="div" bsPrefix="block-cont">
-							{ !isLoading &&
-								data.map((item, index) => {
-									return(
-										<NewsBlock key={index.toString()}
-										title={item.title}
-										desc={item.desc}
-										category={item.category}
-										date={item.date_n}
-										imgUrl={item.bg_url}
-										logo={item.logo}
-										url={item.url}
-										original_url={item.original_url}/>
-									)
-								})
-							}
-						</Container>
-					</Container>
+					<React.Fragment>
+						{isLoading ? (
+								<Loading/>
+							) : (
+								<React.Fragment>
+									{errors ? (
+											<LoadingError error_message={errorMessage}/>
+										) : (
+											<React.Fragment>
+												{data.length == 0 ? (
+														<ListEntry/>
+													) : (
+														<Container as="div" bsPrefix="news-content">
+															<Container as="div" bsPrefix="block-cont">
+																{ !isLoading &&
+																	data.map((item, index) => {
+																		return(
+																			<NewsBlock key={item.index}
+																			title={item.title}
+																			desc={item.descriptor}
+																			category={item.category}
+																			date={item.date}
+																			imgUrl={item.bg_image}
+																			logo={item.logo}
+																			url={item.url}
+																			original_url={item.original_url}/>
+																		)
+																	})
+																}
+															</Container>
+														</Container>
+													)
+
+												}
+											</React.Fragment>
+										)
+
+									}
+								</React.Fragment>
+							)
+
+						}
+					</React.Fragment>
 				</Row>
 			</Container>
 		)

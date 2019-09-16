@@ -1,11 +1,20 @@
 .n-i-cont {
+	display: flex;
+	flex-direction: row;
 	margin-bottom: 45px;
 	padding-bottom: 15px;
 
 	.n-i-img-cont {
-
-		.n-i-img {
+		width: 235px;
+		height: 235px;
+		margin-left: 35px;
 			
+		.n-i-img {
+			background-position: center;
+			background-size: cover;
+			background-repeat: no-repeat;
+			width: inherit;
+			height: inherit;
 		}
 	}
 

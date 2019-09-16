@@ -5,7 +5,8 @@ import NewsList from '../../../containers/news/news'
 export default class News extends React.Component {
 	render() {
 		return(
-			<NewsList/>
+			<NewsList isSearch={this.props.match.params.id == null ? false : true}
+				index={this.props.match.params.id}/>
 		)
 	}
 } 

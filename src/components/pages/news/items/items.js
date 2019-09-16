@@ -11,8 +11,6 @@ class NewsItem extends React.Component {
 	}
 
 	onLinkClick(event) {
-		event.preventDefault()
-		console.log(event.target)
 		let index = event.target.dataset.newsId;
 		this.props.setNewsIndex(index)
 	}
@@ -23,9 +21,6 @@ class NewsItem extends React.Component {
 
 		return (
 			<Container as="div" bsPrefix="n-i-cont border--dotted">
-				<Container as="div" bsPrefix="n-i-img-cont">
-					<Container as="div" bsPrefix="n-i-img" style={{backgroundImage: 'url(' + image + (')')}}></Container>
-				</Container>
 				<Container as="div" bsPrefix="n-i-content">
 					<Container as="div" bsPrefix="n-i-ct-top">
 						<span>Роскосмос</span>
@@ -36,8 +31,13 @@ class NewsItem extends React.Component {
 							<span>{title}</span>
 						</Container>
 						<Container as="div" bsPrefix="text" dangerouslySetInnerHTML={{__html: text}}></Container>
-						<Link to={`/news/${id}`} data-news-id={id} onClick={this.onLinkClick}>Перейти</Link>
+						<Link to={{
+							pathname: `/news/${id}`
+						}} data-news-id={id} onClick={this.onLinkClick}>Перейти</Link>
 					</Container>
+				</Container>
+				<Container as="div" bsPrefix="n-i-img-cont">
+					<Container as="div" bsPrefix="n-i-img" style={{backgroundImage: 'url(' + image + (')')}}></Container>
 				</Container>
 			</Container>
 		)

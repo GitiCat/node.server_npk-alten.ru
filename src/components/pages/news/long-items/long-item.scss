@@ -4,6 +4,7 @@
 	box-shadow: -16px 0px 10px -23px $darkGrayColor;
 
 	.long-n-cont {
+		position: relative;
 		width: 344px;
 		padding: 16px;
 		background-color: #fff;
@@ -13,45 +14,50 @@
 		flex-direction: column;
 
 		a {
-			position: relative;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			z-index: 2;
 			text-decoration: none;
+		}
 
-			.long-n_title {
-				position: relative;
-				padding-bottom: 7px;
-				margin-bottom: 7px;
+		.long-n_title {
+			position: relative;
+			padding-bottom: 7px;
+			margin-bottom: 7px;
 
-				span {
-					display: block;
-					color: $darkGrayColor;
-					font-family: "RobotoRegular";
-					font-size: 1em;
-					line-height: 1.5em;
-					font-weight: bold;
-					letter-spacing: -.03em;
-				}
-
-				&:after {
-					content: "";
-					position: absolute;
-					bottom: 0;
-					left: 0;
-					background-color: $lightRedColor;
-					height: 1px;
-					width: 100px;
-				}
+			span {
+				display: block;
+				color: $darkGrayColor;
+				font-family: "RobotoRegular";
+				font-size: 1em;
+				line-height: 1.5em;
+				font-weight: bold;
+				letter-spacing: -.03em;
 			}
 
-			.long-n_category {
-				span {
-					display: block;
-					font-family: "OpenSansRegular";
-					letter-spacing: -.0125em;
-					line-height: 1.5em;
-					color: $darkGrayColor;
-					font-size: 15px;
-					opacity: .6;
-				}
+			&:after {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				background-color: $lightRedColor;
+				height: 1px;
+				width: 100px;
+			}
+		}
+
+		.long-n_category {
+			span {
+				display: block;
+				font-family: "OpenSansRegular";
+				letter-spacing: -.0125em;
+				line-height: 1.5em;
+				color: $darkGrayColor;
+				font-size: 15px;
+				opacity: .6;
 			}
 		}
 	}
