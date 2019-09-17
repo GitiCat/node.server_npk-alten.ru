@@ -34,8 +34,7 @@ class SelectNewsItem extends React.Component {
 						<span>{ date }</span>
 					</Container>
 				</Container>
-				<Container as="div" bsPrefix="selected-item__content">
-					<Container as="div" bsPrefix="content__image" style={{backgroundImage: 'url(' + image + ')'}}></Container>
+				<Container as="div" bsPrefix="selected-news__content">
 					<Container as="div" bsPrefix="content__text" dangerouslySetInnerHTML={{__html: descriptor}}></Container>
 					{ 
 

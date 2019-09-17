@@ -1,7 +1,12 @@
 .n-long-list {
+	display: block;
 	margin: 86px 2.5%;
 	padding: 0 2.5%;
 	box-shadow: -16px 0px 10px -23px $darkGrayColor;
+
+	@media screen and (max-width: 1366px) {
+		display: none;
+	}
 
 	.long-n-cont {
 		position: relative;

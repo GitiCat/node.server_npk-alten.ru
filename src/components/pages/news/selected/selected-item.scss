@@ -1,0 +1,99 @@
+.selected-news {
+    &__container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    &__image-slider {
+        display: block;
+        width: 100%;
+        height: 475px;
+        margin-bottom: 45px;
+
+        @media screen and (max-width: 1366px) {
+            height: 375px;
+        }
+
+        @media screen and (max-width: 800px) {
+            height: 292px;
+        }
+
+        .img {
+            width: inherit;
+            height: inherit;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    }
+
+    &__title {
+        display: block;
+        width: 100%;
+        padding-right: 10px;
+
+        span {
+            font-family: "RobotoRegular";
+            font-size: $bigSubtitleFontSize;
+            font-weight: 700;
+            color: $darkGrayColor;
+            letter-spacing: -.03em;
+            line-height: 1.5em;
+        }
+
+        .title__category-date {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 25px;
+
+            span {
+                &:first-child {
+                    position: relative;
+                    font-size: $bigTextFontSize;
+                    font-weight: normal;
+                    color: $darkGrayColor;
+                    opacity: 1;
+                    margin-right: 10px;
+                    padding-right: 10px;
+
+                    &:after {
+                        position: absolute;
+                        content: "";
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 2px;
+                        background-color: $lightRedColor;
+                    }
+                }
+
+                &:last-child {
+                    font-size: $bigTextFontSize;
+                    font-weight: normal;
+                    color: $darkGrayColor;
+                    opacity: .6;
+                }
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+
+        .content__text {
+            p {
+                font-family: "OpenSansRegular";
+                font-size: $bigTextFontSize;
+                font-weight: normal;
+                text-indent: 1.25em;
+                letter-spacing: -.03em;
+                color: $darkGrayColor;
+                margin: 0;
+                line-height: 1.5em;
+            }
+        }
+    }
+}
