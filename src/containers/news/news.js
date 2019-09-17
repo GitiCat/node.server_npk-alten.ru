@@ -107,7 +107,7 @@ class NewsList extends React.Component {
 																						title={item.title}
 																						category={item.category}
 																						text={item.descriptor}
-																						image="../../../public/images/news/other/1463071087.png"
+																						image={item.bg_image}
 																						url={item.url}
 																						date={item.date}
 																						setNewsIndex={setNewsIndex}/>
@@ -117,7 +117,7 @@ class NewsList extends React.Component {
 																			<SelectedNewItem title={data[selectedIndex].title}
 																				category={data[selectedIndex].category}
 																				descriptor={data[selectedIndex].descriptor}
-																				image="../../../public/images/news/other/1463071087.png"
+																				image={data[selectedIndex].bg_image}
 																				list_image={data[selectedIndex].list_image}
 																				logo={data[selectedIndex].logo}
 																				original_url={data[selectedIndex].original_url}

@@ -6,6 +6,13 @@ class SelectNewsItem extends React.Component {
 
 	constructor(props) {
 		super(props)
+		this.redirectLinkClick = this.redirectLinkClick.bind(this)
+	}
+
+	redirectLinkClick(event) {
+		event.preventDefault()
+		let urlToRegirect = event.target.href
+		window.open(urlToRegirect, "_parent", false)
 	}
 
 	render() {
@@ -23,22 +30,30 @@ class SelectNewsItem extends React.Component {
 									Тут будет слайдер
 								</Container>
 							)
-
 						}
 					</React.Fragment>
 				</Container>
-				<Container as="div" bsPrefix="selected-news__title">
-					<span>{ title }</span>
-					<Container as="div" bsPrefix="title__category-date">
-						<span>{ category }</span>
-						<span>{ date }</span>
+				<Container as="div" bsPrefix="selected-news__top">
+					<Container as="div" bsPrefix="top__title">
+						<span>{ title }</span>
+						<Container as="div" bsPrefix="title__category-date">
+							<span>{ category }</span>
+							<span>{ date }</span>
+						</Container>
 					</Container>
+					{logo !== null &&
+						<Container as="div" bsPrefix="content__logo" style={{backgroundImage: 'url(' + logo + ')'}}/>
+					}
 				</Container>
 				<Container as="div" bsPrefix="selected-news__content">
 					<Container as="div" bsPrefix="content__text" dangerouslySetInnerHTML={{__html: descriptor}}></Container>
-					{ 
-
-					}
+					<Container as="div" bsPrefix="content__urls">
+						{original_url !== null &&
+							<Link to={{
+								pathname: original_url
+							}} onClick={this.redirectLinkClick}>Ссылка на оригинальную статью</Link>
+						}
+					</Container>
 				</Container>
 			</Container>
 		)
