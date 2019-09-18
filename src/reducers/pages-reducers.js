@@ -18,7 +18,11 @@ export default function() {
 		},
 		"gallery": {
 			"title": "Галерея",
-			"subtitle": "Фотографии предприятия"
+			"subtitle": "Альбомы с фотографиями предприятия"
+		},
+		"patents": {
+			"title": "Патенты",
+			"subtitle": "Патенты предприятия"
 		},
 		"news": {
 			"title": "Новости",

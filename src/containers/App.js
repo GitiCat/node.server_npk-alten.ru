@@ -11,6 +11,8 @@ const Leadership = lazy(() => import("../components/pages/leadership/leadership"
 const News = lazy(() => import("../components/pages/news/index"))
 const Gallery = lazy(() => import("../components/pages/gallery/index"))
 const Album = lazy(() => import("../components/pages/gallery/album/album"))
+const Patents = lazy(() => import("../components/pages/patents/index"))
+const Patent = lazy(() => import("../components/pages/patents/selected/index"))
 import ProductsByCategory from "../containers/productions/productions";
 
 import HamburgerMenu from "../components/blocks/menu/hamburger-menu";
@@ -36,6 +38,8 @@ class App extends React.Component {
                                 <Route path='/company/leadership/:id' component={Leadership}/>
                                 <Route exact path='/company/gallery' component={Gallery}/>
                                 <Route path='/company/gallery/:album' component={Album}/>
+                                <Route exact path='/company/patents' component={Patents}/>
+                                <Route path='/company/patents/:patent' component={Patent}/>
                                 <Route exact path='/news' component={News}/>
                                 <Route path='/news/:id' component={News}/>
                             </Switch>
