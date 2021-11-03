@@ -45,7 +45,7 @@
     "react-transition-group": "^4.3.0",
     "redux": "^4.0.1",
     "sql-query": "^0.1.27",
-    "validator": "^11.0.0",
+    "validator": "^13.7.0",
     "vivus": "^0.4.4",
     "winston": "^3.2.1"
   },
